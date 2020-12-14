@@ -20,7 +20,7 @@ public class MyTest {
 	private static final String appKey_V = "b5b1c6938e5d0cef72457bd788ffdef0";
 	private static final String appId_V = "yondervisionwebservice40";
 	private static final String clientIp_V = "172.10.0.1";
-
+	//20201214
 
 	public  static void searchAndReplace(String srcPath, String destPath, Map<String, String> map) {
 		try {
