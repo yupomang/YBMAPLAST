@@ -15,6 +15,7 @@ import com.yondervision.mi.common.message.SimpleHttpMessageUtil;
 
 public class MyTest {
 
+	//测试
 	public static final String POST_URL = "http://61.153.144.77:7006/YBMAPZH/";
 	private static final String appKey_V = "b5b1c6938e5d0cef72457bd788ffdef0";
 	private static final String appId_V = "yondervisionwebservice40";
