@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>navigation</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/master.css" />
+    <link rel="stylesheet" type="text/css" href="css/3rd/iconfont.css" />
+    <script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="js/lib/vue.js"></script>
+</head>
+<body>
+<div class="nav-container">
+    <dl class="nav-container-ul">
+        <template v-for="item in items">
+            <dt v-if="item.level == '1'" @click="show(item.id)" :class="{'on': item.id == dt }">
+                <i class="icon iconfont {{ item.image }}"></i>
+                <span>{{ item.name }}</span>
+            </dt>
+            <dd v-if="item.level == '2'" @click="pageJump(item.url, item.id)" :class="{'on': item.id == dd }">
+                <i class="icon iconfont {{ item.image }}"></i>
+                <span>{{ item.name }}</span>
+            </dd>
+        </template>
+    </dl>
+</div>
+<script type="text/javascript">
+    // nav
+    if((".nav-container-ul").length > 0) {
+        $(".nav-container-ul").on("click", "dt", function () {
+            $(".nav-container-ul").find("dd").stop().slideUp();
+            $(this).nextUntil('dt').stop().slideDown();
+        });
+    }
+    var navData = window.localStorage.getItem("nav");
+    navData = JSON.parse(navData);
+    var navTree = new Vue({
+        el: '.nav-container-ul',
+        data: {
+            items: navData,
+            dt: '',
+            dd: ''
+        },
+        methods: {
+            pageJump: function (url, id) {
+                top.frames['main'].location.href = url;
+                this.dd = id;
+            },
+            show: function (id) {
+                this.dt = id;
+            }
+        }
+    });
+</script>
+</body>
+</html>

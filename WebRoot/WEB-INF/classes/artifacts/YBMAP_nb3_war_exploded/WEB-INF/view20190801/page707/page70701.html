@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="css/systemManagement.css" />
+</head>
+<body>
+<div class="code-table-left">
+    <h2>栏目管理</h2>
+    <ul class="code-table-tree">
+        <template v-for="item in items">
+            <li>
+                <p @click="getSubTree(item.id, item.attributes.centerid, item)" v-bind:class="{ 'background-none': item.state == 'open' }">{{ item.text }}</p>
+
+                <dl id="dl{{ item.attributes.itemid }}"></dl>
+            </li>
+        </template>
+    </ul>
+</div>
+<div class="code-table-right">
+    <div class="common-btns">
+        <a href="javascript:;" title="新建" class="common-btns-create" id="sysMgmt-btn-add">新建</a>
+        <a href="javascript:;" title="修改" class="common-btns-edit" id="sysMgmt-btn-edit">修改</a>
+        <a href="javascript:;" title="删除" class="common-btns-del" id="sysMgmt-btn-del">删除</a>
+    </div>
+    <div id="codeTable"></div>
+</div>
+<div class="sysMgmt-hidden-area">
+    <div class="codeTable-create">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>栏目信息-增加</span>
+                </h2>
+                <div class="reservation-popup-title">
+                    <span style="margin-right:40px">所属中心：华信永道门户管理</span>
+                    <span>上级编码：uiconfig-界面展示配置</span>
+                </div>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <div class="wechat-baseQuery-popup-line">
+                            <p>栏目编码</p>
+                            <input type="text" id="itemid" maxlength="6">
+                            <span class="red-link">*</span>
+                        </div>
+                        <div class="wechat-baseQuery-popup-line">
+                            <p>栏目名称</p>
+                            <input type="text" id="itemval">
+                            <span class="red-link">*</span>
+                        </div>
+                        <div class="wechat-baseQuery-popup-line">
+                            <p>栏目状态</p>
+                            <label><input type="radio" name="stat" id="" value="1" checked/>开放</label>
+                            <label><input type="radio" name="stat" id="" value="0" /> 关闭</label>
+                            <span class="red-link">*</span>
+                        </div>
+                       <div class="wechat-baseQuery-popup-line">
+                           <p>信息过期时间</p>
+                            <input type="text" id="freeuse1">
+                       </div>
+                        <div class="wechat-baseQuery-popup-line">
+                           <p>渠道</p>
+                           <select id="freeuse3" name="freeuse3" multiple="multiple" style="width:300px;"></select>
+                           <span class="red-link">*</span>
+                       </div>
+                       <div class="wechat-baseQuery-popup-line">
+                           <p>是否参与统计</p>
+                           <label><input type="radio"  name="freeuse4"  value="1" checked/>是</label>
+                           <label><input type="radio"  name="freeuse4"  value="0"/>否</label>
+                           <span class="red-link">*</span>
+                       </div>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].codeTable.add();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- edit -->
+    <div class="codeTable-edit">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>栏目信息-修改</span>
+                </h2>
+                <div class="reservation-popup-title">
+                    <span style="margin-right:40px">所属中心：华信永道门户管理</span>
+                    <span>上级编码：uiconfig-界面展示配置</span>
+                </div>
+                <div class="wechat-baseQuery-popup-content">
+                   <div class="wechat-baseQuery-popup-edit">
+                    <div class="wechat-baseQuery-popup-line">
+                            <p>栏目编码</p>
+                            <input type="text" id="itemid1" maxlength="6">
+                            <span class="red-link">*</span>
+                        </div>
+                        <div class="wechat-baseQuery-popup-line">
+                            <p>栏目名称</p>
+                            <input type="text" id="itemval1">
+                            <span class="red-link">*</span>
+                        </div>
+                        <div class="wechat-baseQuery-popup-line">
+                            <p>栏目状态</p>
+                            <label><input type="radio" name="stat1" id="" value="1" checked/>开放</label>
+                            <label><input type="radio" name="stat1" id="" value="0" /> 关闭</label>
+                            <span class="red-link">*</span>
+                        </div>
+                       <div class="wechat-baseQuery-popup-line">
+                           <p>信息过期时间</p>
+                            <input type="text" id="freeuse11">
+                       </div>
+                       <div class="wechat-baseQuery-popup-line">
+                           <p>渠道</p>
+                           <select id="freeuse32" name="freeuse32" multiple="multiple" style="width:300px;"></select>
+                           <span class="red-link">*</span>
+                       </div>
+                       <div class="wechat-baseQuery-popup-line">
+                           <p>是否参与统计</p>
+                           <label><input type="radio"  name="freeuse42"  value="1" checked/>是</label>
+                           <label><input type="radio"  name="freeuse42"  value="0"/>否</label>
+                           <span class="red-link">*</span>
+                       </div>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].codeTable.edit();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/menuManagement.js"></script>
+<script>
+$(document).ready(function() {
+	 $.ajax({
+         type: 'POST',
+         url:'./webapi04004.json',
+         data: {
+             'centerid': "${centerid}",
+             'page': 1,
+             'rows': 999
+         },
+         datatype: 'json',
+         success: function (data) {
+             if (typeof data == 'string') {
+                 data = JSON.parse(data);
+             }
+             if (data.recode == '000000') {
+                 var channelOptions = '';
+                 for (var i = 0; i < data.rows.length; i++) {
+                     channelOptions += '<option value="' + data.rows[i].pid + '">' + data.rows[i].appname + '</option>';
+                 }
+                 $('#freeuse3').html(channelOptions);
+                 $('#freeuse32').html(channelOptions);
+             }
+         },
+         error: function () {
+             errMsg();
+         }
+     });
+});
+</script>
+</html>

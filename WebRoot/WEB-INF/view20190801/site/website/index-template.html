@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"/>
+    <meta http-equiv="Cache-Control" content="max-age=86400"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>昆明市住房公积金管理中心</title>
+    <meta name="keywords"
+          content="昆明住房公积金管理中心,公积金贷款利率,通知公告,业务指南,新闻动态,服务渠道,网上贷款利率,主任信箱,客服电话,网点查询,党建工作,在线留言,合作楼盘,下载中心,政府信息公开">
+    <meta name="description"
+          content="昆明公积金管理中心,统一服务电话：12329,可查询业务包括：公积金贷款利率,通知公告,业务指南,新闻动态,服务渠道,网上贷款利率,主任信箱,客服电话,网点查询,党建工作,在线留言,合作楼盘,下载中心,政府信息公开等。"/>
+    <meta name="viewport" content="width=1002px, initial-scale=1, maximum-scale=1"/>
+
+    <#include "/template/resource-css.html"/>
+</head>
+
+<body>
+<#include "/template/header.html"/>
+<div class="main-content content-wrap container">
+    <!--动态及通告-->
+    <div class="line-wrap margin-bottom-15">
+        <div class="left-content-wrap pull-left mr-15 dynamic-img-height border-e8">
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+                <@cms_appapi41101_list centerId='00087100' animatecode='1000' buzType='5451' channel='30' deviceType='3'>
+
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <#list appapi41101_list as item>
+                        <#if (appapi41101_list?size>1)>
+                            <#if item_index==0>
+                                <li data-target="#carousel" data-slide-to="${item_index}" class="active"></li>
+                                <#else>
+                                    <li data-target="#carousel" data-slide-to="${item_index}" class=""></li>
+                            </#if>
+
+                        </#if>
+                    </#list>
+                </ol>
+
+
+
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <#list appapi41101_list as item>
+                            <#if item_index==0>
+                            <div class="item  active">
+                                <img src="${item.imgpath}" alt="${item.xh}">
+                            </div>
+                                <#else>
+                                    <div class="item">
+                                        <img src="${item.imgpath}" alt="${item.xh}">
+                                    </div>
+                            </#if>
+                        </#list>
+                    </div>
+
+
+            </@cms_appapi41101_list>
+            </div>
+
+        </div>
+        <div class="center-content-wrap pull-left mr-15">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs content-title padding-0" role="tablist" id="newsTab">
+                <li role="presentation" class="active"><a href="#centerNews" role="tab" data-toggle="tab">中心动态</a></li>
+                <li role="presentation"><a href="#industuryNews" role="tab" data-toggle="tab">行业动态</a></li>
+                <li class="more-li"><a href="./news-list.html" class="more pull-right">更多</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content border-e8   border-none-top   dynamic-height">
+                <!--中心动态-->
+                <div role="tabpanel" class="tab-pane active" id="centerNews">
+                    <div class="list-big">
+                        <@cms_appapi70009_list centerId='00087100' parentViewItemId= '1' buzType='5501'
+                        curChildViewItemId='' channel='30'
+                        pagenum='0' pagerows='4' keyword=''>
+                        <#list appapi70009_list as item>
+                            <#if item_index==0>
+                                <a href="./news-list-detail.html?seqno=${item.seqno}&itemId=">
+                                    <div class="top-1">
+                                        <h4>${item.title}</h4>
+                                        <p class="ellipsis">
+                                            ${item.introduction}
+                                        </p>
+                                    </div>
+                                </a>
+                                <#else>
+                                    <a href="./news-list-detail.html?seqno=${item.seqno}&itemId=">
+                                        <div class="list-text-big row margin-0 cursor">
+                                            <div class=" col-sm-9 ellipsis">
+                                                <img src="../resource/img/index/icon_list.png" alt=">">
+                                                ${item.title}
+                                            </div>
+                                            <div class="col-sm-3 time">${item.releasetime}</div>
+                                        </div>
+                                    </a>
+                            </#if>
+
+                        </#list>
+                    </@cms_appapi70009_list>
+                </div>
+            </div>
+            <!--行业动态-->
+            <div role="tabpanel" class="tab-pane" id="industuryNews">
+                <div class="list-big">
+                    <@cms_appapi70009_list centerId='00087100' parentViewItemId= '1' buzType='5501'
+                    curChildViewItemId='0102' channel='30'
+                    pagenum='0' pagerows='4' keyword=''>
+                    <#list appapi70009_list as item>
+                        <#if item_index==0>
+                            <a href="./news-list-detail.html?seqno=${item.seqno}&itemId=0102">
+                                <div class="top-1">
+                                    <h4>${item.title}</h4>
+                                    <p class="ellipsis">
+                                        ${item.introduction}
+                                    </p>
+                                </div>
+                                </a>
+                            <#else>
+                                <a href="./news-list-detail.html?seqno=${item.seqno}&itemId=0102">
+                                    <div class="list-text-big row margin-0 cursor">
+                                        <div class=" col-sm-9 ellipsis">
+                                            <img src="../resource/img/index/icon_list.png" alt=">">
+                                            ${item.title}
+                                        </div>
+                                        <div class="col-sm-3 time">${item.releasetime}</div>
+                                    </div>
+                                </a>
+                        </#if>
+
+                    </#list>
+                </@cms_appapi70009_list>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right-content-wrap pull-left">
+    <div class="content-title">
+        <span>通知公告</span>
+        <a href="./announcement.html" class="more pull-right">更多</a>
+    </div>
+
+    <div class="service-wrap border-e8 border-none-top dynamic-height padding-0" id="indexAnnounce">
+        <@cms_appapi70001_list classification='2' buzType='5521' pagenum='0' pagerows='6' centerId='00087100'
+        keyword='' channel='30'>
+        <#list appapi70001_list as item>
+            <a href="./announcement-detail.html?seqno=${item.titleId}">
+                <p class="list-text">
+                    <img src="../resource/img/index/icon_list.png" alt=">">
+                    ${item.title}
+                </p>
+            </a>
+        </#list>
+    </@cms_appapi70001_list>
+</div>
+</div>
+</div>
+<!--服务渠道及下载中心-->
+<div class="line-wrap">
+    <div class="left-bigger-content-wrap pull-left mr-15">
+        <div class="content-title">
+            <span>服务渠道</span>
+            <a href="./service-channel.html" class="more pull-right">更多</a>
+        </div>
+        <div class="service-wrap border-e8 border-none-top service-height" id="serviceChannel">
+            <@cms_appapi70009_list centerId='00087100' parentViewItemId= '4' buzType='5523'
+            curChildViewItemId='' pagenum='0' pagerows='10' keyword='' channel='30'>
+            <#list appapi70009_childList as serviceItem>
+                <div class="service-icon-wrap pull-left cursor">
+                    <#if serviceItem_index<7>
+                    <a href="./service-channel.html?itemId=${serviceItem.itemId}">
+                        <#if serviceItem.itemVal == "网上业务大厅">
+                            <img src="../resource/img/index/service_img_wsywdt.png" alt="${serviceItem.itemVal}">
+                            <#elseif serviceItem.itemVal == "服务热线">
+                                <img src="../resource/img/index/service_img_fwrx.png" alt="${serviceItem.itemVal}">
+                                <#elseif serviceItem.itemVal == "手机客户端">
+                                    <img src="../resource/img/index/service_img_sjkhd.png"
+                                         alt="${serviceItem.itemVal}">
+                                    <#elseif serviceItem.itemVal == "微信">
+                                        <img src="../resource/img/index/service_img_wx.png"
+                                             alt="${serviceItem.itemVal}">
+                                        <#elseif serviceItem.itemVal == "微博">
+                                            <img src="../resource/img/index/service_img_wb.png"
+                                                 alt="${serviceItem.itemVal}">
+                                            <#elseif serviceItem.itemVal == "自助终端">
+                                                <img src="../resource/img/index/service_img_zzzd.png"
+                                                     alt="${serviceItem.itemVal}">
+                                                <#elseif serviceItem.itemVal == "手机短信">
+                                                    <img src="../resource/img/index/service_img_sjdx.png"
+                                                         alt="${serviceItem.itemVal}">
+
+                        </#if>
+
+
+
+                        <p class="mt-5">${serviceItem.itemVal}</p>
+
+                    </a>
+                    </#if>
+                </div>
+
+            </#list>
+        </@cms_appapi70009_list>
+    </div>
+</div>
+
+<div class="right-content-wrap pull-left">
+    <div class="content-title">
+        <span>下载中心</span>
+        <a href="./download-file.html" class="more pull-right">更多</a>
+    </div>
+
+    <div class="service-wrap border-e8 service-height service-height-ie7 padding-0" id="downloadWrap">
+        <@cms_appapi70009_list centerId='00087100' parentViewItemId= '11' buzType='5529'
+        curChildViewItemId='all' pagenum='0' pagerows='4' keyword='' channel='30'>
+        <#list appapi70009_list as item>
+            <a href="./download-file.html">
+                <p class="list-text">
+                    <img src="../resource/img/index/icon_list.png" alt=">">
+                    ${item.title}
+                </p>
+            </a>
+        </#list>
+    </@cms_appapi70009_list>
+</div>
+</div>
+</div>
+<!--业务指南-->
+<div class="line-wrap mt-15">
+    <div class=" left-bigger-content-wrap pull-left mr-15 border-e8 bussiness-guide" id="bussinessGuide">
+        <div class="pull-left guide-title mr-15">业<br>务<br>指<br>南</div>
+        <@cms_appapi90501_list buzType='5752' strucid='22' centerId='00087100' channel='30'>
+        <#list appapi90501_list as item>
+            <a href="./bussiness-guide-list.html">
+                <#if item.floor == '2'>
+                    <#if item.title == "公积金缴存">
+                        <img src="../resource/img/index/business_img_gjjcj.png" alt="${item.title}" class="mr-5">
+                        <#elseif item.title == "公积金贷款">
+                            <img src="../resource/img/index/business_img_gjjdk.png" alt="${item.title}"
+                                 class="mr-5">
+                            <#else>
+                                <img src="../resource/img/index/business_img_gjjtq.png" alt="${item.title}"
+                                     >
+                    </#if>
+                </#if>
+            </a>
+        </#list>
+    </@cms_appapi90501_list>
+
+</div>
+<div class="right-content-wrap pull-left padding-0 bussiness-guide ">
+    <a href="http://222.172.223.90:8081/kmnbp/" class="kmnbp">
+        <img src="../resource/img/index/business_img_wsywdt.png" alt="网上服务大厅" class="kmnbp">
+    </a>
+</div>
+</div>
+
+<!--部委公积金等信息-->
+<div class="line-wrap mt-15 main">
+
+    <!--联系信息-->
+    <div class="left-content-wrap pull-left mr-15" id="contactInfo">
+        <@cms_appapi70001_list classification='14' buzType='5532' pagenum='0' pagerows='10' centerId='00087100'
+        keyword='' channel='30'>
+        <#list appapi70001_list?sort_by(["titleId"]) as item>
+            <#if item_index == 0>
+                <div class="contact-wrap">
+                    <div class="col-xs-3 padding-0">
+                        <img src="${item.imgUrl}" alt="${item.title}">
+                    </div>
+                    <div class="col-xs-9">
+                        <p class="contact-title mt-25">${item.title}</p>
+                        <p class="font-size-14 mt-5">${item.introduction}</p>
+                    </div>
+                </div>
+                <#else>
+                    <div class="contact-wrap mt-15">
+                        <div class="col-xs-3 padding-0">
+                            <img src="${item.imgUrl}" alt="${item.title}">
+                        </div>
+                        <div class="col-xs-9">
+                            <p class="contact-title mt-25">${item.title}</p>
+                            <p class="font-size-14 mt-5">${item.introduction}</p>
+                        </div>
+                    </div>
+            </#if>
+        </#list>
+    </@cms_appapi70001_list>
+
+</div>
+
+
+<div class="center-content-wrap pull-left border-none-top">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs content-title padding-0" role="tablist" id="regulationTab">
+        <li role="presentation" class="active"><a href="#ministriesFile" role="tab" data-toggle="tab">中心文件</a>
+        </li>
+        <li role="presentation"><a href="#localLaws" role="tab" data-toggle="tab">地方法规</a></li>
+        <li role="presentation"><a href="#centerFile" role="tab" data-toggle="tab">部委文件</a></li>
+        <li class="more-li"><a href="./regulation-list.html" class="more pull-right">更多</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content border-e8 border-none-top mail-height">
+        <!--部委文件-->
+        <div role="tabpanel" class="tab-pane active" id="ministriesFile">
+            <div class="list-big">
+                <@cms_appapi70009_list centerId='00087100' parentViewItemId= '3' buzType='5522'
+                curChildViewItemId='0301' pagenum='0' pagerows='6' keyword='' channel='30'>
+                <#list appapi70009_list as item>
+                    <#if item_index==0>
+                        <a href="./regulation-detail.html?seqno=${item.seqno}&itemId=">
+                        <div class="top-1">
+                            <h4>${item.title}</h4>
+                            <p class="ellipsis">
+                                ${item.introduction}
+                            </p>
+                        </div>
+                        </a>
+                        <#else>
+                            <a href="./regulation-detail.html?seqno=${item.seqno}&itemId=">
+                            <div class="list-text-big row margin-0 cursor">
+                                <div class=" col-sm-9 ellipsis">
+                                    <img src="../resource/img/index/icon_list.png" alt=">">
+                                    ${item.title}
+                                </div>
+                                <div class="col-sm-3 time">${item.releasetime}</div>
+                            </div>
+                                </a>
+
+                    </#if>
+
+                </#list>
+            </@cms_appapi70009_list>
+        </div>
+    </div>
+    <!--地方法规-->
+    <div role="tabpanel" class="tab-pane" id="localLaws">
+        <div class="list-big">
+            <@cms_appapi70009_list centerId='00087100' parentViewItemId= '3' buzType='5522'
+            curChildViewItemId='0302' pagenum='0' pagerows='6' keyword='' channel='30'>
+            <#list appapi70009_list as item>
+                <#if item_index==0>
+                    <a href="./regulation-detail.html?seqno=${item.seqno}&itemId=0302">
+                    <div class="top-1">
+                        <h4>${item.title}</h4>
+                        <p class="ellipsis">
+                            ${item.introduction}
+                        </p>
+                    </div>
+                        </a>
+                    <#else>
+                        <a href="./regulation-detail.html?seqno=${item.seqno}&itemId=0302">
+                        <div class="list-text-big row margin-0 cursor">
+                            <div class=" col-sm-9 ellipsis">
+                                <img src="../resource/img/index/icon_list.png" alt=">">
+                                ${item.title}
+                            </div>
+                            <div class="col-sm-3 time">${item.releasetime}</div>
+                        </div>
+                            </a>
+
+                </#if>
+
+            </#list>
+        </@cms_appapi70009_list>
+    </div>
+</div>
+<!--中心文件-->
+<div role="tabpanel" class="tab-pane" id="centerFile">
+    <div class="list-big">
+        <@cms_appapi70009_list centerId='00087100' parentViewItemId= '3' buzType='5522'
+        curChildViewItemId='0303' pagenum='0' pagerows='6' keyword='' channel='30'>
+        <#list appapi70009_list as item>
+            <#if item_index==0>
+                <a href="./regulation-detail.html?seqno=${item.seqno}&itemId=0303">
+                <div class="top-1">
+                    <h4>${item.title}</h4>
+                    <p class="ellipsis">
+                        ${item.introduction}
+                    </p>
+                </div>
+                    </a>
+                <#else>
+                    <a href="./regulation-detail.html?seqno=${item.seqno}&itemId=0303">
+                    <div class="list-text-big row margin-0 cursor">
+                        <div class=" col-sm-9 ellipsis">
+                            <img src="../resource/img/index/icon_list.png" alt=">">
+                            ${item.title}
+                        </div>
+                        <div class="col-sm-3 time">${item.releasetime}</div>
+                    </div>
+                        </a>
+
+            </#if>
+
+        </#list>
+    </@cms_appapi70009_list>
+</div>
+</div>
+</div>
+</div>
+
+<div class="right-content-wrap pull-left ml-15">
+    <div class="content-title">
+        <span>公积金利率</span>
+    </div>
+
+    <div class="service-wrap border-e8 fund-rate mail-height">
+        <div class="col-sm-12">
+            <@cms_appapi70001_list classification='12' buzType='5530' pagenum='0' pagerows='10'
+            centerId='00087100' keyword='' channel='30'>
+            <#list appapi70001_list as item>
+                <@cms_appapi70002_list titleId=item.titleId buzType='5530' channel='30' centerId='00087100'>
+                <#list appapi70002_list as c>
+                    ${c.content}
+                </#list>
+            </@cms_appapi70002_list>
+            </#list>
+        </@cms_appapi70001_list>
+    </div>
+</div>
+</div>
+
+</div>
+
+
+<!--政务党风-->
+<div class="line-wrap mt-15">
+    <!--党建工作 、、 政府信息公开-->
+    <div class="left-content-wrap pull-left">
+        <div>
+            <div class="content-title">
+                <span>党建工作</span>
+                <a href="./party-building.html" class="more pull-right cursor">更多</a>
+            </div>
+
+            <div class="service-wrap border-e8 border-none-top party-height padding-0" id="partyBuilding">
+                <@cms_appapi70012_list centerId='00087100' classification='8' buzType='5527' pagerows='9' keyword=''
+                pagenum='0' channel='30'>
+                <#list appapi70012_list as item>
+                    <a href="./party-building-detail.html?seqno=${item.seqno}&itemId=8">
+                        <p class="list-text cursor margin-0">
+                            <img src="../resource/img/index/icon_list.png" alt=">">
+                            ${item.title}
+                        </p>
+                    </a>
+                </#list>
+            </@cms_appapi70012_list>
+
+        </div>
+    </div>
+    <!--政府信息公开-->
+    <div class="mt-15">
+        <div class="content-title">
+            <span>政府信息公开</span>
+            <a href="./government-info-public.html" class="more pull-right cursor">更多</a>
+        </div>
+
+        <div class="service-wrap border-e8  border-none-top open-info mail-height">
+            <@cms_appapi70009_list centerId='00087100' parentViewItemId= '10' buzType='5526'
+            curChildViewItemId='' pagenum='0' pagerows='10' keyword='' channel='30'>
+            <#list appapi70009_childList as item>
+                <a href="./government-info-public.html?itemId=${item.itemId}" class="cursor">${item.itemVal}</a>
+            </#list>
+        </@cms_appapi70009_list>
+    </div>
+</div>
+</div>
+
+<!--党风建设，精神文明建设-->
+<div class="center-content-wrap pull-left ml-15">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs content-title padding-0" role="tablist" id="politicalTabs">
+        <li role="presentation" class="active">
+            <a href="#politicalA" role="tab" data-toggle="tab">党风廉政建设</a>
+        </li>
+        <li role="presentation">
+            <a href="#politicalB" role="tab" data-toggle="tab">精神文明建设</a>
+        </li>
+        <li class="more-li"><a href="./politically-popular.html" class="more pull-right">更多</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content border-e8 border-none-top party-height">
+        <!--党风建设 && 精神文明建设-->
+        <div role="tabpanel" class="tab-pane active" id="politicalA">
+            <div class="list-big">
+                <@cms_appapi70009_list centerId='00087100' parentViewItemId= '9' buzType='5528'
+                curChildViewItemId='0901' pagenum='0' pagerows='5' keyword='' channel='30'>
+                <#list appapi70009_list as item>
+                    <#if item_index==0>
+                        <a href="politically-popular-detail.html?seqno=${item.seqno}&itemId=0901">
+                        <div class="top-1">
+                            <h4>${item.title}</h4>
+                            <p class="ellipsis">
+                                ${item.introduction}
+                            </p>
+                        </div>
+                            </a>
+                        <#else>
+                            <a href="politically-popular-detail.html?seqno=${item.seqno}&itemId=0901">
+                            <div class="list-text-big row margin-0 cursor">
+                                <div class=" col-sm-9 ellipsis">
+                                    <img src="../resource/img/index/icon_list.png" alt=">">
+                                    ${item.title}
+                                </div>
+                                <div class="col-sm-3 time">${item.releasetime}</div>
+                            </div>
+                                </a>
+
+                    </#if>
+
+                </#list>
+            </@cms_appapi70009_list>
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="politicalB">
+        <div class="list-big">
+            <@cms_appapi70009_list centerId='00087100' parentViewItemId= '9' buzType='5528'
+            curChildViewItemId='0902' pagenum='0' pagerows='5' keyword='' channel='30'>
+            <#list appapi70009_list as item>
+                <#if item_index==0>
+                    <a href="politically-popular-detail.html?seqno=${item.seqno}&itemId=0902">
+                    <div class="top-1">
+                        <h4>${item.title}</h4>
+                        <p class="ellipsis">
+                            ${item.introduction}
+                        </p>
+                    </div>
+                        </a>
+                    <#else>
+                        <a href="politically-popular-detail.html?seqno=${item.seqno}&itemId=0902">
+                        <div class="list-text-big row margin-0 cursor">
+                            <div class=" col-sm-9 ellipsis">
+                                <img src="../resource/img/index/icon_list.png" alt=">">
+                                ${item.title}
+                            </div>
+                            <div class="col-sm-3 time">${item.releasetime}</div>
+                        </div>
+                            </a>
+
+                </#if>
+
+            </#list>
+        </@cms_appapi70009_list>
+    </div>
+</div>
+
+
+</div>
+<!--在线留言-->
+<div class="mt-15">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs content-title padding-0" role="tablist">
+        <div class="leave-message cursor">
+            <a href="./leave-message.html">
+                <img src="../resource/img/index/edit.png" alt="edit">
+                <span>我要留言</span>
+            </a>
+        </div>
+        <li role="presentation" class="active">
+            <a href="./message-list.html" class="cursor">在线留言</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content border-e8 border-none-top mail-height overflow">
+        <div role="tabpanel" class="tab-pane active" id="onlineMessage">
+            <div class="list-big">
+                <div class="list-text-big row margin-0 cursor ellipsis hide">
+                    <img src="../resource/img/index/icon_list.png" alt=">">
+                    【<span class="isreturn"></span>】<span class="returnContent"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--网点查询-->
+<div class="right-content-wrap pull-left ml-15">
+    <div class="content-title">
+        <span>网点查询</span>
+        <a class="more pull-right cursor" href="./net-map.html">更多</a>
+    </div>
+
+    <div class="service-wrap border-e8 border-none-top text-center">
+        <!--地图-->
+        <div id="netPointInfo">
+            <@cms_appapi70001_list classification='15' buzType='5533' pagenum='0' pagerows='10'
+            centerId='00087100' keyword='' channel='30'>
+            <#list appapi70001_list as item>
+                <@cms_appapi70002_list titleId=item.titleId buzType='5533' channel='30' centerId='00087100'>
+                <#list appapi70002_list as c>
+                    ${c.content}
+                </#list>
+            </@cms_appapi70002_list>
+            </#list>
+        </@cms_appapi70001_list>
+    </div>
+    <!--合作楼盘-->
+    <a href="./cooperative-project.html">
+        <img src="../resource/img/index/branch_img_building.png" alt="合作楼盘"
+             class="mt-15 border-right cursor">
+    </a>
+    <!--还款试算-->
+    <a href="./repayment-trial.html">
+        <img src="../resource/img/index/branch_img_compute.png" alt="还款试算"
+             class="mt-15 border-right cursor">
+    </a>
+
+</div>
+
+<div class=" online-custom mt-15">
+    <a class="cursor">
+        <img src="../resource/img/index/img_online.png" alt="在线客服" class="online-advice">
+    </a>
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+</div>
+<#include "./template/footer.html"/>
+<#include "/template/resource-js.html"/>
+<script src="../resource/js/storage.js"></script>
+<script src="../resource/js/index.js"></script>
+</body>
+</html>

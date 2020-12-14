@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="CMI423">
+	<resultMap class="java.util.HashMap" id="messageStatistics">
+		<result column="centerid" jdbcType="VARCHAR" property="centerid" />
+		<result column="pid" jdbcType="VARCHAR" property="pid" />
+		<result column="pus_message_type" jdbcType="VARCHAR" property="pus_message_type" />
+		<result column="succ" jdbcType="VARCHAR" property="succ" />
+		<result column="fail" jdbcType="VARCHAR" property="fail" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="messageStatisticsTemplate">
+		<result column="centerid" jdbcType="VARCHAR" property="centerid" />
+		<result column="pid" jdbcType="VARCHAR" property="pid" />
+		<result column="theme" jdbcType="VARCHAR" property="theme" />
+		<result column="succ" jdbcType="VARCHAR" property="succ" />
+		<result column="fail" jdbcType="VARCHAR" property="fail" />
+	</resultMap>
+	
+  <insert id="insertBatch" parameterClass="java.lang.String">
+    <![CDATA[
+	    INSERT INTO MI423 SELECT * FROM MI403 WHERE VALIDFLAG=1 
+	    	AND (STATUS=1 OR STATUS=2)
+	    	AND SUBSTR(DATECREATED,1,10) < #value:VARCHAR#
+	]]>	
+  </insert>
+  
+  <select id="messageStatistics" parameterClass="java.lang.String" resultMap="messageStatistics">
+  	<![CDATA[
+	    select case when t1.centerid is null then t2.centerid else t1.centerid end as centerid,
+	        case when t1.pid is null then t2.pid else t1.pid end as pid,
+	        case when t1.pus_message_type is null then t2.pus_message_type else t1.pus_message_type end as pus_message_type,
+	        case when t1.cnt is null then 0 else t1.cnt end as succ,
+	        case when t2.cnt is null then 0 else t2.cnt end as fail
+		from
+			(select centerid,pid,pus_message_type, count(*) cnt
+			from mi423 
+			where substr(datecreated,1,10)=#value:VARCHAR# and pus_message_type!='03' and status=1 and validflag=1
+			group by centerid, pid, pus_message_type) t1
+		full join 
+			(select centerid,pid,pus_message_type, count(*) cnt
+			from mi423 
+			where substr(datecreated,1,10)=#value:VARCHAR# and pus_message_type!='03' and status=2 and validflag=1
+			group by centerid, pid, pus_message_type) t2
+		on t1.centerid=t2.centerid and t1.pid=t2.pid and t1.pus_message_type=t2.pus_message_type
+	]]>	
+  </select>
+  <select id="messageStatisticsTemplate" parameterClass="java.lang.String" resultMap="messageStatisticsTemplate">
+  	<![CDATA[
+	    select case when t1.centerid is null then t2.centerid else t1.centerid end as centerid,
+	        case when t1.pid is null then t2.pid else t1.pid end as pid,
+	        case when t1.theme is null then t2.theme else t1.theme end as theme,
+	        case when t1.cnt is null then 0 else t1.cnt end as succ,
+	        case when t2.cnt is null then 0 else t2.cnt end as fail
+		from
+			(select centerid,pid,theme, count(*) cnt
+			from mi423 
+			where substr(datecreated,1,10)=#value:VARCHAR# and pus_message_type='03' and status=1 and validflag=1
+			group by centerid, pid, theme) t1
+		full join 
+			(select centerid,pid,theme, count(*) cnt
+			from mi423 
+			where substr(datecreated,1,10)=#value:VARCHAR# and pus_message_type='03' and status=2 and validflag=1
+			group by centerid, pid, theme) t2
+		on t1.centerid=t2.centerid and t1.pid=t2.pid and t1.theme=t2.theme
+	]]>	
+  </select>
+</sqlMap>

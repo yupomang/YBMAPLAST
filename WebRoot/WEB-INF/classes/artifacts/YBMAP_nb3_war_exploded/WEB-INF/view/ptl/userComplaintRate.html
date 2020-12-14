@@ -1,0 +1,62 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>用户投诉率</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" type="text/css" href="css/analysis.css" />
+</head>
+<body>
+<div class="channelAnalysis-top" id="filter-form">
+    <p v-show="cu.hide" class="channelAnalysis-top-name" style="display: none;">客户名称</p>
+    <select v-show="cu.hide" name="" class="cn" v-model="cu.selected" style="display: none;">
+        <option v-for="option in cu.options" v-bind:value="option.value">
+            {{ option.text }}
+        </option>
+    </select>
+    <p class="channelAnalysis-top-name added" style="display:inline-block">年份</p>
+    <select name="" id="year" class="added" style="display:inline-block">
+    </select>
+    <p class="channelAnalysis-top-name added" style="display:inline-block">月份</p>
+    <select name="" id="month" class="added" style="display:inline-block">
+    </select>
+    <a href="javascript:;" title="查询" @click="filter" class="channelAnalysis-top-queryBtn">查询</a>
+</div>
+<table id="userComplaintRate" v-show="hasQuery" cellpadding="0" align="center">
+    <tr>
+        <td width="200" bgcolor="#f4f5f9">总比数</td>
+        <td width="200" bgcolor="#f4f5f9">失败笔数</td>
+        <td width="200" bgcolor="#f4f5f9">投诉率</td>
+    </tr>
+    <tr>
+        <td>{{ totalnum }}</td>
+        <td>{{ failsum }}</td>
+        <td>{{ rate }}</td>
+    </tr>
+</table>
+<style>
+    table{
+        width: 600px;
+        height: 100px;
+        border:solid 1px #eee;
+        border-collapse: collapse;
+        color:#333;
+        font-size:14px;
+    }
+    td{
+        border:solid 1px #eee;
+        text-align:center;
+    }
+</style>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery.js"></script><script type="text/javascript" src="js/lib/jquery-migrate.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/3rd/laydate.js"></script>
+<script type="text/javascript" src="js/3rd/echarts.common.min.js"></script>
+<script type="text/javascript" src="js/userComplaintRate.js"></script>
+</body>
+</html>

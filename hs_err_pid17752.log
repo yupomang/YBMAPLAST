@@ -1,0 +1,159 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=17752, tid=0x0000000000004830
+#
+# JRE version:  (8.0_191-b12) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.191-b12 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000003682800):  JavaThread "Unknown thread" [_thread_in_vm, id=18480, stack(0x0000000003520000,0x0000000003620000)]
+
+Stack: [0x0000000003520000,0x0000000003620000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0000000003682800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=18480, stack(0x0000000003520000,0x0000000003620000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 76288K, used 1310K [0x000000076b000000, 0x0000000770500000, 0x00000007c0000000)
+  eden space 65536K, 2% used [0x000000076b000000,0x000000076b147af0,0x000000076f000000)
+  from space 10752K, 0% used [0x000000076fa80000,0x000000076fa80000,0x0000000770500000)
+  to   space 10752K, 0% used [0x000000076f000000,0x000000076f000000,0x000000076fa80000)
+ ParOldGen       total 175104K, used 0K [0x00000006c1000000, 0x00000006cbb00000, 0x000000076b000000)
+  object space 175104K, 0% used [0x00000006c1000000,0x00000006c1000000,0x00000006cbb00000)
+ Metaspace       used 775K, capacity 4480K, committed 4480K, reserved 1056768K
+  class space    used 76K, capacity 384K, committed 384K, reserved 1048576K
+
+Card table byte_map: [0x0000000012d10000,0x0000000013510000] byte_map_base: 0x000000000f708000
+
+Marking Bits: (ParMarkBitMap*) 0x0000000053903e30
+ Begin Bits: [0x0000000014460000, 0x0000000018420000)
+ End Bits:   [0x0000000018420000, 0x000000001c3e0000)
+
+Polling page: 0x0000000001800000
+
+CodeCache: size=245760Kb used=327Kb max_used=327Kb free=245432Kb
+ bounds [0x0000000003950000, 0x0000000003bc0000, 0x0000000012950000]
+ total_blobs=57 nmethods=0 adapters=38
+ compilation: enabled
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.029 loading class java/lang/Short
+Event: 0.029 loading class java/lang/Short done
+Event: 0.029 loading class java/lang/Integer
+Event: 0.029 loading class java/lang/Integer done
+Event: 0.029 loading class java/lang/Long
+Event: 0.029 loading class java/lang/Long done
+Event: 0.030 loading class java/lang/NullPointerException
+Event: 0.030 loading class java/lang/NullPointerException done
+Event: 0.030 loading class java/lang/ArithmeticException
+Event: 0.030 loading class java/lang/ArithmeticException done
+
+
+Dynamic libraries:
+0x00007ff6ef7f0000 - 0x00007ff6ef827000 	D:\luolin\java jdk\bin\java.exe
+0x00007fff00fe0000 - 0x00007fff011cd000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007fff00ef0000 - 0x00007fff00fa3000 	C:\Windows\System32\KERNEL32.DLL
+0x00007ffefd5b0000 - 0x00007ffefd843000 	C:\Windows\System32\KERNELBASE.dll
+0x00007ffeff1f0000 - 0x00007ffeff293000 	C:\Windows\System32\ADVAPI32.dll
+0x00007ffefe360000 - 0x00007ffefe3fe000 	C:\Windows\System32\msvcrt.dll
+0x00007ffefee70000 - 0x00007ffefef0e000 	C:\Windows\System32\sechost.dll
+0x00007ffefed40000 - 0x00007ffefee62000 	C:\Windows\System32\RPCRT4.dll
+0x00007ffefe990000 - 0x00007ffefeb27000 	C:\Windows\System32\USER32.dll
+0x00007ffefe180000 - 0x00007ffefe1a0000 	C:\Windows\System32\win32u.dll
+0x00007ffefeb90000 - 0x00007ffefebb9000 	C:\Windows\System32\GDI32.dll
+0x00007ffefd320000 - 0x00007ffefd4b9000 	C:\Windows\System32\gdi32full.dll
+0x00007ffefd0a0000 - 0x00007ffefd140000 	C:\Windows\System32\msvcp_win.dll
+0x00007ffefd1f0000 - 0x00007ffefd2ea000 	C:\Windows\System32\ucrtbase.dll
+0x00007ffee5110000 - 0x00007ffee5389000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.17763.1039_none_de701650534c7021\COMCTL32.dll
+0x00007ffefe660000 - 0x00007ffefe98c000 	C:\Windows\System32\combase.dll
+0x00007ffefd4c0000 - 0x00007ffefd53e000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007fff00e30000 - 0x00007fff00e5e000 	C:\Windows\System32\IMM32.DLL
+0x0000000053990000 - 0x0000000053a62000 	D:\luolin\java jdk\jre\bin\msvcr100.dll
+0x00000000530e0000 - 0x0000000053984000 	D:\luolin\java jdk\jre\bin\server\jvm.dll
+0x00007fff00e60000 - 0x00007fff00e68000 	C:\Windows\System32\PSAPI.DLL
+0x00007ffef88e0000 - 0x00007ffef88ea000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ffef22b0000 - 0x00007ffef22b9000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x00007ffefb170000 - 0x00007ffefb194000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ffeff120000 - 0x00007ffeff18d000 	C:\Windows\System32\WS2_32.dll
+0x00007ffefb020000 - 0x00007ffefb04d000 	C:\Windows\SYSTEM32\WINMMBASE.dll
+0x00007ffefd560000 - 0x00007ffefd5aa000 	C:\Windows\System32\cfgmgr32.dll
+0x00000000530d0000 - 0x00000000530df000 	D:\luolin\java jdk\jre\bin\verify.dll
+0x00000000530a0000 - 0x00000000530c9000 	D:\luolin\java jdk\jre\bin\java.dll
+0x0000000052fe0000 - 0x0000000053003000 	D:\luolin\java jdk\jre\bin\instrument.dll
+0x0000000053080000 - 0x0000000053096000 	D:\luolin\java jdk\jre\bin\zip.dll
+
+VM Arguments:
+jvm_args: -javaagent:D:\software\ideaIU-2018.3.1.win\lib\idea_rt.jar=6848:D:\software\ideaIU-2018.3.1.win\bin -Dfile.encoding=UTF-8 
+java_command: com.yondervision.mi.test.wangting1qi.HttpSend5989appapi00139
+java_class_path (initial): D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\classes\production\YBMAP_nb3;D:\luolin\java jdk\jre\lib\charsets.jar;D:\luolin\java jdk\jre\lib\deploy.jar;D:\luolin\java jdk\jre\lib\ext\access-bridge-64.jar;D:\luolin\java jdk\jre\lib\ext\cldrdata.jar;D:\luolin\java jdk\jre\lib\ext\dnsns.jar;D:\luolin\java jdk\jre\lib\ext\jaccess.jar;D:\luolin\java jdk\jre\lib\ext\jfxrt.jar;D:\luolin\java jdk\jre\lib\ext\localedata.jar;D:\luolin\java jdk\jre\lib\ext\nashorn.jar;D:\luolin\java jdk\jre\lib\ext\sunec.jar;D:\luolin\java jdk\jre\lib\ext\sunjce_provider.jar;D:\luolin\java jdk\jre\lib\ext\sunmscapi.jar;D:\luolin\java jdk\jre\lib\ext\sunpkcs11.jar;D:\luolin\java jdk\jre\lib\ext\zipfs.jar;D:\luolin\java jdk\jre\lib\javaws.jar;D:\luolin\java jdk\jre\lib\jce.jar;D:\luolin\java jdk\jre\lib\jfr.jar;D:\luolin\java jdk\jre\lib\jfxswt.jar;D:\luolin\java jdk\jre\lib\jsse.jar;D:\luolin\java jdk\jre\lib\management-agent.jar;D:\luolin\java jdk\jre\lib\plugin.jar;D:\luolin\java jdk\jre\lib\resources.jar;D:\luolin\java jdk\jre\lib\rt.jar;D:\software\apache-tomcat-7.0.63-windows-x64\apache-tomcat-7.0.63\lib\jsp-api.jar;D:\software\apache-tomcat-7.0.63-windows-x64\apache-tomcat-7.0.63\lib\servlet-api.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\activation-1.1.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\antlr-2.7.6.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\aopalliance-1.0.0.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\apache-mime4j-core-0.7.2.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\asm-all-3.2.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\aspectjrt-1.6.8.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\aspectjweaver-1.6.8.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\axiom-api-1.2.20.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\axiom-dom-1.2.20.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\axiom-impl-1.2.20.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\axiom-jaxb-1.2.20.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\axis.jar;D:\workspace\YBMAP_nb3\W
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=D:\luolin\java jdk
+CLASSPATH=.;D:\luolin\java jdk\lib\dt.jar;D:\luolin\java jdk\lib\tools.jar;D:\software\apache-tomcat-7.0.63-windows-x64\apache-tomcat-7.0.63\lib\servlet-api.jar;
+PATH=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;D:\luolin\java jdk\bin;D:\luolin\java jdk\jre\bin;D:\software\apache-tomcat-7.0.63-windows-x64\apache-tomcat-7.0.63\bin;D:\software\apache-tomcat-7.0.63-windows-x64\apache-tomcat-7.0.63\lib;D:\software\mysql-8.0.11-winx64\bin;D:\software\Git\cmd;D:\software\Mu\bin;C:\Program Files\TortoiseSVN\bin;D:\software\node\;D:\software\Python 3.6.0\Scripts\;D:\software\Python 3.6.0\;D:\software\Python 3.7.0\Scripts\;D:\software\Python 3.7.0\;C:\Users\Admin\AppData\Local\Microsoft\WindowsApps;D:\luolin\java jdk\bin;D:\luolin\java jdk\jre\bin;D:\software\PyCharm 2019.1.2\bin;;C:\Users\Admin\AppData\Roaming\npm;
+USERNAME=Admin
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=AMD64 Family 23 Model 8 Stepping 2, AuthenticAMD
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10.0 , 64 bit Build 17763 (10.0.17763.475)
+
+CPU:total 12 (initial active 12) (12 cores per cpu, 1 threads per core) family 23 model 8 stepping 2, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, mmxext, 3dnowpref, lzcnt, sse4a, tsc, tscinvbit, tscinv, bmi1
+
+Memory: 4k page, physical 16704764k(7956532k free), swap 29813272k(5980k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.191-b12) for windows-amd64 JRE (1.8.0_191-b12), built on Oct  6 2018 09:29:03 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Mon Mar 09 11:10:43 2020
+elapsed time: 0 seconds (0d 0h 0m 0s)
+

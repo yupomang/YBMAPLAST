@@ -1,0 +1,519 @@
+.hide{
+	display: none;
+}
+.submainbody {
+	width: 1040px;
+	height: 100%;
+	min-height: 680px;
+	margin-left: 26px;
+	border: 1px solid #E7E7EB;
+}
+
+.submainheadtitle {
+	width: 150px;
+	text-align: center;
+	font-size: 15px;
+	margin: 10px 0 0 30px;
+}
+
+.subleftbody {
+	width: 320px;
+	min-height: 240px;
+	border: 1px solid #E7E7EB;
+	margin: 30px 0 0 15px;
+	float: left;
+}
+
+.subrightbody {
+	width: 670px;
+	min-height: 550px;
+	border: 1px solid #E7E7EB;
+	margin: 30px 0 0 15px;
+	float: left;
+	background-color: #F4F5F9;
+}
+
+.subcover {
+	width: 300px;
+	height: 200px;
+	margin: 20px 0 0 10px;
+	background-color: #ECECEC;
+	border: 1px solid #E7E7EB;
+	text-align: center;
+	line-height: 200px;
+	font-size: 20px;
+	color: #C2C0C0;
+	position: absolute;
+}
+
+.subcoverimg {
+	width: 300px;
+	height: 200px;
+}
+
+.subleftbodytitle {
+	position: relative;
+	top: 193px;
+	left: 11px;
+	width: 300px;
+	min-height: 30px;
+	background-color: black;
+	z-index: 1;
+	filter: alpha(Opacity = 70);
+	-moz-opacity: 0.7;
+	opacity: 0.7;
+	color: white;
+	font-size: 16px;
+	line-height: 30px;
+}
+
+.subrightbodytitle {
+	width: 630px;
+	margin-left: 20px;
+}
+
+.subrightbodytitle li.subtitleli {
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 10px;
+	margin-top: 20px;
+}
+
+.subrightbodytitle li.subtitlelit {
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.subrightbodytitle .subtitleinput {
+	padding-left:7px;
+	border: 1px solid #E7E7EB !important;
+	border-right: none !important;
+	width: 560px !important;
+	height: 30px;
+	font-size: 14px;
+}
+
+.subtitleinput:focus {
+	outline: none;
+}
+
+.subcount {
+	position: relative;
+	top: -30px;
+	left: 570px;
+	z-index:1001;
+	width: 50px;
+	height: 28px;
+	line-height: 30px;
+	font-size: 14px;
+	color: gray;
+	border: 1px solid #E7E7EB;
+	border-left: none;
+	text-align: center;
+	background-color: white;
+}
+
+.subrightbodytitle li.subtitlelicover {
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 10px;
+	margin-top: -20px;
+}
+
+.subtitlelicover span {
+	color: gray;
+}
+
+.uploadpic {
+	width: 100px;
+	height: 30px;
+	background-color: white;
+	border: 1px solid #E7E7EB;
+	border-radius: 5px;
+	text-align: center;
+	color: black;
+	font-size: 15px;
+	line-height: 30px;
+	position: relative;
+	cursor: pointer;
+}
+
+.inputfile {
+	width: 100px;
+	height: 30px;
+	position: relative;
+	top: 10px;
+	left: -230px;
+	background-color: white;
+	filter: alpha(Opacity = 0);
+	-moz-opacity: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.inputfile:focus {
+	outline: none;
+}
+
+.conmonli {
+	float: left;
+	margin: 8px 0 0 8px;
+}
+
+.selectpic {
+	clear: both;
+	width: 120px;
+	height: 30px;
+	background-color: white;
+	border: 1px solid #E7E7EB;
+	border-radius: 5px;
+	text-align: center;
+	color: black;
+	font-size: 15px;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+.selectpic:HOVER {
+	background-color: #E7E7EB;
+}
+
+.showpic {
+	margin: 25px 0 0 28px;
+	width: 100px;
+	height: 100px;
+}
+
+.showpic img {
+	width: 100%;
+	height: 100%;
+}
+
+.deletdselectpic {
+	width: 40px;
+	text-align: center;
+	margin: -15px 0 0 130px;
+	font-size: 14px;
+	color: blue;
+	cursor: pointer;
+}
+
+.functionconfig {
+	width: 310px;
+	min-height: 100px;
+	border-top: 1px solid #E7E7EB;
+	margin: 200px 0 0 0px;
+	font-size: 14px;
+	color: black;
+	padding-left: 10px;
+}
+
+.welcometitle {
+	width: 630px;
+	margin-left: 28px;
+	margin-top: 20px;
+}
+
+.welcometitleli {
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 2px;
+	margin-top: 20px;
+}
+
+.welcometitle li.welcometitlelit {
+	margin-left: 2px;
+	margin-top: 10px;
+	position: relative;
+	z-index: 1;
+}
+
+.welcometitle .welcometitleinput {
+	padding-left:7px;
+	border: 1px solid #E7E7EB !important;
+	border-right: none !important;
+	width: 560px !important;
+	height: 30px;
+	font-size: 14px;
+}
+
+.welcometitleinput:focus {
+	outline: none;
+}
+
+.welcomesubcount {
+	position: relative;
+	top: -30px;
+	left: 560px;
+	width: 50px;
+	height: 28px;
+	line-height: 30px;
+	font-size: 14px;
+	color: gray;
+	border: 1px solid #E7E7EB;
+	border-left: none;
+	text-align: center;
+	background-color: white;
+}
+
+.welcomefunc {
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 2px;
+	margin-top: -10px;
+}
+
+.selectfunc {
+	font-size: 16px;
+	margin-left: 2px;
+	margin-top: 10px;
+}
+
+.selectfunc input[type=checkbox] {
+	width: 15px;
+	height: 15px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.selectfuncdiv {
+	width: 180px;
+	font-size: 14px;
+	color: black;
+	text-align: left;
+	float: left;
+	margin-top: 5px;
+}
+
+.commitfunc {
+	width: 100px;
+	height: 30px;
+	background-color: white;
+	border: 1px solid #E7E7EB;
+	border-radius: 5px;
+	text-align: center;
+	color: black;
+	font-size: 15px;
+	line-height: 30px;
+	cursor: pointer;
+	margin-left: 600px;
+	margin-top: 20px;
+	float: left;
+}
+
+.commitfunc:HOVER {
+	background-color: #E7E7EB;
+}
+
+/*微信关注信息功能配置页面*/
+.table {
+	margin: 0 auto;
+	width: 960px;
+	text-align: center;
+	font-family: "黑体";
+	font-size: 18px;
+}
+
+.table li {
+	width: 100%;
+	height: 36px;
+	line-height: 36px;
+	border: 1px solid #b2b2b2;
+	border-bottom: none;
+	list-style-type: none;
+}
+
+.table li:not (:first-child ){
+	cursor: pointer;
+}
+
+.table li:last-child {
+	border-bottom: 1px solid #b2b2b2;
+}
+
+.table li.title {
+	background-color: #889a9e;
+	color: white;
+	border-radius: 10px 10px 0 0;
+	font-size: 20px;
+}
+
+.table li div {
+	float: left;
+	width: 45%;
+	height: 36px;
+	border-right: 1px solid #b2b2b2;
+}
+
+.table li div:first-child {
+	width: 4%;
+}
+
+.table li div:last-child {
+	border-right: none;
+}
+
+#selectarea {
+	width: 960px;
+	height:50px;
+	line-height:50px;
+	border: 1px solid #ccc;
+	text-align: center;
+	margin: 0 0 20px 0;
+}
+
+.button {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/ 100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	/*text-shadow: 0 1px 1px rgba(0, 0, 0, .3);*/
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+}
+
+.button:hover {
+	text-decoration: none;
+}
+
+.button:active {
+	position: relative;
+	top: 1px;
+}
+
+.orange {
+	color: #fef4e9;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a),
+		to(#f47a20) );
+	background: -moz-linear-gradient(top, #faa51a, #f47a20);
+	filter: progid : DXImageTransform.Microsoft.gradient ( startColorstr =
+		'#faa51a', endColorstr = '#f47a20' );
+}
+
+.orange:hover {
+	background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11),
+		to(#f06015) );
+	background: -moz-linear-gradient(top, #f88e11, #f06015);
+	filter: progid : DXImageTransform.Microsoft.gradient ( startColorstr =
+		'#f88e11', endColorstr = '#f06015' );
+}
+
+.orange:active {
+	color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20),
+		to(#faa51a) );
+	background: -moz-linear-gradient(top, #f47a20, #faa51a);
+	filter: progid : DXImageTransform.Microsoft.gradient ( startColorstr =
+		'#f47a20', endColorstr = '#faa51a' );
+}
+
+.white {
+	color: #606060;
+	border: solid 1px #b7b7b7;
+	background: #fff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff),
+		to(#ededed) );
+	background: -moz-linear-gradient(top, #fff, #ededed);
+	filter: progid : DXImageTransform.Microsoft.gradient ( startColorstr =
+		'#ffffff', endColorstr = '#ededed' );
+}
+
+.white:hover {
+	background: #ededed;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff),
+		to(#dcdcdc) );
+	background: -moz-linear-gradient(top, #fff, #dcdcdc);
+	filter: progid : DXImageTransform.Microsoft.gradient ( startColorstr =
+		'#ffffff', endColorstr = '#dcdcdc' );
+}
+
+.white:active {
+	color: #999;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed),
+		to(#fff) );
+	background: -moz-linear-gradient(top, #ededed, #fff);
+	filter: progid : DXImageTransform.Microsoft.gradient ( startColorstr =
+		'#ededed', endColorstr = '#ffffff' );
+}
+.funcarea{
+	width: 960px;
+	height: 50px;
+	line-height: 50px;
+	margin: 0 auto;
+	margin-top: 10px;
+	text-align: center;
+}
+.sontabel {
+	display: none;
+	padding: 5px;
+	width: 960px;
+	background-color: white;
+	position: fixed;
+	top: 50px;
+	left: 100px;
+	z-index: 100;
+}
+
+.sontabel ul {
+	margin: 10px;
+	padding: 0;
+}
+
+.sontabel li div:first-child {
+	background-color: #889a9e;
+}
+
+.sontabel li div:last-child {
+	width: 50%;
+}
+
+.sontabel input {
+	border: 1px solid #A9A9A9 !important;
+	width: 300px;
+	height: 23px;
+	margin-top: 5px;
+}
+.sontabel select {
+	border: 1px solid #A9A9A9 !important;
+	width: 300px;
+	height: 23px;
+	margin-top: 5px;
+}
+.sontabel input:FOCUS {
+	outline: none;
+}
+.close {
+	float: right;
+	font-size: 20px;
+	vertical-align: top;
+	cursor: pointer;
+}
+
+.close:active {
+	color: red;
+}
+
+.mask-layer {
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0.5;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	display: none;
+}
+.radiolable{
+	cursor: pointer;
+}

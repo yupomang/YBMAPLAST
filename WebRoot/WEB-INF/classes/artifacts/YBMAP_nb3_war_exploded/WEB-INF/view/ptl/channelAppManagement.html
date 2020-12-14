@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table_building</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css"/>
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" href="css/channelAppManagement.css">
+
+
+</head>
+<body>
+<div class="orgManage-box channelBox">
+    <div class="orgManage-table-btns buiManageBtns channelBox">
+        <div class="customer-name">
+            <p>客户名称：</p>
+            <select id="customer-name"></select>
+        </div>
+        <a href="javascript:;" title="新建" id="orgManage-btn-add">新建</a>
+        <a href="javascript:;" title="修改" id="orgManage-btn-modify">修改</a>
+        <a href="javascript:;" title="删除" id="orgManage-btn-del">删除</a>
+        <a href="javascript:;" title="设置认证" id="btnSetAuth" class="btnServiceSearch">设置认证</a>
+        <a href="javascript:;" title="APP软件更新" id="btnSoftWareUpdate" class="btnServiceSearch btnExport">APP软件更新</a>
+        <!--<a href="javascript:;" title="查看服务期" id="btnViewServDate" class="btnExport">查看服务期</a>-->
+    </div>
+    <table id="changeAppManageTable"></table>
+    <div id="channaelAppMan-table-pages">
+        <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+    </div>
+</div>
+
+<div class="orgManage-box interfaceBox">
+    <div class="orgManage-popup-info-container" style="display:block;">
+        <div style="padding-left: 20px;border-bottom: 1px solid #ccc;height: 40px;line-height: 40px;font-weight: bold;">
+            版本详细信息：<span class="name" id="interface-name"></span>
+        </div>
+        <div class="orgManage-popup-info-btns">
+            <a href="javascript:;" title="返回" id="orgManage-info-goBack">返回</a>
+            <a href="javascript:;" title="新建" id="orgManage-info-add">新建</a>
+            <a href="javascript:;" title="修改" id="orgManage-info-modify">修改</a>
+            <a href="javascript:;" title="删除" id="orgManage-info-del">删除</a>
+            <a href="javascript:;" title="发布" id="orgManage-info-release">发布</a>
+            <a href="javascript:;" title="二维码" id="orgManage-info-twoBarCodes">二维码</a>
+        </div>
+        <div id="orgManage-popup-info-table"></div>
+        <div id="orgManage-table-pages">
+            <pages :items="items" :current.sync="current"></pages>
+        </div>
+    </div>
+</div>
+
+<div class="orgManage-popup-hidden">
+    <!-- add & edit common Vue:orgManageEdit -->
+    <div class="orgManage-popup-edit-container">
+        <div class="orgManage-popup-bg"></div>
+        <div class="orgManage-popup-edit" id="cam">
+            <div class="orgManage-popup-relative">
+                <div class="orgManage-popup-edit-close orgManage-popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="orgManage-popup-edit-title">
+                    <span id="addTitltSpan"></span>
+                </h2>
+                <ul class="orgManage-popup-from channelShortForm">
+                    <li>
+                        <p class="orgManage-popup-text">客户名称</p>
+                        <select class="channelShortSelect" id="customerName"></select>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text">渠道类型</p>
+                        <select class="channelShortSelect" id="channelName">
+                        </select>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text">渠道应用名称</p>
+                        <input type="text" class="orgManage-popup-longInput" id="appName" value=""/>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text">是否启用</p>
+                        <div class="radioWrap"
+                             style="line-height:34px;color:#666;float:left;display:inline-block;position:relative;top:3px;">
+                            <label onclick="$('.orgManage-popup-edit li').eq(4).show();$('.orgManage-popup-edit li').eq(5).show();"><input
+                                    type="radio" name="isUsing" class="isUsingCheck" value="1" checked/> 是</label>　
+                            <label onclick="$('.orgManage-popup-edit li').eq(4).hide();$('.orgManage-popup-edit li').eq(5).hide();"><input
+                                    type="radio" name="isUsing" class="isUsingCheck" value="0"/> 否</label>
+                        </div>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li style="display:none" class="servTimeLi">
+                        <p class="orgManage-popup-text" style="font-size:12px;">服务开始日期</p>
+                        <input type="text" class="orgManage-popup-longInput" id="serviceStart"
+                               value="{{serviceStart}}"/>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li style="display:none" class="servTimeLi">
+                        <p class="orgManage-popup-text" style="font-size:12px;">服务结束日期</p>
+                        <input type="text" class="orgManage-popup-longInput" id="serviceEnd" value="{{serviceEnd}}"/>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <div class="orgManage-popup-btns">
+                            <p class="orgManage-popup-btns-ok" onclick="window.frames['main'].setForm.verify(true);">
+                                确定</p>
+                            <p class="orgManage-popup-btns-ok" onclick="window.frames['main'].setForm.verify(false);">
+                                修改</p>
+                            <p class="orgManage-popup-btns-cancel" onclick="Common.popupClose();">取消</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="orgManage-popup-edit-container2">
+        <div class="orgManage-popup-bg"></div>
+        <div class="orgManage-popup-edit">
+            <div class="orgManage-popup-relative">
+                <div class="orgManage-popup-edit-close orgManage-popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="orgManage-popup-edit-title">
+                    <span>设置认证</span>
+                </h2>
+                <ul class="orgManage-popup-from channelShortForm">
+                    <li>
+                        <p class="orgManage-popup-text">应用ID</p>
+                        <input type="text" class="orgManage-popup-longInput" id="appid" value=""/>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text">应用Key</p>
+                        <div class="getKey">
+                            <input type="text" class="orgManage-popup-longInput" id="appKey" value=""
+                                   placeholder="点击生成应用key" readonly="readonly"/>
+                            <a href="javascript:;" title="点击生成" id="createAppKey"
+                               onclick="window.frames['main'].createAppKey();">点击生成</a>
+                        </div>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text">加密AES</p>
+                        <input type="text" class="orgManage-popup-longInput" id="appAes" value=""/>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text">启用Token</p>
+                        <div class="radioWrap" id="apptoken"
+                             style="line-height:34px;color:#666;float:left;display:inline-block;position:relative;top:3px;">
+                            <label><input type="radio" name="checktoken" id="" value="1" onclick="$('.token').show();"
+                                          checked/> 是</label>　
+                            <label><input type="radio" name="checktoken" id="" value="0"
+                                          onclick="$('.token').hide();$('#tokenDate').val('')"/> 否</label>
+                        </div>
+                    </li>
+                    <li class="token">
+                        <p class="orgManage-popup-text">Token有效期</p>
+                        <input type="text" class="orgManage-popup-longInput" id="tokenDate" value=""
+                               placeholder="单位（秒）"/>
+                    </li>
+                    <li>
+                        <div class="orgManage-popup-btns">
+                            <p class="orgManage-popup-btns-ok" onclick="window.frames['main'].setForm.checkAuth(true);"
+                               v-if="isAdd">确定</p>
+                            <p class="orgManage-popup-btns-cancel" onclick="Common.popupClose();">取消</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--APP软件更新部分-->
+    <!--添加，修改-->
+    <div class="orgManage-popup-edit-container app-update-add-container">
+        <div class="orgManage-popup-bg"></div>
+        <div class="orgManage-popup-edit">
+            <div class="orgManage-popup-relative">
+                <div class="orgManage-popup-edit-close orgManage-popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="orgManage-popup-edit-title">
+                    <span id="orgManage-popup-title"></span>
+                </h2>
+                <ul class="orgManage-popup-from channelShortForm">
+                    <li class="publishflag">
+                        <p class="orgManage-popup-text">中心名称</p>
+                        <select class="channelShortSelect" id="app-add-customerName"></select>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li class="publishflag">
+                        <p class="orgManage-popup-text">设备区分</p>
+                        <select class="channelShortSelect" id="app-add-devtype">
+                        </select>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li class="publishflag">
+                        <p class="orgManage-popup-text">版本编号</p>
+                        <input type="text" class="orgManage-popup-longInput" id="app-add-versionno" value=""/>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li class="publishflag">
+                        <p class="orgManage-popup-text">发布日期</p>
+                        <input type="text" class="orgManage-popup-longInput" name="releasedate" id="app-add-releasedate" value=""/>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text" style="font-size:12px;">下载地址</p>
+                        <input type="text" class="orgManage-popup-longInput" id="app-add-downloadurl"/>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text" style="font-size:12px;">更新内容</p>
+                        <input type="text" class="orgManage-popup-longInput" id="app-add-releasecontent"/>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text" style="font-size:12px;">版本是否可用</p>
+                        <select class="channelShortSelect" id="app-add-usableflag">
+                            <option value="0">否</option>
+                            <option value="1">是</option>
+                        </select>
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <div class="orgManage-popup-btns">
+                            <p class="orgManage-popup-btns-ok" id="orgManage-info-add-confirm"
+                               onclick="window.frames['main'].interfaceSet.verify(true);">确定</p>
+                            <p class="orgManage-popup-btns-ok" id="orgManage-info-modify-confirm"
+                               onclick="window.frames['main'].interfaceSet.verify(false);">确定</p>
+                            <p class="orgManage-popup-btns-cancel" onclick="Common.popupClose();">取消</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--二维码生成/下载-->
+    <div class="orgManage-popup-edit-container app-update-twoBarCodes">
+        <div class="orgManage-popup-bg"></div>
+        <div class="orgManage-popup-edit">
+            <div class="orgManage-popup-relative">
+                <div class="orgManage-popup-edit-close orgManage-popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="orgManage-popup-edit-title">
+                    <span>软件版本信息二维码</span>
+                </h2>
+                <form id="formUpImg" name="formUpImg" method="post" enctype="multipart/form-data"
+                      novalidate="novalidate">
+                    <ul class="orgManage-popup-from channelShortForm">
+                        <li>
+                            <p class="orgManage-popup-text">下载地址</p>
+                            <input type="text" class="orgManage-popup-longInput" id="twoBarCodes-downloadUrl"
+                                    name="downloadurl_pic">
+                        </li>
+                        <li>
+                            <p class="orgManage-popup-text">LOGO图片</p>
+                            <div class="importFile" style="display: inline;">
+                                <a class="importChooseFileBtn" href="javascript:;">选择...</a>
+                                <span id="excelfile">未上传</span>
+                                <input type="file" id="twoBarCodes-logo" name="file" required="required">
+                            </div>
+
+                            <input id="magecenterId" name="magecenterId" type="hidden" class="easyui-validatebox"/>
+                            <input id="versionid_pic" name="versionid_pic" type='hidden' class="easyui-validatebox"/>
+                            <input id="devtype_pic" name="devtype_pic" type='hidden' class="easyui-validatebox"/>
+                            <input id="downloadurl_p" name="downloadurl_p" type='hidden' class="easyui-validatebox"/>
+                            <div id="showTwoImg"></div>
+                        </li>
+
+                        <li>
+                            <div class="orgManage-popup-btns">
+                                <p class="orgManage-popup-btns-ok" id="orgManage-twoBarCodes-download"
+                                   onclick="window.frames['main'].interfaceSet.twoBarCodesDownload();">下载二维码</p>
+                                <p class="orgManage-popup-btns-ok" id="orgManage-twoBarCodes-create"
+                                   onclick="window.frames['main'].interfaceSet.twoBarCodesCreate();">生成二维码</p>
+                                <p class="orgManage-popup-btns-cancel" onclick="Common.popupClose();">取消</p>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery.js"></script><script type="text/javascript" src="js/lib/jquery-migrate.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/3rd/laydate.js"></script>
+<script type="text/javascript" src="js/channelAppManagement.js"></script>
+</body>
+</html>

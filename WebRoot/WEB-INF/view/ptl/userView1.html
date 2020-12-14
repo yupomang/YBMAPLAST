@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="css/userView.css" />
+</head>
+<body>
+<div class="userview-sub-title">
+    <a href="userView.html" title="返回">返回</a>
+    <span>|</span>
+    <p class="userview-sub-title-icons1">单位</p>
+</div>
+<div class="userview-sub1-header">
+    <a href="javascript:;" title="单位基本信息" class="on">单位基本信息</a>
+    <a href="javascript:;" title="单位账户明细">单位账户明细</a>
+</div>
+<table cellpadding="0" class="userview-sub1-info">
+    <!--<tr>-->
+        <!--<td height="46" width="128" align="right" class="userview-sub1-table-title">账户机构</td>-->
+        <!--<td width="204">{{ info.accinstcode }}</td>-->
+        <!--<td width="98" align="right" class="userview-sub1-table-title">组织机构代码</td>-->
+        <!--<td width="140">{{ info.orgcode }}</td>-->
+        <!--<td width="116" align="right" class="userview-sub1-table-title">单位性质</td>-->
+        <!--<td width="284">{{ info.unitchar }}</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td height="46" width="128" align="right" class="userview-sub1-table-title">账户状态</td>-->
+        <!--<td width="204">{{ info.accstate }}</td>-->
+        <!--<td width="98" align="right" class="userview-sub1-table-title">个人缴存比例</td>-->
+        <!--<td width="140">{{ info.perprop }}</td>-->
+        <!--<td width="116" align="right" class="userview-sub1-table-title">单位名称</td>-->
+        <!--<td width="284">{{ info.unitaccname }}</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td height="46" width="128" align="right" class="userview-sub1-table-title">账户余额</td>-->
+        <!--<td width="204">{{ info.balance }}</td>-->
+        <!--<td width="98" align="right" class="userview-sub1-table-title">单位缴存比例</td>-->
+        <!--<td width="140">{{ info.unitprop }}</td>-->
+        <!--<td width="116" align="right" class="userview-sub1-table-title">单位账号</td>-->
+        <!--<td width="284">{{ info.unitaccnum }}</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td height="46" width="128" align="right" class="userview-sub1-table-title">基本账户账号</td>-->
+        <!--<td width="204">{{ info.basacc }}</td>-->
+        <!--<td width="98" align="right" class="userview-sub1-table-title">邮政编码</td>-->
+        <!--<td width="140">{{ info.postcode }}</td>-->
+        <!--<td width="116" align="right" class="userview-sub1-table-title">单位地址</td>-->
+        <!--<td width="284">{{ info.unitaddr }}</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td height="46" width="128" align="right" class="userview-sub1-table-title">基本账户开户银行名称</td>-->
+        <!--<td width="204">{{ info.basaccbank }}</td>-->
+        <!--<td width="98" align="right" class="userview-sub1-table-title">单位预缴账号</td>-->
+        <!--<td width="140">{{ info.preaccnum }}</td>-->
+        <!--<td width="116" align="right" class="userview-sub1-table-title">法人身份证号</td>-->
+        <!--<td width="284">{{ info.unitcardid }}</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td height="46" width="128" align="right" class="userview-sub1-table-title">缴存基数</td>-->
+        <!--<td width="204">{{ info.basenumber }}</td>-->
+        <!--<td width="98" align="right" class="userview-sub1-table-title">预缴户可用余额</td>-->
+        <!--<td width="140">{{ info.prebalance }}</td>-->
+        <!--<td width="116" align="right" class="userview-sub1-table-title">单位法人代表</td>-->
+        <!--<td width="284">{{ info.unitjurdeputy }}</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td height="46" width="128" align="right" class="userview-sub1-table-title">成立时间</td>-->
+        <!--<td width="204">{{ info.existdate }}</td>-->
+        <!--<td width="98" align="right" class="userview-sub1-table-title">发薪日期</td>-->
+        <!--<td width="140">{{ info.salarydate }}</td>-->
+        <!--<td width="116" align="right" class="userview-sub1-table-title">单位联系人</td>-->
+        <!--<td width="284">{{ info.unitlinkman }}</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td height="46" width="128" align="right" class="userview-sub1-table-title">最后汇缴月</td>-->
+        <!--<td width="204">{{ info.lastpaydate }}</td>-->
+        <!--<td width="98" align="right" class="userview-sub1-table-title">封存人数</td>-->
+        <!--<td width="140">{{ info.sealnum }}</td>-->
+        <!--<td width="116" align="right" class="userview-sub1-table-title">单位联系人身份证号</td>-->
+        <!--<td width="284">{{ info.unitcardid }}</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td height="46" width="128" align="right" class="userview-sub1-table-title">营业执照号码</td>-->
+        <!--<td width="204">{{ info.licensenum }}</td>-->
+        <!--<td width="98" align="right" class="userview-sub1-table-title">自筹财政标志</td>-->
+        <!--<td width="140">{{ info.selfintype }}</td>-->
+        <!--<td width="116" align="right" class="userview-sub1-table-title">单位联系电话</td>-->
+        <!--<td width="284">{{ info.unitphone }}</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td height="46" width="128" align="right" class="userview-sub1-table-title">汇缴人数</td>-->
+        <!--<td width="204">{{ info.lpaym }}</td>-->
+        <!--<td width="98" align="right" class="userview-sub1-table-title">月汇缴额</td>-->
+        <!--<td width="140">{{ info.selsum }}</td>-->
+        <!--<td width="116" align="right" class="userview-sub1-table-title">所属行业</td>-->
+        <!--<td width="284">{{ info.unittrade }}</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td height="46" width="128" align="right" class="userview-sub1-table-title">开户日期</td>-->
+        <!--<td width="204">{{ info.opendate }}</td>-->
+        <!--<td width="98" align="right" class="userview-sub1-table-title">隶属关系</td>-->
+        <!--<td width="140">{{ info.subrel }}</td>-->
+        <!--<td width="116" align="right" class="userview-sub1-table-title"></td>-->
+        <!--<td width="284"></td>-->
+    <!--</tr>-->
+    <tr v-for="item in info" v-if="$index % 3 == 0">
+        <td height="46" width="128" align="right" class="userview-sub1-table-title">{{ item.title }}</td>
+        <td width="204">{{ item.info }}</td>
+        <td width="98" align="right" class="userview-sub1-table-title">{{ info[$index+1].title }}</td>
+        <td width="140">{{ info[$index+1].info }}</td>
+        <td width="116" align="right" class="userview-sub1-table-title">{{ info[$index+2].title }}</td>
+        <td width="284">{{ info[$index+2].info }}</td>
+    </tr>
+</table>
+<table cellpadding="0" class="userview-sub1-view">
+    <tr v-for="item in view" v-if="$index == 0" height="48" align="center" class="userview-sub1-table-title">
+        <td width="146" v-for="header in item">{{ header.title }}</td>
+    </tr>
+    <tr v-for="item in view" height="48" align="center">
+        <td v-for="rows in item" width="146">{{ rows.info }}</td>
+    </tr>
+</table>
+<div id="userView1-page">
+    <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery.js"></script><script type="text/javascript" src="js/lib/jquery-migrate.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/userView.js"></script>
+</body>
+</html>

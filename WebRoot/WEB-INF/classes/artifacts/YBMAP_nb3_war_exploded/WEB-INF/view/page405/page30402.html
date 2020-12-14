@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table_building</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css"> 
+    <link rel="stylesheet" type="text/css" href="css/page30402.css">
+</head>
+<body>
+<div id="page1">
+    <div class="channelSearch">
+        客户名称 <select id="searchCustomer"></select> <a href="javascript:;" title="查询" id="btnquery">查询</a>
+    </div>
+    <div id="page1sub">
+        <div class="orgManage-box channelBox">	
+            <div class="jtree">
+                <div class="jtitle"><span class="pram1">序号</span><span class="pram2">消息通知主题名称</span></div>
+            	<a href="javascript:;"
+                   v-for="item in messageTopic"
+                   :class="{ 'on': item.centerid == select }"
+                   @click="checkCenter(item.messageTopicType,item.messageTopicTypeName)"><span class="pram1">{{$index + 1}}</span><span class="pram2">{{ item.messageTopicTypeName }}</span></a>
+            </div>
+            <div class="contentRight">
+            	<ul class="title">
+                 <li><span>序号</span><span>渠道</span><span>操作</span><span>启用/停用</span></li>
+                </ul>
+                <ul class="info"></ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="orgManage-popup-hidden" id="page2">
+    <div class="orgManage-popup-edit-container">
+        <div class="orgManage-popup-info-btns">
+            <a href="javascript:;" title="返回" id="orgManage-info-goBack">返回</a>| 模板配置
+        </div>
+        <div id="orgManage-popup-info-table"></div>
+    </div>
+    <div class="orgManage-popup-edit-container">
+        <div class="hide-place-box">
+            <ul class="orgManage-popup-from">
+                <li>
+                    <p class="orgManage-popup-text">客户名称</p>
+                    <p class="orgManage-popup-span" id="centerName"></p>
+                </li>
+                <li>
+                    <p class="orgManage-popup-text">消息通知主题</p>
+                    <p class="orgManage-popup-span" id="themeName"></p>
+                </li>
+                <li>
+                    <p class="orgManage-popup-text">渠道类型</p>
+                    <p class="orgManage-popup-span" id="channelName"></p>
+                </li>
+                <li>
+                    <p class="orgManage-popup-text">渠道模板</p>
+                    <input type="text" class="orgManage-popup-longInput" id="channeltemplate" maxlength="50" />
+                </li>
+                <li>
+                    <p class="orgManage-popup-text">模板内容</p>
+                    <textarea class="orgManage-popup-textarea" rows="5" id="templatecontent" maxlength="500"></textarea>
+                    <div class="temlate-container" id="template-container">
+                        <input type="text" id="template-header" class="template-title template-gray-input" placeholder="{header}">
+                        <ul>
+                            <li>
+                                <input type="text" class="template-left-title" placeholder="请填写关键字">
+                                <input type="text" class="template-right-info template-gray-input" placeholder="{info}">
+                            </li>
+                        </ul>
+                        <a href="javascript:;" title="添加关键词" class="template-add-keywords">添加关键词</a>
+                        <input type="text" id="template-bottom" class="template-title template-gray-input" placeholder="{bottom}">
+                    </div>
+                    <p class="template-tips">内容中，类似{header}的，即为模版参数</p>
+                </li>
+                <li>
+                    <p class="orgManage-popup-text">是否换行</p>
+                    <label class="template-is-wrap"><input type="radio" onclick="changeDemoStatus('1')" name="isWrapBreak" value="1" checked>是</label>
+                    <label class="template-is-wrap"><input type="radio" onclick="changeDemoStatus('0')" name="isWrapBreak" value="0">否</label>
+                </li>
+                <li>
+                    <p class="orgManage-popup-text"></p>
+                    <a href="javascript:;" class="submit" id="saveTem" style="display: inline-block;">保存模板并生成映射元素</a>
+                    <a href="javascript:;" class="submit" id="editTem" style="display: inline-block;">编辑模板并覆盖映射元素</a>
+                    <a href="javascript:;" class="submit" title="维护模板内容示例" id="save-demo-btn">维护模板内容示例</a>
+                </li>
+            </ul>
+            <div class="template-demo-box">
+                <div id="template-demo-break">
+                    <ul>
+                        <li>
+                            <p>内容</p>
+                            <div class="right-contentBox">
+                            </div>
+                        </li>
+                        <li>
+                            <p>内容示例</p>
+                            <div class="right-contentDemoBox"></div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="template-demo-not-break">
+                    <ul>
+                        <li>
+                            <p>内容</p>
+                            <div class="right-contentBox">
+                            </div>
+                        </li>
+                        <li>
+                            <p>内容示例</p>
+                            <div class="right-contentDemoBox">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="controlTitle">映射元素</div>
+    <div class="showtable">
+        <div class="orgManage-popup-info-btns">
+            <a href="javascript:;" title="保存映射元素" id="orgManage-info-save">保存映射元素</a>
+        </div>
+        <table id="table"></table>
+    </div>
+</div>
+
+<div class="orgManage-popup-hidden" id="demoPopup">
+    <!-- 内容示例弹出维护 -->
+    <div class="orgManage-popup-edit-container">
+        <div class="orgManage-popup-bg"></div>
+        <div class="orgManage-popup-edit" id="cam">
+            <div class="orgManage-popup-relative">
+                <div class="orgManage-popup-edit-close orgManage-popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="orgManage-popup-edit-title">
+                    <span id="addTitltSpan">维护示例</span>
+                </h2>
+                <ul class="orgManage-popup-from channelShortForm">
+                    <li>
+                        <p class="orgManage-popup-text">内容示例：</p>
+                        <div class="radioWrap">
+                            <textarea id="demoPopupTextarea"></textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="orgManage-popup-btns">
+                            <p class="orgManage-popup-btns-ok" onclick="window.frames['main'].msgMould.saveDemo();" >保存</p>
+                            <p class="orgManage-popup-btns-cancel" onclick="Common.popupClose();">取消</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery.js"></script><script type="text/javascript" src="js/lib/jquery-migrate.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/page30402.js"></script>
+
+
+</body>
+</html>

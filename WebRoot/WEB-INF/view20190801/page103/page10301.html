@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css"/>
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" type="text/css" href="css/analysis.css" />
+
+</head>
+<body>
+<div class="channelAnalysis-top">
+    <p class="channelAnalysis-top-name">客户名称</p>
+    <select id="">
+        <!--<droplist :items="items" :selectedValue.sync="selectedValue"></droplist>-->
+    </select>
+    <p class="channelAnalysis-top-name">开始时间</p>
+    <input type="text" class="channelAnalysis-top-startTime time-bigger-width" id="channelUE-top-startTime" />
+    <p class="channelAnalysis-top-name">结束时间</p>
+    <input type="text" class="channelAnalysis-top-endTime time-bigger-width" id="channelUE-top-endTime" />
+    <a href="javascript:;" title="查询" class="channelAnalysis-top-queryBtn" id="channelUE-top-queryBtn">查询</a>
+</div>
+<div class="channelUE-box">
+    <div class="chenelUE-canvas-wrap">
+        <div id="channelUE-canvas"></div>
+        <div class="classification hide">用户满意度 <span id="channelUE-classification"></span>%</div>
+    </div>
+    <div class="chenelUE-canvas-wrap">
+        <div id="channelUE-canvas-table"></div>
+        <div class="classification hide">用户满意度 <span id="channelUE-table-classification"></span>%</div>
+    </div>
+
+</div>
+
+<!--柜面业务服务不满意原因分类统计-->
+<div class="orgManage-box" style="display: none;">
+    <div class="evalTitle">
+        <a href="javascript:;" class="backBtn" title="返回" id="orgManage-info-goBack">返回</a>
+        <span class="orgManage-title"><i>|</i>柜面业务服务不满意原因分类统计</span>
+    </div>
+
+    <div class="channelUE-table-evaluate">
+        <div class="channelUE-table-left" id="channelUE-table-detail"></div>
+        <!--政策-->
+        <div class="channelUE-table-right channelUE-table-policy">
+            <div class="channelUE-title">公积金提取政策<span >(<span id="extractNum"></span>条评论)</span></div>
+            <div id="channelUE-fund-taken"></div>
+            <div class="channelUE-title">公积金贷款政策<span>(<span id="loanNum"></span>条评论)</span></div>
+            <div id="channelUE-fund-loan"></div>
+        </div>
+        <!--服务态度-->
+        <div class="channelUE-table-right channelUE-table-service">
+            <div class="channelUE-title">服务态度</div>
+            <div id="channelUE-service"></div>
+        </div>
+    </div>
+</div>
+
+<!--根据每个网点查看柜员办理状态-->
+<div class="netPoint-manager">
+    <div class="evalTitle">
+        <a href="javascript:;" class="backBtn" id="netPoint-backBtn">返回</a>
+        <span class="orgManage-title"><i>|</i>柜面业务服务不满意原因分类统计 - 服务态度</span>
+    </div>
+    <div class="evalTablesWrap">
+
+        <div id="channelUE-manager" style="margin-left:20px;">
+            <div class="managerTable">
+                <h2 class="channelUE-title">主城区管理部</h2>
+                <div id="customer-service-net-table"></div>
+                <div id="customer-service-net">
+                    <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--客户服务评价满意度分类统计-->
+<div class="eval-box">
+    <div class="evalTitle">
+        <a href="javascript:;" class="backBtn" id="eval-backBtn">返回</a>
+        <span class="orgManage-title"><i>|</i>客户服务评价满意度分类统计</span>
+    </div>
+    <div class="evalTablesWrap">
+        <div class="evalTable">
+            <h2>语音坐席</h2>
+            <div id="customer-service-voice-table"></div>
+            <div id="customer-service-voice">
+                <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+            </div>
+
+        </div>
+        <div class="evalTable">
+            <h2>互联网坐席</h2>
+            <div id="customer-service-internet-table"></div>
+            <div id="customer-service-internet">
+                <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/3rd/laydate.js"></script>
+<script type="text/javascript" src="js/3rd/echarts.common.min.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/page10301.js"></script>
+
+
+</body>
+</html>

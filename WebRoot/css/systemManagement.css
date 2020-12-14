@@ -1,0 +1,108 @@
+/* interface config */
+.sysMgmt-interfaceConfig-right{margin:0 10px;}
+.sysMgmt-interfaceConfig-right .common-btns{height:36px;padding:10px 20px;width:auto;}
+#sysMgmt-interfaceConfig-centerViewTable a, #sysMgmt-pushMessage-centerViewTable a{color:#666;}
+.sysMgmt-hidden-area{display: none;}
+/* function deployment */
+.sysMgmt-fnDeploy-top{border:1px solid #eee;background:#f4f5f9;height:82px;font-size:0;}
+.sysMgmt-fnDeploy-top-name{display:inline-block;height:82px;font:14px/82px "microsoft yahei";color:#666;text-align:right;padding:0 6px 0 16px;}
+.sysMgmt-fnDeploy-top-input{display:inline-block;width:140px;height:18px;border:1px solid #dadbdd;padding:5px;}
+.sysMgmt-fnDeploy-top-greenBtn{display:inline-block;width:100px;height:30px;background:#66cc66;text-align:center;font:14px/30px "microsoft yahei";color:#fff;margin-left:8px;}
+#sysMgmt-fnDeploy-droplist{display: inline-block;width:220px;height:30px;vertical-align: middle;margin-top:-10px;}
+.sysMgmt-fnDeploy-btns{margin:10px 12px;}
+.sysMgmt-fnDeploy-btns .common-btns{height:36px;}
+#sysMgmt-fnDeploy-table a{color:#33cc33}
+.sysMgmt-fnDeploy-sub{display:none;}
+.sysMgmt-fnDeploy-sub .common-btns{width:calc(100% - 8px);height:36px;}
+.sysMgmt-fnDeploy-sub-title{width:100%;height:49px;border-bottom:1px solid #eee;text-indent:20px;font:700 14px/49px "microsoft yahei";color:#666;}
+/* customer function */
+.sysMgmt-customerFn-top,.sysMgmt-rolePermission-top,.sysMgmt-userManagement-top{margin:10px;border:1px solid #eee;height:88px;font-size:0;background:#f4f5f9;}
+.sysMgmt-customerFn-top select{display:inline-block;font:14px/28px "microsoft yahei";color:#666;border:solid 1px #ddd;background:#fff;width:280px;padding:0px 20px 0 10px;outline-style:none;-webkit-tap-highlight-color:rgba(0,0,0,0); border-radius: 0; box-shadow: 0; margin-left:5px;background:url(../images/droplist.png) #ffffff right center no-repeat;-webkit-appearance: none; -moz-appearance: none;appearance:none;height:28px;}}
+.sysMgmt-customerFn-top select::-ms-expand{display: none;}
+.sysMgmt-customerFn-top select:focus {border:solid 1px #66CC66;}
+.btnquery{width:100px;height:30px;display:inline-block;font:14px/30px "microsoft yahei";color:#fff;background:#66CC66;text-align:center;margin-left: 10px;}
+.sysMgmt-customerFn-top>p,.sysMgmt-rolePermission-top>p,.sysMgmt-userManagement-top>p{display: inline-block;padding:0 5px 0 24px;font:14px/88px "microsoft yahei";color:#333}
+.sysMgmt-customerFn-top>p{padding-left: 5px;}
+#customerFn-droplist, #interfaceConfig-droplist, #pushMessage-droplist, #rolePermission-droplist, #userManagement-droplist, #userManagement-droplist{width:320px;height:30px;display: inline-block;vertical-align: middle;margin-top:-10px;font-size:14px;}
+#customerFn-droplist .hx-droplist, #interfaceConfig-droplist .hx-droplist, #pushMessage-droplist .hx-droplist, #rolePermission-droplist .hx-droplist, #userManagement-droplist .hx-droplist{width:318px;}
+#customerFn-droplist .hx-droplist-placeholder, #interfaceConfig-droplist .hx-droplist-placeholder, #pushMessage-droplist .hx-droplist-placeholder, #rolePermission-droplist .hx-droplist-placeholder, #userManagement-droplist .hx-droplist-placeholder{width:286px;background-position: 292px center;}
+.sysMgmt-customerFn-saveContent{border:1px solid #eee;width:auto;margin:0 10px;overflow:hidden;height:48px;}
+.sysMgmt-customerFn-saveContent a{margin:10px;}
+.customerFn-table-header{margin:0 10px;border:1px solid #eee;border-top:0;background:#f4f5f9;font-size:0}
+.customerFn-table-header p,.customerFn-table li dl dd p{display:inline-block;width:272px;height:48px;font:14px/48px "microsoft yahei";color:#666;text-indent:46px;}
+.customerFn-table-header div,.customerFn-table li dl dd div{display:inline-block;height:48px;font:14px/48px "microsoft yahei";color:#666;width:158px;vertical-align: top;}
+.customerFn-table{margin:10px;}
+.customerFn-table li h2{width:100%;height:48px;border-bottom:1px solid #ededf0;background:url(../images/title_bar.jpg) 20px center no-repeat;text-indent:28px;font:16px/48px "microsoft yahei";color:#666;margin-bottom:0;cursor: pointer}
+.customerFn-table li dl{height:auto;}
+.customerFn-table li:first-child dl{height:auto;display:block;}
+.customerFn-table li dl dd{width:100%;border-bottom:1px solid #ededf0;overflow:hidden;-webkit-margin-start:0;height:48px;font-size:0;}
+.customerFn-table li dl dd input{width:14px;height:14px;margin-top:18px;margin-left:10px;}
+/* config menu */
+.sysMgmt-configMenu-top{width:100%;border-bottom:1px solid #eee;background:#f4f5f9;height:82px;}
+.sysMgmt-configMenu-top p{font:14px/82px "microsoft yahei";color:#666;display:inline-block;margin-right:6px;}
+.sysMgmt-configMenu-top input{width:140px;height:18px;border:1px solid #dadbdd;background:#fff;padding:5px;display:inline-block;margin-right:14px;}
+.sysMgmt-configMenu-top a{display:inline-block;width:100px;height:30px;background:#66cc66;text-align:center;font:14px/30px "microsoft yahei";color:#fff;}
+.configMenu-btns{padding:10px;}
+.configMenu-btns .common-btns{height:36px;}
+#configMenu-table{margin-bottom:10px;}
+/* customer menu */
+.customerMenu-left{float:left;height:100%;width:281px;overflow-x: hidden;}
+.customerMenu-right{float:left;width:calc(100% - 281px);height:100%;}
+.customerMenu-left h1{width:279px;height:58px;cursor:pointer;background:url(../images/list.jpg) 86px center no-repeat #f4f5f9;font:16px/58px "microsoft yahei";color:#666;text-align:center;text-indent:14px;margin:0;}
+.customerMenu-left-tree{width:279px;height:auto}
+.customerMenu-left-tree>li>a{display:block;width:278px;height:38px;border:1px solid #eee;border-left:0;background:#f4f5f9;font:14px/38px "microsoft yahei";margin-bottom:1px;text-indent:22px;color:#666;}
+.customerMenu-left-tree>li>a i {text-indent: 0;width:14px;margin-right:16px;font-size:18px;vertical-align:middle;text-align:right;}
+.customerMenu-left-tree>li>dl{height:auto !important;}
+.customerMenu-left-tree>li>dl>dd>a{color:#666;display:inline-block;text-indent:66px;height:40px;font:14px/40px "microsoft yahei";text-overflow:ellipsis;overflow:hidden;white-space: nowrap;}
+.customerMenu-left-tree>li>dl>dd>a.on{color:#44b549}
+.customerMenu-left h1.on,.customerMenu-left-tree>li>a.on{color:#44b549}
+.customerMenu-left-tree>li>dl>dd>a i{text-indent:0;margin-right:8px;font-size:16px;width:14px;display:none;}
+.customerMenu-container{width:100%;height:100%;opacity: 0;filter:alpha(opacity=0);}
+.customerMenu-select-center{position:absolute;top:0;left:0;bottom:0;right:0;width:490px;height:32px;margin:auto;font-size:0;z-index:99;}
+.customerMenu-select-center-name{display:inline-block;font:14px/32px "microsoft yahei";color:#666;vertical-align: top;text-align:center;}
+#customerMenu-select{display:inline-block;width:220px;height:30px;vertical-align: top;margin-right:10px;}
+.customerMenu-select-center a{display:inline-block;width:100px;height:30px;vertical-align: top;background:#66cc66;color:#fff;text-align:center;font:14px/30px "microsoft yahei";}
+#customer-table-pages{display:none;}
+/* role config */
+.sysMgmt-roleConfig-box{padding:10px;}
+.sysMgmt-roleConfig-box .common-btns{height:36px;}
+#roleConfig-table{margin-bottom:20px;}
+#roleConfig-table-pages{display:none;}
+/* role permission */
+#rolePermission-droplist-role{width:220px;height:30px;display: inline-block;vertical-align: middle;margin-top:-10px;font-size:14px;display: none;}
+.sysMgmt-rolePermission-top a{display:inline-block;width:92px;height:30px;text-align:center;font:14px/30px "microsoft yahei";color:#fff;margin-left:14px;background:#66cc66;}
+.sysMgmt-rolePermission-top a.disabled{background:#ccc;cursor: not-allowed}
+.rolePermission-table li dl dd input{margin-left:24px;}
+#rolePermission-name{display:none;}
+.rolePermission-table-box .customerFn-table-header p, .rolePermission-table-box .customerFn-table li dl dd p{width:202px;}
+.rolePermission-table-box .customerFn-table-header div, .rolePermission-table-box .customerFn-table li dl dd div{text-align:center;}
+.rolePermission-table li dl dd input{margin-left:auto;}
+.rolePermission-table-box,.rolePermission-btns{display:none;}
+/* user management */
+.userManagement-btns{margin:10px 10px 0 10px;border:1px solid #dddddf;padding:10px;border-bottom:0;visibility:hidden}
+.userManagement-btns .common-btns{height:32px;}
+.userManagement-box{margin:0 10px 10px;visibility:hidden}
+.userManagement-box .mmGrid .mmg-headWrapper{background:#f4f5f9}
+#userManagement-table-pages{display:none;}
+/* code table */
+.code-table-left{float:left;width:240px;margin-left:10px;height:100%;overflow-x:hidden;background:#f4f5f9;border-right:1px solid #eee;border-left:1px solid #eee;}
+.code-table-left>h2{width:100%;height:58px;border-bottom:1px solid #eee;background:url(../images/list.jpg) 56px center no-repeat;font:16px/58px "microsoft yahei";color:#666;text-align:center;text-indent:14px;}
+.code-table-tree>li>p{background:url(../images/tree_1.jpg) 9px center no-repeat;text-indent:30px;font:14px/38px "microsoft yahei";height:38px;border-bottom:1px solid #eee;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;cursor: pointer;}
+.code-table-tree dl, .code-table-tree>li>dl>dd>ul{display:none;}
+.code-table-tree>li>dl>dd>p{background:url(../images/tree_1.jpg) 19px center no-repeat;text-indent:40px;font:14px/38px "microsoft yahei";height:38px;border-bottom:1px solid #eee;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;cursor: pointer;}
+.code-table-tree>li>dl>dd p{background-image:url(../images/tree_1.jpg); background-repeat: no-repeat}
+.code-table-tree>li>dl>dd>dl>dd>p{text-indent:50px;font:14px/38px "microsoft yahei";height:38px;border-bottom:1px solid #eee;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;cursor: pointer;background-position: 29px center;}
+.code-table-tree>li>dl>dd>dl>dd>dl>dd>p{text-indent:60px;font:14px/38px "microsoft yahei";height:38px;border-bottom:1px solid #eee;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;cursor: pointer;background-position: 39px center;}
+.code-table-tree>li>dl>dd>dl>dd>dl>dd>dl>dd>p{text-indent:70px;font:14px/38px "microsoft yahei";height:38px;border-bottom:1px solid #eee;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;cursor: pointer;background-position: 49px center;}
+.code-table-tree>li>dl>dd>dl>dd>dl>dd>dl>dd>dl>dd>p{text-indent:80px;font:14px/38px "microsoft yahei";height:38px;border-bottom:1px solid #eee;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;cursor: pointer;background-position: 59px center;}
+.code-table-tree>li>dl>dd>dl>dd>dl>dd>dl>dd>dl>dd>dl>dd>p{text-indent:90px;font:14px/38px "microsoft yahei";height:38px;border-bottom:1px solid #eee;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;cursor: pointer;background-position: 69px center;}
+.code-table-tree>li>dl>dd>dl>dd>dl>dd>dl>dd>dl>dd>dl>dd>dl>dd>p{text-indent:100px;font:14px/38px "microsoft yahei";height:38px;border-bottom:1px solid #eee;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;cursor: pointer;background-position: 79px center;}
+.code-table-right{float:left;width:calc(100% - 272px);height:100%;margin:0 10px;}
+.code-table-right .common-btns{margin-top:10px;height:36px;}
+.code-table-tree>li>p.on,.code-table-tree>li>dl>dd>p.on,.code-table-tree>li>dl>dd p.on{background-image:url(../images/tree2.jpg);}
+.code-table-tree p.background-none{background-image: none !important;}
+/* verfiy user view */
+#customer-name-select{display:inline-block;font:14px/20px "microsoft yahei";color:#666;border:solid 1px #ddd;background:#fff;width:245px;padding:4px 10px;outline-style:none;-webkit-tap-highlight-color:rgba(0,0,0,0); border-radius: 0; box-shadow: 0; -webkit-appearance:none;margin-left:5px;background:url(../images/droplist.png) #ffffff right center no-repeat;padding-right:20px;}
+#customer-name-select::-ms-expand,#customerName::-ms-expand{display: none;}
+.verify-userview-box{margin:10px;}
+#verify-userview-table-pages{margin-top:10px;}

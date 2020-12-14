@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" type="text/css" href="css/master.css" />
+    <link rel="stylesheet" type="text/css" href="css/wechat.css" />
+</head>
+<body>
+<div class="wechat-policyConfig-top">
+    <p>城市机构</p>
+    <div id="wechat-policyConfig-top-droplist">
+        <droplist :items="items" :selectedValue.sync="selectedValue"></droplist>
+    </div>
+    <a href="javascript:;" title="查询" id="query">查询</a>
+    <a href="javascript:;" title="保存配置" id="save">保存配置</a>
+</div>
+<div class="wechat-policyConfig-box">
+    <div class="common-btns">
+        <a href="javascript:;" title="新建" class="common-btns-create" id="wechat-orgInfo-add">新建</a>
+        <a href="javascript:;" title="修改" class="common-btns-edit" id="wechat-orgInfo-edit">修改</a>
+    </div>
+</div>
+<div class="wechat-policyConfig-info-box">
+    <ul style="display:none">
+        <li>
+            <p>中心名称：</p>
+            <span></span>
+        </li>
+        <li>
+            <p>是否可用：</p>
+            <span>可用</span>
+        </li>
+    </ul>
+    <h2 style="font-size:14px;text-align:center;line-height:36px;font-family: 'microsoft yahei';color:#444">暂无数据。</h2>
+</div>
+<div class="wechat-policyConfig-box hide">
+    <div class="common-btns">
+        <a href="javascript:;" title="新建" class="common-btns-create" id="wechat-policy-add">策略</a>
+        <a href="javascript:;" title="修改" class="common-btns-edit" id="wechat-policy-edit">策略明细修改</a>
+    </div>
+</div>
+<div id="wechat-policyConfig-table"></div>
+<div class="wechat-hidden">
+    <!-- popup create -->
+    <div class="wechat-create">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>微信功能策略配置</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>城市机构</p>
+                        <select id="wechat-policyConfig-popup-select-city"></select>
+                        <span class="red-link">*</span>
+                        <p>微信帐号</p>
+                        <select id="wechat-policyConfig-popup-select-numberStatus">
+                            <option value="1">可用</option>
+                            <option value="0">不可用</option>
+                        </select>
+                        <span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="新建" class="popup-btns-ok" onclick="window.frames['main'].policyConfig.centerAdd();">新建</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- popup edit -->
+    <div class="wechat-edit">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>微信功能策略配置</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>城市机构</p>
+                        <select id="wechat-policyConfig-popup-edit-city"></select>
+                        <span class="red-link">*</span>
+                        <p>微信帐号</p>
+                        <select id="wechat-policyConfig-popup-edit-numberStatus">
+                            <option value="1">可用</option>
+                            <option value="0">不可用</option>
+                        </select>
+                        <span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="保存" class="popup-btns-ok" onclick="window.frames['main'].policyConfig.centerEdit();">保存</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- popup policy create -->
+    <div class="wechat-policy-create">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>微信功能策略配置</span>
+                </h2>
+                <div class="selectBankWrap">
+                    <div class="selectLeft">
+                        <span class="selectCommonTitle"><input type="text" placeholder="请输入要添加的功能" id="bankText" oninput="window.frames['main'].policyConfig.searchList(this.value)" onKeyUp="window.frames['main'].policyConfig.checkThisText(this.value)" value=""></span>
+                        <div class="toSelect1" id="selectLeft">
+                            <select multiple="multiple"></select>
+                        </div>
+                    </div>
+                    <div class="selectRight">
+                        <span class="selectCommonTitle bgGray">已添加功能列表</span>
+                        <div class="toSelect1" id="selectRight">
+                            <select multiple="multiple">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="selectOption">
+                        <a href="javascript:;" title="添加" id="moveToRight">添加</a>
+                        <a href="javascript:;" title="删除" id="moveToLeft">删除</a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="保存" class="popup-btns-ok" onclick="window.frames['main'].policyConfig.fnCreate();">保存</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- popup policy edit -->
+    <div class="wechat-policy-edit">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>微信功能策略配置</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>功能</p>
+                        <select id="wechat-policyConfig-popup-features-city2"></select>
+                        <p>包名</p>
+                        <select id="wechat-policyConfig-popup-bagName2"></select>
+                        <p>是否可用</p>
+                        <select id="wechat-policyConfig-popup-able2">
+                            <option value="1">可用</option>
+                            <option value="0">不可用</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="保存" class="popup-btns-ok" onclick="window.frames['main'].policyConfig.fnEdit();">保存</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/wx004.js"></script>
+</body>
+</html>

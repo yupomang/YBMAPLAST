@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table_building</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" type="text/css" href="css/network.css">
+</head>
+<body>
+<div class="buildingSearch">
+	<ul>
+		<li><p>机构名称</p><span><select id="searchCustomer" style="width: 260px;"></select></span></li>
+	</ul>
+	<a href="javascript:;" title="查询" class="btnSearch" id="btnquery">查询</a>
+	<div class="clear"></div>
+</div>
+
+<div class="orgManage-box buildingBox">	
+    <div class="orgManage-table-btns buiManageBtns">
+        <a href="javascript:;" title="新建" id="orgManage-btn-add">新建</a>
+        <a href="javascript:;" title="修改" id="orgManage-btn-modify">修改</a>
+    </div>
+    <table id="wx001Table"></table>
+</div>
+
+
+
+<div class="orgManage-popup-hidden">
+    <!-- add & edit common Vue:orgManageEdit -->
+    <div class="orgManage-popup-edit-container">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>中心微信基础信息配置-添加</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>机构名称</p>
+                        <select id="regionId"></select> <span class="red-link">*</span>
+                        <p>微信帐号</p>
+                        <input type="text" value="" id="weixinId" /><span class="red-link">*</span>
+                        <p>开发者帐号</p>
+                        <input type="text" value="" id="appId" /><span class="red-link">*</span>
+                        <p>开发者密钥</p>
+                        <input type="text" value="" id="appScret" /><span class="red-link">*</span>
+                        <p>中心Token</p>
+                        <input type="text" value="" id="msgToken" /><span class="red-link">*</span>
+                        <p>链接地址</p>
+                        <input type="text" value="" id="msgUrl" /><span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="确定" class="popup-btns-ok"  onclick="window.frames['main'].wx001.add();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <div class="orgManage-popup-edit-container1">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>中心微信基础信息配置 - 修改</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>机构名称</p>
+                        <select id="regionId1"></select> <span class="red-link">*</span>
+                        <p>微信帐号</p>
+                        <input type="text" value="" id="weixinId1"  /><span class="red-link">*</span>
+                        <p>开发者帐号</p>
+                        <input type="text" value="" id="appId1" /><span class="red-link">*</span>
+                        <p>开发者密钥</p>
+                        <input type="text" value="" id="appScret1" /><span class="red-link">*</span>
+                        <p>中心Token</p>
+                        <input type="text" value="" id="msgToken1" /><span class="red-link">*</span>
+                        <p>链接地址</p>
+                        <input type="text" value="" id="msgUrl1" /><span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="修改" class="popup-btns-ok" onclick="window.frames['main'].wx001.edit();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+</div>
+
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery.js"></script><script type="text/javascript" src="js/lib/jquery-migrate.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/wx001.js"></script>
+</body>
+</html>

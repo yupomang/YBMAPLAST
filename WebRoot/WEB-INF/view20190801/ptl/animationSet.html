@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>channel monistor</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" type="text/css" href="css/animationSet.css">
+</head>
+<body>
+
+
+<div class="orgManage-box channelBox">
+	<div class="channelMonitorSearch">
+		<ul>
+			<li>城市中心 
+				<select>
+					<option>请选择</option>
+				</select>
+			</li>
+			<li>设备区分 
+				<select>
+					<option>请选择</option>
+				</select>
+			</li>
+			<li>动画名称 
+				<input type="text" placeholder="请输入动画名称" class="text1">
+			</li>
+			<li>动画编号 
+				<input type="text" placeholder="请输入动画编号" class="text1">
+			</li>
+			<a href="javascript:;" title="查询" class="channelMonitorBtn">查询</a>
+		</ul>
+	</div>
+	<div class="controlTitle">APP图片动画信息查询结果</div>
+	<div class="orgManage-table-btns channelStateBtns channelFlowBtns">
+        <a href="javascript:;" title="新建" id="orgManage-btn-add">新建</a>
+        <a href="javascript:;" title="修改" id="orgManage-btn-modify">修改</a>
+        <a href="javascript:;" title="删除" id="orgManage-btn-del">删除</a>
+    </div>
+    <table id="channelSetTable"></table>
+    <div id="orgManage-table-pages">
+        <pages :items="items"></pages>
+    </div>
+</div>
+
+
+<div class="orgManage-popup-hidden">
+    <!-- add & edit common Vue:orgManageEdit -->
+    <div class="orgManage-popup-edit-container">
+
+        <div class="orgManage-popup-bg"></div>
+        <div class="orgManage-popup-edit">
+            <div class="orgManage-popup-relative">
+                <div class="orgManage-popup-edit-close orgManage-popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="orgManage-popup-edit-title">
+                    <span>APP图片动画信息 - 增加</span>
+                </h2>
+                <ul class="orgManage-popup-from">
+                    <li>
+                        <p class="orgManage-popup-text">动画名称</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiCode" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text">动画编号</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiArea" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text">动画功能描述</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiName" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text">城市中心</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiDeve" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text" style="font-size:12px;">设备区分</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiAddr" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text" style="font-size:12px;">间隔时间(秒)</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiType" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text" style="font-size:12px;">循环方式</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiContacter" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text" style="font-size:12px;">图片标准宽度</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiTel" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text" style="font-size:12px;">图片标准高度</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiTel2" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <div class="orgManage-popup-btns">
+                            <p class="orgManage-popup-btns-ok" onclick="Common.popupClose();" v-if="isAdd">确定</p>
+                            <p class="orgManage-popup-btns-cancel" onclick="Common.popupClose();">取消</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <div class="orgManage-popup-edit-container1">
+        <div class="orgManage-popup-bg"></div>
+        <div class="orgManage-popup-edit">
+            <div class="orgManage-popup-relative">
+                <div class="orgManage-popup-edit-close orgManage-popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="orgManage-popup-edit-title">
+                    <span>APP图片动画信息 - 修改</span>
+                </h2>
+                <ul class="orgManage-popup-from">
+                    <li>
+                        <p class="orgManage-popup-text">动画名称</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiCode1" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text">动画编号</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiArea1" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text">动画功能描述</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiName1" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text">城市中心</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiDeve1" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text" style="font-size:12px;">设备区分</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiAddr1" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text" style="font-size:12px;">间隔时间（秒）</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiType1" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text" style="font-size:12px;">循环方式</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiContacter1" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text" style="font-size:12px;">图片标准宽度</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiTel1" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <p class="orgManage-popup-text" style="font-size:12px;">图片标准宽度</p>
+                        <input type="text" class="orgManage-popup-longInput" id="buiTel21" value="" />
+                        <span class="red-required">*</span>
+                    </li>
+                    <li>
+                        <div class="orgManage-popup-btns">
+                            <p class="orgManage-popup-btns-ok" onclick="Common.popupClose();" v-if="isAdd">确定</p>
+                            <p class="orgManage-popup-btns-cancel" onclick="Common.popupClose();">取消</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    
+	
+</div>
+
+
+
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/animationSet.js"></script>
+</body>
+</html>

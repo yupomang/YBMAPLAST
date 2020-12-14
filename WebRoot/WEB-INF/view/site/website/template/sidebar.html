@@ -1,0 +1,49 @@
+<div class="mt-15">
+    <@cms_appapi70001_list classification='14' buzType='5532' pagenum='0' pagerows='10' centerId='00087100'
+    keyword='' channel='30'>
+    <#list appapi70001_list as item>
+        <#if item.title == "主任信箱">
+            <div class="contact-wrap">
+                <div class="col-xs-3 img-wrap padding-0">
+                    <img src="${item.imgUrl}" alt="${item.title}">
+                </div>
+                <div class="col-xs-9 padding-0">
+                    <p class="contact-title mt-5">${item.title}</p>
+                    <p class="font-size-14">${item.introduction}</p>
+                </div>
+            </div>
+            <#else>
+                <div class="contact-wrap mt-15">
+                    <div class="col-xs-3 img-wrap padding-0">
+                        <img src="${item.imgUrl}" alt="${item.title}">
+                    </div>
+                    <div class="col-xs-9 padding-0">
+                        <p class="signal-contact">${item.title} ${item.introduction}</p>
+                    </div>
+                </div>
+        </#if>
+    </#list>
+</@cms_appapi70001_list>
+</div>
+<div class="mt-15">
+    <div class="content-title">
+        <span>公积金利率</span>
+    </div>
+
+    <div class="service-wrap border-e8 fund-rate">
+        <@cms_appapi70001_list classification='12' buzType='5530' pagenum='0' pagerows='10'
+        centerId='00087100' keyword='' channel='30'>
+        <#list appapi70001_list as item>
+            <@cms_appapi70002_list titleId=item.titleId buzType='5530' channel='30' centerId='00087100'>
+            <#list appapi70002_list as c>
+                ${c.content}
+            </#list>
+        </@cms_appapi70002_list>
+        </#list>
+    </@cms_appapi70001_list>
+    </div>
+</div>
+
+<a href="">
+    <img src="../resource/img/index/img_online.png" alt="在线客服" class="mt-15 online-advice">
+</a>

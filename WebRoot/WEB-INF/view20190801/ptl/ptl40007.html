@@ -1,0 +1,103 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="css/systemManagement.css" />
+</head>
+<body>
+<div class="sysMgmt-customerFn-top">
+    <p>客户名称</p>
+    <select id="customerName"></select>
+    <a href="javascript:;" title="查询" class="btnquery" onclick="interfaceConfig.getTableData()">查询</a>
+</div>
+<div class="sysMgmt-interfaceConfig-right">
+    <div class="common-btns">
+        <a href="javascript:;" title="新建" class="common-btns-create" id="sysMgmt-btn-add">新建</a>
+        <a href="javascript:;" title="编辑" class="common-btns-edit" id="sysMgmt-btn-edit">编辑</a>
+        <a href="javascript:;" title="删除" class="common-btns-del" id="sysMgmt-btn-del">删除</a>
+    </div>
+    <div id="centerViewTable"></div>
+    <div id="orgManage-table-pages">
+        <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+    </div>
+</div>
+<div class="sysMgmt-hidden-area">
+    <div class="interfaceConfig-create">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>添加通讯信息</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>中心ID</p>
+                        <input type="text" id="centerid" disabled />
+                        <span class="red-link">*</span>
+                        <p>通讯接口类名</p>
+                        <input type="text" id="classname" />
+                        <span class="red-link">*</span>
+                        <p>通讯URL</p>
+                        <input type="text" id="url" />
+                        <span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="添加" class="popup-btns-ok" onclick="window.frames['main'].interfaceConfig.add();">添加</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- edit -->
+    <div class="interfaceConfig-edit">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>修改通讯信息</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>中心ID</p>
+                        <input type="text" id="centerid1" disabled/>
+                        <span class="red-link">*</span>
+                        <p>通讯接口类名</p>
+                        <input type="text" id="classname1" />
+                        <span class="red-link">*</span>
+                        <p>通讯URL</p>
+                        <input type="text" id="url1" />
+                        <span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="修改" class="popup-btns-ok" onclick="window.frames['main'].interfaceConfig.edit();">修改</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/ptl40007.js"></script>
+</body>
+</html>

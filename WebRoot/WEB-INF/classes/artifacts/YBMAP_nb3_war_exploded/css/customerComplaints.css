@@ -1,0 +1,134 @@
+
+.channelAnalysis-top {height:auto;padding:10px 0;}
+.chenelUE-canvas-wrap {float: none;width: 100%;margin:0;}
+
+.chenelUE-canvas-wrap div {padding: 30px; width: auto !important;}
+#channelUE-canvas{height:350px;}
+#responseTimeDistribution h4{margin: 30px 0 -15px 45px;}
+
+.woShowDetail {display: none;}
+.woTitle {border-bottom: solid 1px #ddd;position: relative;padding-left: 16px;font: 16px/30px 'microsoft yahei'; height: 44px;color: #666;  margin-bottom: 19px;  }
+.woShowBtns {padding-left: 15px;}
+.woShowBtns a {display: inline-block;font: 14px/28px "microsoft yahei";border: 1px solid transparent;color: #666;border-radius: 3px;padding: 0 16px 0 36px;}
+.woForm {padding: 15px 0px;}
+a#orgManage-btn-back {display: inline-block;font: 14px/28px "microsoft yahei";border: 1px solid transparent;color: #666;border-radius: 3px;padding: 0 16px 0 36px;background: url(../images/goback.jpg) 14px center no-repeat;  }
+a#orgManage-btn-back:hover{border-color: #eee;}
+#woShowDetail{padding:20px;}
+
+.channelAnalysis-top{overflow:hidden;}
+.channelAnalysis-top form{float:left;width:900px;}
+.channelAnalysis-top .btn-wrap{float:left;padding-top:26px;}
+.channelAnalysis-top .channelAnalysis-top-name{width:auto;}
+#customerName{width:200px;}
+.channelAnalysis-top select{width:135px;}
+#complainTrend-btn{padding:0 30px;}
+#complainTrend-btn a{background: url(../images/goback.jpg) 14px center no-repeat}
+/*form */
+input:focus,textarea:focus {outline:none;border-color: #66cc66;}
+.woForm {padding:15px;}
+.commonFieldset {margin-bottom:15px;}
+.commonFieldset legend {font:16px/30px "microsoft yahei";color:#666;padding:0 10px;margin-left:20px;}
+.commonFieldset {border:solid 1px #ddd;}
+.commonFieldset ul {padding:10px 30px;}
+.commonFieldset ul li {padding-bottom:10px;}
+.reShowCommonFieldset ul li {padding:5px 30px;}
+.commonFieldset ul li::after {content:'';display:block;width:0px;height:0px;clear:both;}
+.commonFieldset ul li label,.commonFieldset ul li p {float:left;display:inline-block;width:80px;font:14px/34px 'microsoft yahei';color:#666;}
+.commonFieldset ul li label.woLabelReset {width:auto;margin-right:15px;}
+.commonFieldset ul li label.woLabelReset input[type='radio'] {position:relative;top:1px;}
+.commonFieldset ul li label.woLongText {line-height:20px;}
+.commonFieldset ul li i {font:normal normal 14px/34px 'microsoft yahei';color:#f00;padding-left:5px;}
+.commonFieldset ul li b {font:normal normal 14px/34px 'microsoft yahei';color:#f00;display:none;}
+.woText {width:320px;height:18px;font:14px/18px 'microsoft yahei';color:#666;padding:7px 8px;border:solid 1px #ddd;background:#fff;border-radius:2px;}
+.woSelect {width:338px;padding:8px;background:#fff;border:solid 1px #ddd;display:inline-block;outline-style:none;-webkit-tap-highlight-color:rgba(0,0,0,0); border-radius: 0; box-shadow:0px;float:left;color:#666;border-radius:2px;background:url(../images/droplist.png) #ffffff right center no-repeat;-webkit-appearance: none; -moz-appearance: none;appearance:none;}
+.woSelect:focus {border-color:#66cc66;}
+.woSelect::-ms-expand{display: none;}
+.servDescribe {width:420px;height:100px;border:solid 1px #ddd;background:#fff;border-radius:2px;font:12px/18px 'microsoft yahei';color:#666;padding:5px 8px;}
+.woButtons {text-align:left;padding-top:10px;padding-bottom:20px;}
+.woButtons a {display:inline-block;font:14px/32px 'microsoft yahei';color:#fff;text-align:center;width:90px;margin:0 3px;}
+.woButtons a.woBtnGreen {background:#66cc66;}
+.woButtons a.woBtnGray {background:#66cc66;}
+#woSubmit {background:#66cc66;}
+#woCancel {background:#bbb;}
+.woTextReadonly {border:none;}
+.woSelectReadonly {border:none;background:none;}
+.woTextareaReadonly {border:none;background:none;font:14px/24px 'microsoft yahei';color:#666;}
+.higherupWrap {float:left;display:inline-block;}
+.reshowForm {font:14px/34px 'microsoft yahei';color:#666;display:inline-block;width:440px;text-align:justify;text-justify: inter-ideograph;}
+.woNotice {font:normal normal 12px/34px 'microsoft yahei';padding-left:15px;color:#999;}
+
+/*
+.conenteHistory {padding:0 0 10px 0;width:800;position:relative;}
+.lineCommon {clear:both;border:0;border-top:dashed 1px #ddd;background:none;margin:0;height:0px;-webkit-margin-before: 0em; -webkit-margin-after:0em;width:90%;margin:10px 0}
+.conenteHistory p {}
+.conenteHistory dl {font:14px/30px "microsoft yahei";color:#666;}
+.conenteHistory dl dd p {float:left;width:80px;line-height:28px;padding:1px 0;display:inline-block;}
+.conenteHistory dl dd::after {content:'';display:block;width:0px;height:0px;clear:both;}
+.conenteHistory dl dd span {float:left;width:78%;line-height:28px;padding:1px 0;display:inline-block;}
+.contentTitle {font:bold 13px/36px 'microsoft yahei';color:#666;}
+*/
+
+
+/*launch.css for launch.html and task.html
+*/
+.orgManage {width:1090px;}
+.userBtnAdd,.userBtnDel {position:relative;}
+.userBtnAdd i { position: absolute; left: 18px; top: 7px; font-size: 16px; color:#66cc66;}
+.orglist {width:230px;padding:5px 10px;border:solid 1px #fff;display:inline-block;outline-style:none;-webkit-tap-highlight-color:rgba(0,0,0,0); border-radius: 0; box-shadxow:0px;color:#666;border-radius:2px;border:solid 1px #ddd;background:url(../images/droplist.png) #ffffff right center no-repeat;-webkit-appearance: none; -moz-appearance: none;appearance:none;margin-left:5px;font:14px/20px 'microsoft yahei';}
+.orglist::-ms-expand{display: none;}
+.orglist:focus {border:solid 1px #66cc66;}
+.mmGrid .mmg-bodyWrapper .mmg-body td span {word-wrap:break-word;word-break: break-all;}
+.showXML {color:#666;}
+.woInfo {}
+.woShowDetail {display:none;}
+.woShowBtns {padding-left:15px;}
+.woShowBtns a{display:inline-block;font:14px/28px "microsoft yahei";border:1px solid transparent;color:#666;border-radius:3px;padding:0 16px 0 36px;}
+.woShowBtns a:hover{border-color:#eee;}
+.description {width:100%;height:34px;overflow:hidden;-ms-text-overflow: ellipsis;text-overflow: ellipsis;display:-webkit-box; -webkit-box-orient: vertical;-webkit-line-clamp: 2;}
+#orgManage-btn-unclaim {position:relative;}
+#orgManage-btn-unclaim i {position: absolute;left: 14px;top: 7px;font-size: 16px;color: #66cc66;}
+
+
+.historyName {width:100%;height:54px;font:16px/54px 'microsoft yahei';color:#666;border-bottom:solid 1px #ddd;text-indent:3px;display:block;margin:0;}
+.showHistoryTitle {width:100%;height:32px;background:#fff;position:relative;display:block;padding:30px 0;}
+.showHistoryTitle a {width:130px;height:32px;text-align:center;font:14px/32px 'microsoft yahei';color:#fff;background:#66cc66;margin:0 auto;display:block;position:absolute;left:50%;top:50%;margin-left:-75px;z-index:4;margin-top:-16px;}
+.showHistoryTitle img {transition:all 0.2s ease 0s;-webkit-transition:all 0.2s ease 0s;-moz-transition:all 0.2s ease 0s;}
+.showHistoryTitle hr {height:1px;display:block;margin:0;padding:0;border:0;background:#ddd;position:absolute;left:0;top:50%;margin-top:-0.5px;width:100%;z-index:3;}
+.historyWrap {padding-left:20px;}
+.historyWrap dl {font:14px/30px "microsoft yahei";color:#666;padding:15px 0;position:relative;padding-left:20px;}
+.historyWrap dl:nth-child(1)::before {width:2px;height:22px;content:'';display:block;background:#fff;position:absolute;left:0px;top:0px;z-index:10;}
+.historyWrap dl::after {content:'';display:block;width:2px;height:1px;background:#66cc66;position:absolute;left:0px;bottom:-1px;z-index:3;}
+.historyWrap dl dd p {float:left;width:110px;line-height:28px;padding:1px 0;display:inline-block;}
+.historyWrap dl dd::after {content:'';display:block;width:0px;height:0px;clear:both;}
+.historyWrap dl dd span {float:left;width:78%;line-height:28px;padding:1px 0;display:inline-block;}
+.historyWrap dl dd span.widthAuto {width:auto;float:left;padding-right:28px;}
+.historyWrap hr {height:0px;display:block;margin:0;padding:0;border:0;border-bottom:dashed 1px #ddd;/*width:978px;*/margin-left:20px;}
+.showLine {display:block;width:2px;height:101%;background:#66cc66;position:absolute;left:0;top:0;z-index:2;}
+.showCricle {display:block;width:16px;height:16px;z-index:4;position:absolute;left:-7px;top:22px;background:#66cc66;border-radius:50%;}
+.blockToggle {display:inline-block;color:#66cc66;font:14px/30px 'microsoft yahei';text-decoration:underline;margin-left:8px;}
+.blockToggle img {transition:all 0.3s ease 0s;-webkit-transition:all 0.3s ease 0s;-moz-transition:all 0.3s ease 0s;}
+.imgRotate180 {transform:rotate(180deg);-moz-transform:rotate(180deg);-webkit-transform:rotate(180deg);}
+.orderLimit {padding-left:15px;font:14px/30px 'microsoft yahei';color:#666;display:inline-block;height:30px;}
+.orderLimit strong {padding:0 10px;border-bottom:solid 1px #ddd;font:bold 16px/30px 'microsoft yahei';color:#f00;height:30px;display:inline-block;margin:0 8px;}
+
+.woTitle {border-bottom:solid 1px #ddd;position:relative;padding-left:16px;font:16px/30px 'microsoft yahei';height:44px;color:#666;margin-bottom:19px;display:none;}
+.woTitle::before {display:block;width:3px;height:16px;background:#66cc66;position:absolute;top:8px;left:0px;z-index:2;content:'';margin:0;padding:0;}
+.finalWrap {padding:0;}
+.historyWrap dl::before,.historyWrap dl::after {display:none;}
+.finalAnswer span.showHistoryTitle {height:1px;padding:0 0 30px 0;border-top:solid 1px #ddd;}
+
+
+.fileList{padding:20px 30px;}
+.filetext {padding-right:11px;font:14px/34px 'microsoft yahei';color:#666;float:left;}
+.fileList ul {padding:0px ;float:left;}
+.fileList ul li {padding-bottom:0px;}
+.fileList ul li.fileListThead {padding-bottom:10px;}
+.fileList ul li p {float:left;height:30px;padding:0 4px;font:12px/30px 'microsoft yahei';color:#999;width:100%;}
+.fileList ul li {font:12px/30px 'microsoft yahei';color:#999;width:100%;clear:both;}
+.fileList ul li p.listFileId {width:80px;font:14px/34px 'microsoft yahei';color:#666;}
+.fileList ul li p.listFileName {width:220px;font:14px/34px 'microsoft yahei';color:#666;}
+.fileList ul li p.listFileDesc {width:150px;font:14px/34px 'microsoft yahei';color:#666;}
+.fileList ul li p.listUploadTime {width:140px;font:14px/34px 'microsoft yahei';color:#666;}
+.fileList ul li p.listUploadOwner {width:80px;font:14px/34px 'microsoft yahei';color:#666;}
+.fileList ul li p.listOption {width:80px;display:block;font:14px/34px 'microsoft yahei';color:#666;}
+#fileForm {padding-bottom:20px;}

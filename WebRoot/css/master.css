@@ -1,0 +1,80 @@
+html, body{width:100%;height:100%;}
+template{display:none;}
+/* base */
+.fl{ float: left;}
+.db{ display: block;}
+.loginTopBox{ width: 1002px; margin: 0 auto; overflow: hidden;}
+.loginBoxWrapper{ width: 100%; height: 603px; border-top: 1px solid #dadbdd; position: relative; background: url(../images/login_bg_blue.jpg) #7cbae5 center center no-repeat;}
+.loginBox{ width: 418px; height: 398px; background: #ffffff; border: 1px solid #dadbdd; position: absolute; right: 50%; top: 50%; margin-top: -199px; margin-right: -601px;}
+.loginTitleText{ font-size: 18px; color: #333333; text-align: center; padding: 38px 0 15px 0;}
+.loginInputType{ display: block; width: 276px; padding-left: 42px; height: 48px; line-height: 48px; border: 1px solid #dadbdd; margin: 0 auto 14px auto; outline: none; border-radius: 3px;}
+.loginInputType:focus{ border: 1px solid #60d295; box-shadow: 0px 0px 3px #60d295;}
+.loignIconUser{ background: url(../images/login_icon.png) 13px 15px no-repeat;}
+.loignIconPwd{ background: url(../images/login_icon.png) 13px -49px no-repeat;}
+.loignIconVer{ background: url(../images/login_icon.png) 13px -112px no-repeat;}
+.loginBtn{ display: block; width: 320px; height: 50px; background: #60d295; border:none; border-radius: 3px; margin: 0 auto; font-size: 18px; color: #FFFFFF; cursor: pointer;}
+.loginBtn:hover{ background: #4ae290;}
+.loginInputBox{ position: relative; width: 320px; margin: 0 auto;}
+.verCbox{ width: 82px; height: 22px; position: absolute; right: 9px; top: 12px;}
+.verCbox img{ display: block; width: 59px; height: 22px; float: left;}
+.rVerCodeBtn{ display: block; width: 22px; height: 22px; background: url(../images/reflash_09.gif) right center no-repeat; float: right; cursor: pointer;}
+.copy{ font-size: 12px; color: #666666; line-height: 4em; text-align: center;}
+.errmsg{margin: auto auto 10px 48px;color: #e16463;font-size: 14px;display: none;}
+/* iframes */
+#headerBody{border-bottom:1px solid #c8c7cc;background:#fff;}
+.main-container{width:100%;background:#fff;border-top:1px solid #c8c7cc;overflow:hidden;}
+#navigation{border-right:1px solid #c8c7cc;float:left;}
+.main-gray-bar{width:100%;height:9px;overflow:hidden;background:#e7e8eb}
+#mainBody{float:left;}
+.header-logo{float:left;margin-left:28px;margin-top:10px;}
+.header-user-info{float:right;height:28px;margin-top:42px;overflow:hidden;padding-right:90px;}
+.header-user-info p,.header-user-info a{float:left;height:28px;padding-left:38px;font:13px/28px "microsoft yahei";color:#666;margin-left:18px;}
+.header-user-info p.header-user-icons1{background:url(../images/header_icons1.jpg) 0 0 no-repeat;}
+.header-user-info p.header-user-icons2{background:url(../images/header_icons2.jpg) 0 0 no-repeat;}
+.header-user-info a.header-user-icons3{background:url(../images/header_icons3.jpg) 0 0 no-repeat;display:block;}
+.nav-container{width:211px;overflow:hidden;}
+.nav-container-ul{width:211px;height:auto;overflow:hidden;}
+.nav-container-ul dt{width:100%;height:36px;overflow:hidden;font:14px/36px "microsoft yahei";color:#999999;}
+.nav-container-ul dt.on {font-weight: 700;}
+.nav-container-ul li p a{color:#333}
+.nav-container-ul dt{border-top:1px solid #eae9eb;text-indent:18px;cursor: pointer;}
+.nav-container-ul dt.on{font-weight: bold;border-bottom:1px solid #eae9eb;}
+.nav-container-ul dd{height:36px;font:14px/36px "microsoft yahei";text-indent:46px;color:#666;display:none;width:100%;cursor: pointer;}
+.nav-container-ul dd:hover,.nav-container-ul dd.on{color:#fff;background:#44b549}
+.nav-container-ul i{display:inline-block;width:24px;text-indent:0;font-size:18px;vertical-align: middle}
+.nav-container-ul dd i{display:none;}
+.nav-container-ul span{display:inline-block;text-indent:0;vertical-align: middle}
+/* popup common */
+.popup-bg{width:100%;height:100%;position:fixed;top:0;left:0;background:#000;filter:alpha(opacity=50);opacity: 0.5;z-index:99;}
+.popup-box{width:754px;height:auto;position:fixed;top:40px;left:0;bottom:0;right:0;margin:auto;z-index:100}
+.popup-relative{width:754px;position:relative;background:#fff;}
+.popup-close{background:url(../images/dialog_close.png) -40px 0 no-repeat;width:26px;height:26px;cursor: pointer;-webkit-transition:all 0.3s ease-in-out 0s;-moz-transition:all 0.3s ease-in-out 0s;-ms-transition:all 0.3s ease-in-out 0s;transition:all 0.3s ease-in-out 0s;position:absolute;right:-13px;top:-13px;}
+.popup-close:hover{background-position: 0 0;}
+.popup-title{width:100%;text-align:center;height:54px;margin-top:13px;font:18px/54px "microsoft yahei";color:#666;}
+.popup-title span{display:inline-block;border-bottom:2px solid #66cc66;padding:0 18px;}
+.popup-btns{width:100%;height:33px;overflow:hidden;text-align:center;font-size:0;padding-bottom: 90px;}
+.popup-btns a{display:inline-block;width:92px;height:33px;text-align:center;font:13px/33px "microsoft yahei";color:#fff;}
+.popup-btns a.popup-btns-ok{background:#66cc66;}
+.popup-btns a.popup-btns-cancel{background:#ccc;margin-left:6px;}
+/* common link */
+.green-link{color:#66cc66}
+.red-link{color:red;}
+/* common btns */
+.common-btns{width:100%;height:58px;margin:0 auto;}
+.common-btns a{display:inline-block;font:14px/28px "microsoft yahei";border:1px solid transparent;color:#666;border-radius:3px;padding:0 16px 0 36px;}
+.common-btns a:hover{border-color:#eee;}
+.common-btns a.common-btns-create{background:url(../images/add.jpg) 14px center no-repeat;}
+.common-btns a.common-btns-edit{background:url(../images/edit.jpg) 14px center no-repeat;}
+.common-btns a.common-btns-del{background:url(../images/del.jpg) 14px center no-repeat;}
+.common-btns a.common-btns-moveUp{background:url(../images/move_up.jpg) 14px center no-repeat;}
+.common-btns a.common-btns-moveDown{background:url(../images/move_down.jpg) 14px center no-repeat;}
+.common-btns a.common-btns-save{background:url(../images/save_icon.jpg) 14px center no-repeat;}
+.common-btns a.common-btns-back{background:url(../images/goback.jpg) 14px center no-repeat;}
+.common-btns a.common-btns-release{background:url(../images/release.jpg) 14px center no-repeat;}
+.common-btns a.common-btns-check{background:url(../images/check_icon.jpg) 14px center no-repeat;}
+.common-btns a.common-btns-import{background:url(../images/ico_import.png) 14px center no-repeat;}
+.common-btns a.common-btns-downFile{background:url(../images/ico_download.png) 14px center no-repeat;}
+.common-green-title{background:url(../images/title_bar.jpg) 0 center no-repeat;padding-left:14px;font:16px/64px "microsoft yahei";color:#666;}
+/* component style overwrite */
+.hx-droplist:hover{cursor: pointer;border-color:#44b549}
+.hx-droplist:focus{cursor: pointer;border-color:#44b549}

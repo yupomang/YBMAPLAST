@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="css/userView.css" />
+</head>
+<body>
+<div class="userview-top">
+    <p class="userview-top-title">客户名称</p>
+    <select id="userview-custom"></select>
+    <p class="userview-top-title">证件号码</p>
+    <input type="text" class="userview-top-input">
+    <p class="userview-top-title">手机号</p>
+    <input type="text" class="userview-top-input">
+    <a href="javascript:;" title="查询" class="userview-top-btn">查询</a>
+</div>
+<div class="userview-content" v-show="hasData">
+    <div class="userview-center">
+        <div class="userview-center-btn-box">
+            <a href="javascript:;" title="单 位" class="userview-center-btns" id="userview-center-btn1">单 位</a>
+            <a href="javascript:;" title="关联人" class="userview-center-btns" id="userview-center-btn2">关联人</a>
+            <a href="javascript:;" title="关联账户" class="userview-center-btns" id="userview-center-btn3">关联账户</a>
+            <a href="javascript:;" title="服务渠道" class="userview-center-btns" id="userview-center-btn4">服务渠道</a>
+            <a href="javascript:;" title="客服记录" class="userview-center-btns" id="userview-center-btn5">客服记录</a>
+            <a href="javascript:;" title="在办业务" class="userview-center-btns" id="userview-center-btn6">在办业务</a>
+            <a href="javascript:;" title="预约业务" class="userview-center-btns" id="userview-center-btn7">预约业务</a>
+        </div>
+        <div class="userview-center-box">
+            <div class="userview-center-box-bg" id="userview-center-box1">
+                <h2>单 位</h2>
+                <div class="userview-center-box1-company">
+                    单位：{{ unit.unitname }}<br />
+                    联系人：{{ unitMan }}<br />
+                    联系方式：{{ unit.unittel }}<br />
+                </div>
+                <p>
+                    <a href="userView1.html" title="单位基本信息">单位基本信息</a>
+                    <a href="userView1.html?url='1'" title="单位账户明细">单位账户明细</a>
+                </p>
+            </div>
+            <div class="userview-center-box-bg" id="userview-center-box2">
+                <h2>关联人</h2>
+                <div class="userview-center-box1-company">
+                    <template v-for="item in person">
+                        {{ relationType[item.relation] }}：{{ item.username }} <br/>
+                        身份证号：{{ item.certinum }}<br/>
+                    </template>
+                </div>
+                <p>
+                    <a href="userView2.html" title="查看详情">查看详情</a>
+                </p>
+            </div>
+            <div class="userview-center-box-bg" id="userview-center-box3">
+                <h2>关联账户</h2>
+                <div class="userview-center-box1-company userview-font-center">
+                    <template v-for="item in account">
+                        账户类型: {{ accounttype[item.accounttype] }}<br/>
+                        账号: {{ item.accountcode }}<br/>
+                    </template>
+                </div>
+                <p>
+                    <a href="userView3.html" title="查看详情">查看详情</a>
+                </p>
+            </div>
+            <div class="userview-center-box-bg" id="userview-center-box4">
+                <h2>服务渠道</h2>
+                <div class="userview-center-box1-company userview-font-center">
+                    渠道名称：{{ channel.length > 0 ? channel[0].channelname : '' }}<br/>
+                    应用名称：{{ channel.length > 0 ? channel[0].appname : '' }}<br/>
+                    USERID：{{ channel.length > 0 ? channel[0].userid : '' }}<br/>
+                    昵称：{{ channel.length > 0 ? channel[0].nickname : '' }}<br/>
+                </div>
+                <p>
+                    <a href="userView4.html" title="查看详情">查看详情</a>
+                </p>
+            </div>
+            <div class="userview-center-box-bg" id="userview-center-box5">
+                <h2>客服记录</h2>
+                <ul>
+                    <li>
+                        <p>人工及自助语音客服记录</p>
+                        <a href="userView5.html" title="查看详情">查看详情</a>
+                    </li>
+                    <li>
+                        <p>新媒体客服服务记录</p>
+                        <a href="userView5.html?url='1'" title="查看详情">查看详情</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="userview-center-box-bg" id="userview-center-box6">
+                <h2>在办业务</h2>
+                <ul>
+                    <li>
+                        <p>提取进度</p>
+                        <a href="userView6.html" title="查看详情">查看详情</a>
+                    </li>
+                    <li>
+                        <p>贷款进度</p>
+                        <a href="userView6.html?url='1'" title="查看详情">查看详情</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="userview-center-box-bg" id="userview-center-box7">
+                <h2>预约业务</h2>
+                <div class="userview-center-bus">
+                    <span>个人业务预约</span>
+                    <span>单位业务预约</span>
+                </div>
+                <p>
+                    <a href="userView7.html" title="查看详情">查看详情</a>
+                </p>
+            </div>
+            <div class="userview-center-box-bg" id="userview-center-box-main">
+                <div class="userview-center-vip">
+                    <span class="userview-vip">{{ user.certinumcustomerid }}</span>
+                    <p>
+                        <span>认证用户</span>
+                        <span>敏感用户</span>
+                    </p>
+                </div>
+                <div class="userview-center-info">
+                    姓　　名：{{ user.username }} <br />
+                    性　　别：{{ user.sex == 0 ? '男' : '女' }}<br />
+                    出生年月：{{ user.birth }} <br />
+                    证  件 号 ：{{ user.certinum }}<br />
+                    手  机 号 ：{{ user.tel }}<br />
+                    邮　　箱：{{ user.email }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery.js"></script><script type="text/javascript" src="js/lib/jquery-migrate.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/userView.js"></script>
+</body>
+</html>

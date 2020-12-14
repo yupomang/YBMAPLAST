@@ -1,0 +1,533 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" type="text/css" href="css/3rd/iconfont.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="css/systemManagement.css" />
+
+</head>
+<body>
+<div class="sysMgmt-customerFn-top">
+    <p>客户名称</p>
+    <select id="customerName"></select>
+    <a href="javascript:;" title="确定" class="btnquery">确定</a>
+</div>
+<div class="configMenu-btns">
+            <div class="common-btns">
+                <a href="javascript:;" title="编辑微信号" class="common-btns-edit" id="sysMgmt-btn-addwx">编辑微信号</a>
+                <a href="javascript:;" title="发布" class="common-btns-release" id="sysMgmt-btn-send">发布</a>
+            </div>
+        </div>
+<div class="customerMenu-container" style="opacity: 1;filter:alpha(opacity=1);">
+    <div class="customerMenu-left">
+        <div class="wx003title" style="background:#66cc66;color: #fff;">
+            <p style="font-size: 18px;"></p>
+            <p>微信号：<span></span></p>
+        </div>
+        <ul class="code-table-tree">
+            <template v-for="item in items">
+                <li>
+                    <p   title="{{ item.name }}">{{ item.name }}</p>
+                    <dl v-for="sub in item.sub_button">
+                        <dd><p class="background-none">{{sub.name}}</p></dd>
+                    </dl>
+                </li>
+            </template>
+        </ul>
+    </div>
+    <div class="customerMenu-right">
+        <div id="menu_area">
+            <div class="configMenu-btns" style="border: 1px solid #ccc;">
+                <div class="common-btns">
+                    <a href="javascript:;" title="新建" class="common-btns-create" id="sysMgmt-btn-add">新建</a>
+                    <a href="javascript:;" title="修改" class="common-btns-edit" id="sysMgmt-btn-edit">修改</a>
+                    <a href="javascript:;" title="上移" class="common-btns-moveUp" id="sysMgmt-btn-up">上移</a>
+                    <a href="javascript:;" title="下移" class="common-btns-moveDown" id="sysMgmt-btn-down">下移</a>
+                    <a href="javascript:;" title="保存顺序" class="common-btns-save" id="sysMgmt-btn-save">保存顺序</a>
+                </div>
+            </div>
+            <div id="menu-table"></div>
+        </div>
+        <div id="son_menu_area" style="display: none;">
+            <div class="common-btns">
+                <a href="javascript:;" title="新建" class="common-btns-back" id="son-btn-back">返回</a>
+                | <span id="far_menu_name" style="font-weight: bold;"></span> 的二级子菜单维护
+            </div>
+            <div class="configMenu-btns" style="border: 1px solid #ccc;">
+                <div class="common-btns">
+                    <a href="javascript:;" title="新建" class="common-btns-create" id="son-btn-add">新建</a>
+                    <a href="javascript:;" title="修改" class="common-btns-edit" id="son-btn-edit">修改</a>
+                    <a href="javascript:;" title="上移" class="common-btns-moveUp" id="son-btn-up">上移</a>
+                    <a href="javascript:;" title="下移" class="common-btns-moveDown" id="son-btn-down">下移</a>
+                    <a href="javascript:;" title="保存顺序" class="common-btns-save" id="son-btn-save">保存顺序</a>
+                </div>
+            </div>
+            <div id="son-menu-table"></div>
+        </div>
+    </div>
+</div>
+
+<div class="sysMgmt-hidden-area">
+    <!-- addwx -->
+    <div class="configMenu-createwx">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative" >
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <div class="showAdd">
+                    <h2 class="popup-title">
+                        <span>微信号-编辑</span>
+                    </h2>
+                    <div class="wechat-baseQuery-popup-content">
+                        <div class="wechat-baseQuery-popup-create">
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>客户名称</p>
+                                <input type="text" id="centername"  disabled />
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>微信号码</p>
+                                <input type="text" id="wxNum"  />
+                                <span class="red-link">*</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-btns">
+                        <a href="javascript:;" title="保存预览" class="popup-btns-ok" onclick="window.frames['main'].wx003.addwx();Common.popupClose();">保存预览</a>
+                        <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- add -->
+    <div class="configMenu-create">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative" >
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <div class="showAdd">
+                    <h2 class="popup-title">
+                        <span>微信一级菜单配置-新建</span>
+                    </h2>
+                    <div class="wechat-baseQuery-popup-content">
+                        <div class="wechat-baseQuery-popup-create">
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>菜单名称</p>
+                                <input type="text" id="menu_name"  />
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>是否有子菜单</p>
+                                <label onclick="$('.wechat-baseQuery-popup-create div').eq(2).hide();$('.wechat-baseQuery-popup-create div').eq(3).hide();"><input type="radio" name="hasSon" class="hasSonCheck" value="1" /> 有</label>　
+                                <label onclick="$('.wechat-baseQuery-popup-create div').eq(2).show();$('.wechat-baseQuery-popup-create div').eq(3).show();"><input type="radio" name="hasSon" class="hasSonCheck" value="0" checked/> 无</label>
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>菜单类型</p>
+                                <select id="type">
+                                    <option value="">请选择</option>
+                                    <option value="view">链接事件</option>
+                                    <option value="click">点击事件</option>
+                                </select>
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>菜单参数</p>
+                                <textarea id="key_vaule" class="key_vaule"></textarea>
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p></p>
+                                <a href="javascript:;" onclick="window.frames['main'].wx003.setFunc();" style="font-size: 12px;">选择对应功能</a>
+                                <a href="javascript:;" style="font-size: 12px;" onclick="window.frames['main'].wx003.setURL();">设置对应链接</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-btns">
+                        <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].wx003.add();">保存预览</a>
+                        <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                    </div>
+                </div>
+                <div class="showSetURL" style="display: none;">
+                    <h2 class="popup-title">
+                        <span>微信菜单链接配置</span>
+                    </h2>
+                    <div class="wechat-baseQuery-popup-content">
+                        <div class="wechat-baseQuery-popup-create">
+                            <p>appid</p>
+                            <input type="text"  id="u_appid">
+                            <span class="red-link">*</span>
+                            <p>uri</p>
+                            <input type="text"  id="u_uri">
+                            <span class="red-link">*</span>
+                            <p>微信账号</p>
+                            <input type="text"  id="u_wxid">
+                            <span class="red-link">*</span>
+                            <p>功能</p>
+                            <input type="text"  id="u_cond">
+                            <span class="red-link">*</span>
+                        </div>
+                    </div>
+                    <div class="popup-btns">
+                        <a href="javascript:;" title="保存预览" class="popup-btns-ok" onclick="window.frames['main'].wx003.saveurl();">保存预览</a>
+                        <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="window.frames['main'].wx003.closeurl();">取消</a>
+                    </div>
+                </div>
+                <div class="showFunc" style="display: none;" >
+                    <h2 class="popup-title">
+                        <span>微信菜单功能配置</span>
+                    </h2>
+                    <div class="wechat-baseQuery-popup-content">
+                        <div class="wechat-baseQuery-popup-create">
+                            <ul class="list00202 ltitle">
+                                <li class="listT">
+                                    <span></span>
+                                    <span>包名</span>
+                                    <span>类名</span>
+                                    <span>路径</span>
+                                    <span>KEY</span>
+                                    <span>描述</span>
+                                </li>
+                            </ul>
+                            <ul class="list00202 linfo">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="popup-btns" style="padding-bottom: 20px">
+                        <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].wx003.saveFunc();">确定</a>
+                        <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="window.frames['main'].wx003.closeFunc();">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- edit -->
+    <div class="configMenu-edit">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="showAdd">
+                    <div class="popup-close" onclick="Common.popupClose();"></div>
+                    <h2 class="popup-title">
+                        <span>微信菜单配置-修改</span>
+                    </h2>
+                    <div class="wechat-baseQuery-popup-content">
+                        <div class="wechat-baseQuery-popup-create edit">
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>菜单名称</p>
+                                <input type="text" id="menu_name1"  />
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>是否有子菜单</p>
+                                <label onclick="$('.edit div').eq(2).hide();$('.edit div').eq(3).hide();"><input type="radio" name="hasSon1" class="hasSonCheck" value="1" /> 有</label>　
+                                <label onclick="$('.edit div').eq(2).show();$('.edit div').eq(3).show();"><input type="radio" name="hasSon1" class="hasSonCheck" value="0" checked/> 无</label>
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>菜单类型</p>
+                                <select id="type1">
+                                    <option value="">请选择</option>
+                                    <option value="view">链接事件</option>
+                                    <option value="click">点击事件</option>
+                                </select>
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>菜单参数</p>
+                                <textarea id="key_vaule1" class="key_vaule"></textarea>
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p></p>
+                                <a href="javascript:;" style="font-size: 12px;" onclick="window.frames['main'].wx003.setFunc();">选择对应功能</a>
+                                <a href="javascript:;" style="font-size: 12px;" onclick="window.frames['main'].wx003.setURL();">设置对应链接</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-btns">
+                        <a href="javascript:;" title="修改" class="popup-btns-ok" onclick="window.frames['main'].wx003.edit();">修改</a>
+                        <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                    </div>
+                </div>
+                <div class="showSetURL" style="display: none;">
+                    <h2 class="popup-title">
+                        <span>微信菜单链接配置</span>
+                    </h2>
+                    <div class="wechat-baseQuery-popup-content">
+                        <div class="wechat-baseQuery-popup-create">
+                            <p>appid</p>
+                            <input type="text"  id="u_appid">
+                            <span class="red-link">*</span>
+                            <p>uri</p>
+                            <input type="text"  id="u_uri">
+                            <span class="red-link">*</span>
+                            <p>微信账号</p>
+                            <input type="text"  id="u_wxid">
+                            <span class="red-link">*</span>
+                            <p>功能</p>
+                            <input type="text"  id="u_cond">
+                            <span class="red-link">*</span>
+                        </div>
+                    </div>
+                    <div class="popup-btns">
+                        <a href="javascript:;" title="保存预览" class="popup-btns-ok" onclick="window.frames['main'].wx003.saveurl();">保存预览</a>
+                        <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="window.frames['main'].wx003.closeurl();">取消</a>
+                    </div>
+                </div>
+                <div class="showFunc" style="display: none;" >
+                    <h2 class="popup-title">
+                        <span>微信菜单功能配置</span>
+                    </h2>
+                    <div class="wechat-baseQuery-popup-content">
+                        <div class="wechat-baseQuery-popup-create">
+                            <ul class="list00202 ltitle">
+                                <li class="listT">
+                                    <span></span>
+                                    <span>包名</span>
+                                    <span>类名</span>
+                                    <span>路径</span>
+                                    <span>KEY</span>
+                                    <span>描述</span>
+                                </li>
+                            </ul>
+                            <ul class="list00202 linfo">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="popup-btns" style="padding-bottom: 20px">
+                        <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].wx003.saveFunc();">确定</a>
+                        <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="window.frames['main'].wx003.closeFunc();">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- add son-->
+    <div class="configMenu-create-son">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <div class="showAdd">
+                    <h2 class="popup-title">
+                        <span>微信二级菜单配置-新建</span>
+                    </h2>
+                    <div class="wechat-baseQuery-popup-content">
+                        <div class="wechat-baseQuery-popup-create">
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>菜单名称</p>
+                                <input type="text" id="menu_name2"  />
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>菜单类型</p>
+                                <select id="type2">
+                                    <option value="view">链接事件</option>
+                                    <option value="click">点击事件</option>
+                                </select>
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>菜单参数</p>
+                                <textarea id="key_vaule2" class="key_vaule"></textarea>
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p></p>
+                                <a href="javascript:;" onclick="window.frames['main'].wx003.setFunc();" style="font-size: 12px;">选择对应功能</a>
+                                <a href="javascript:;" style="font-size: 12px;" onclick="window.frames['main'].wx003.setURL();">设置对应链接</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-btns">
+                        <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].wx003.addson();">保存预览</a>
+                        <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                    </div>
+                </div>
+                <div class="showSetURL" style="display: none;">
+                    <h2 class="popup-title">
+                        <span>微信菜单链接配置</span>
+                    </h2>
+                    <div class="wechat-baseQuery-popup-content">
+                        <div class="wechat-baseQuery-popup-create">
+                            <p>appid</p>
+                            <input type="text"  id="u_appid">
+                            <span class="red-link">*</span>
+                            <p>uri</p>
+                            <input type="text"  id="u_uri">
+                            <span class="red-link">*</span>
+                            <p>微信账号</p>
+                            <input type="text"  id="u_wxid">
+                            <span class="red-link">*</span>
+                            <p>功能</p>
+                            <input type="text"  id="u_cond">
+                            <span class="red-link">*</span>
+                        </div>
+                    </div>
+                    <div class="popup-btns">
+                        <a href="javascript:;" title="保存预览" class="popup-btns-ok" onclick="window.frames['main'].wx003.saveurl();">保存预览</a>
+                        <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="window.frames['main'].wx003.closeurl();">取消</a>
+                    </div>
+                </div>
+                <div class="showFunc" style="display: none;" >
+                    <h2 class="popup-title">
+                        <span>微信菜单功能配置</span>
+                    </h2>
+                    <div class="wechat-baseQuery-popup-content">
+                        <div class="wechat-baseQuery-popup-create">
+                            <ul class="list00202 ltitle">
+                                <li class="listT">
+                                    <span></span>
+                                    <span>包名</span>
+                                    <span>类名</span>
+                                    <span>路径</span>
+                                    <span>KEY</span>
+                                    <span>描述</span>
+                                </li>
+                            </ul>
+                            <ul class="list00202 linfo">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="popup-btns" style="padding-bottom: 20px">
+                        <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].wx003.saveFunc();">确定</a>
+                        <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="window.frames['main'].wx003.closeFunc();">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- edit son-->
+    <div class="configMenu-edit-son">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="showAdd">
+                    <div class="popup-close" onclick="Common.popupClose();"></div>
+                    <h2 class="popup-title">
+                        <span>微信二级菜单配置-修改</span>
+                    </h2>
+                    <div class="wechat-baseQuery-popup-content">
+                        <div class="wechat-baseQuery-popup-create edit">
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>菜单名称</p>
+                                <input type="text" id="menu_name3"  />
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>菜单类型</p>
+                                <select id="type3">
+                                    <option value="view">链接事件</option>
+                                    <option value="click">点击事件</option>
+                                </select>
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p>菜单参数</p>
+                                <textarea id="key_vaule3" class="key_vaule"></textarea>
+                                <span class="red-link">*</span>
+                            </div>
+                            <div class="wechat-baseQuery-popup-line">
+                                <p></p>
+                                <a href="javascript:;" onclick="window.frames['main'].wx003.setFunc();" style="font-size: 12px;">选择对应功能</a>
+                                <a href="javascript:;" style="font-size: 12px;" onclick="window.frames['main'].wx003.setURL();">设置对应链接</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-btns">
+                        <a href="javascript:;" title="修改" class="popup-btns-ok" onclick="window.frames['main'].wx003.editson();">修改</a>
+                        <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                    </div>
+                </div>
+                <div class="showSetURL" style="display: none;">
+                    <h2 class="popup-title">
+                        <span>微信菜单链接配置</span>
+                    </h2>
+                    <div class="wechat-baseQuery-popup-content">
+                        <div class="wechat-baseQuery-popup-create">
+                            <p>appid</p>
+                            <input type="text"  id="u_appid">
+                            <span class="red-link">*</span>
+                            <p>uri</p>
+                            <input type="text"  id="u_uri">
+                            <span class="red-link">*</span>
+                            <p>微信账号</p>
+                            <input type="text"  id="u_wxid">
+                            <span class="red-link">*</span>
+                            <p>功能</p>
+                            <input type="text"  id="u_cond">
+                            <span class="red-link">*</span>
+                        </div>
+                    </div>
+                    <div class="popup-btns">
+                        <a href="javascript:;" title="保存预览" class="popup-btns-ok" onclick="window.frames['main'].wx003.saveurl();">保存预览</a>
+                        <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="window.frames['main'].wx003.closeurl();">取消</a>
+                    </div>
+                </div>
+                <div class="showFunc" style="display: none;" >
+                    <h2 class="popup-title">
+                        <span>微信菜单功能配置</span>
+                    </h2>
+                    <div class="wechat-baseQuery-popup-content">
+                        <div class="wechat-baseQuery-popup-create">
+                            <ul class="list00202 ltitle">
+                                <li class="listT">
+                                    <span></span>
+                                    <span>包名</span>
+                                    <span>类名</span>
+                                    <span>路径</span>
+                                    <span>KEY</span>
+                                    <span>描述</span>
+                                </li>
+                            </ul>
+                            <ul class="list00202 linfo">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="popup-btns" style="padding-bottom: 20px">
+                        <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].wx003.saveFunc();">确定</a>
+                        <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="window.frames['main'].wx003.closeFunc();">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script id="list-template" type="text/x-handlebars-template">
+{{#each this}}
+    <li class="listI" id="func{{addOne @index}}" onclick="window.frames['main'].wx003.saveKeyname('{{keyname}}',id)">
+        <span>{{addOne @index}}</span>
+        <span>{{regionId}}</span>
+        <span>{{funcName}}</span>
+        <span>{{className}}</span>
+        <span>{{keyname}}</span>
+        <span>{{nickname}}</span>
+    </li>
+{{/each}}
+</script>
+</div>
+    
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/lib/handlebars.min.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/wx003.js"></script>
+</body>
+</html>

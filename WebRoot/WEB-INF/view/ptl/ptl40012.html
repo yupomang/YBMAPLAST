@@ -1,0 +1,112 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="css/systemManagement.css" />
+</head>
+<body>
+<div class="sysMgmt-customerFn-top">
+    <p>客户名称</p>
+    <select id="customerName"></select>
+    <a href="javascript:;" title="查询" class="btnquery"  id="btnQuery">查询</a>
+</div>
+<div class="sysMgmt-interfaceConfig-right">
+    <div class="common-btns">
+        <a href="javascript:;" title="新建" class="common-btns-create" id="sysMgmt-btn-add">新建</a>
+        <a href="javascript:;" title="修改" class="common-btns-edit" id="sysMgmt-btn-edit">修改</a>
+        <a href="javascript:;" title="删除" class="common-btns-del" id="sysMgmt-btn-del">删除</a>
+    </div>
+    <div id="sysMgmt-pushMessage-centerViewTable"></div>
+</div>
+<div class="sysMgmt-hidden-area">
+    <div class="pushMessage-create">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>添加推送消息通讯参数配置信息</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>中心ID</p>
+                        <input type="text" id="centerid" disabled />
+                        <span class="red-link">*</span>
+                        <p>IOC证书名</p>
+                        <input type="text" id="certificatename" />
+                        <span class="red-link">*</span>
+                        <p>证书密码</p>
+                        <input type="text" id="certificatepassword" />
+                        <span class="red-link">*</span>
+                        <p>百度API_KEY</p>
+                        <input type="text" id="apikey" />
+                        <span class="red-link">*</span>
+                        <p>百度SECRIT_KEY</p>
+                        <input type="text" id="secritkey" />
+                        <span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="添加" class="popup-btns-ok" onclick="window.frames['main'].pushMessage.add();">添加</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- edit -->
+    <div class="pushMessage-edit">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>修改推送消息通讯参数配置信息</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>中心ID</p>
+                        <input type="text" id="centerid1" disabled/>
+                        <span class="red-link">*</span>
+                        <p>IOC证书名</p>
+                        <input type="text" id="certificatename1" />
+                        <span class="red-link">*</span>
+                        <p>证书密码</p>
+                        <input type="text" id="certificatepassword1" />
+                        <span class="red-link">*</span>
+                        <p>百度API_KEY</p>
+                        <input type="text" id="apikey1" />
+                        <span class="red-link">*</span>
+                        <p>百度SECRIT_KEY</p>
+                        <input type="text" id="secritkey1" />
+                        <span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="修改" class="popup-btns-ok" onclick="window.frames['main'].pushMessage.edit();">修改</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery.js"></script><script type="text/javascript" src="js/lib/jquery-migrate.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/ptl40012.js"></script>
+</body>
+</html>

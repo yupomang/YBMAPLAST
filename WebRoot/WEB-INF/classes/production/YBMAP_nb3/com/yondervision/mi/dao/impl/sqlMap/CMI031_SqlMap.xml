@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="CMI031">
+  
+  <resultMap class="java.util.HashMap" id="WebApi03101Map">
+    <result column="COUNTNUM" jdbcType="VARCHAR" property="value" />
+    <result column="pid" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  
+   
+ <select id="selectPidAll" parameterClass="com.yondervision.mi.dto.CMi031" resultMap="WebApi03101Map">
+  	
+	select count(*) countnum ,pid from mi031 
+	<dynamic prepend="where" >
+	  
+	  <isNotEqual prepend="and" property="centerid" compareValue="00000000">
+	    CENTERID= #centerid:VARCHAR#
+	  </isNotEqual>
+	   <isNotEmpty prepend="and" property="startdatetime">
+	    DATECREATED &gt;=#startdatetime:VARCHAR#
+	  </isNotEmpty>
+	   <isNotEmpty prepend="and" property="enddatetime">
+	    DATECREATED &lt;=#enddatetime:VARCHAR# 
+	  </isNotEmpty>
+	  
+	 </dynamic>
+	group by pid order by countnum desc
+
+ </select>
+ 
+  <select id="selectCountPid" parameterClass="com.yondervision.mi.dto.CMi031" resultMap="WebApi03101Map">
+  	
+	select count(*) countnum ,pid from mi031 
+	<dynamic prepend="where" >
+	  
+	  <isNotEqual prepend="and" property="centerid" compareValue="00000000">
+	    CENTERID= #centerid:VARCHAR#
+	  </isNotEqual>
+	   <isNotEmpty prepend="and" property="pid">
+	   pid=#pid:VARCHAR#
+	  </isNotEmpty>
+	   <isNotEmpty prepend="and" property="startdatetime">
+	    DATECREATED &gt;=#startdatetime:VARCHAR#
+	  </isNotEmpty>
+	   <isNotEmpty prepend="and" property="enddatetime">
+	    DATECREATED &lt;=#enddatetime:VARCHAR# 
+	  </isNotEmpty>
+	  
+	 </dynamic>
+	group by pid
+
+ </select>
+ 
+</sqlMap>

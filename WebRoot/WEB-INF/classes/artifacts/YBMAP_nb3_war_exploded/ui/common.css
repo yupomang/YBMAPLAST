@@ -1,0 +1,77 @@
+/**
+* 交易页面公共样式表
+*/
+/* 清除内外边距 */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, pre,
+dl, dt, dd, ul, ol, li,
+form, button, input, textarea,
+th, td {
+    margin: 0;
+    padding: 0;
+}
+/* 重置列表元素 */
+ul{ list-style: none; }
+
+
+/* 表单容器 */
+table.container {
+	width: 100%;
+	border: 0;
+}
+div.container {
+	text-align: center;
+	padding: 5px;
+}
+
+/* 只读和禁用的文本框 */
+input[readonly], input[disabled], select[disabled], textarea[readonly], textarea[disabled] {color: #6C6C6C; background-color: #f3f3f3; background-image: none;}
+input[readonly].combo-text {color: #000; background-color: #fff; background-image: none;}
+/* -----设置默认字体----- */
+body, button, input, select, textarea {
+	font: 12px \5FAE\8F6F\96C5\9ED1, \5b8b\4f53;  /* escape(微软雅黑、宋体) */
+}
+/* -----页面标题----- */
+div.page-header {font-size: 20px; height: 30px; line-height: 30px; margin: 0 0 5px; overflow: hidden;}
+
+
+/* 按钮栏 */
+div.buttons {margin: 5px 0; padding: 5px; text-align: center;!important}
+/* 竖排单选或复选框 */
+ul.multivalue li {white-space: nowrap;}
+ul.multivalue li label {display: inline-block; text-align: left; margin: 0 5px 0 2px;}
+/* 横排单选或复选框 */
+ul.horizontal li {float: left;}
+
+table.container {border-collapse: collapse; border-style: solid; border-width: 1px;}
+table.container th, table.container td {border-style: solid; border-width: 1px; padding: 2px;}
+/* 表单组件标签 */
+table.container td>label,table.container th>label {	display: block; width: 100%; text-align: right; white-space: nowrap;}
+/* 颜色 */
+/* table容器 */
+table.container th, table.container td {border-color: #d9e5f1;}
+/*
+table.container th *, table.container td * {vertical-align: middle;}
+*/
+/* 单元格 */
+table.container th, table.container td {padding: 2px 5px;}
+
+.dlg-form {padding:10px;}
+/*对话框表单标题*/
+.formtitle{font-size:14px;font-weight:bold;padding:5px 0;border-bottom:1px solid #ccc;}
+/* 对话框表单容器 */
+table.dlgcontainer {width: 100%; border-collapse: collapse; border-style: solid; border-width: 0px;}
+table.dlgcontainer th, table.dlgcontainer td {border-style: solid; border-width: 0px; padding: 2px;}
+/* 对话框表单组件标签 */
+table.dlgcontainer td>label,table.dlgcontainer th>label {display: block; width: 100%; text-align: right; white-space: nowrap;}
+/*
+table.dlgcontainer th *, table.dlgcontainer td * {vertical-align: middle;}
+*/
+/* 对话框表单单元格 */
+table.dlgcontainer th, table.dlgcontainer td {padding: 2px 5px;}
+
+input[type=text],input[type=password], textarea {border:1px solid #95B8E7 !important;}
+table.dlgcontainer th input[type=text], table.dlgcontainer td input[type=text] {border:1px solid #95B8E7;height:20px;}
+/*
+table.container th input[type=text], table.container td input[type=text] {border:1px solid #95B8E7;}
+.container textarea, .dlgcontainer textarea {border:1px solid #95B8E7;}
+*/

@@ -1,0 +1,160 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=27448, tid=0x00000000000055a8
+#
+# JRE version:  (8.0_191-b12) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.191-b12 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000002a19000):  JavaThread "Unknown thread" [_thread_in_vm, id=21928, stack(0x0000000002910000,0x0000000002a10000)]
+
+Stack: [0x0000000002910000,0x0000000002a10000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0000000002a19000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=21928, stack(0x0000000002910000,0x0000000002a10000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 76288K, used 1310K [0x000000076b000000, 0x0000000770500000, 0x00000007c0000000)
+  eden space 65536K, 2% used [0x000000076b000000,0x000000076b147af0,0x000000076f000000)
+  from space 10752K, 0% used [0x000000076fa80000,0x000000076fa80000,0x0000000770500000)
+  to   space 10752K, 0% used [0x000000076f000000,0x000000076f000000,0x000000076fa80000)
+ ParOldGen       total 175104K, used 0K [0x00000006c1000000, 0x00000006cbb00000, 0x000000076b000000)
+  object space 175104K, 0% used [0x00000006c1000000,0x00000006c1000000,0x00000006cbb00000)
+ Metaspace       used 786K, capacity 1156K, committed 1408K, reserved 1060864K
+  class space    used 76K, capacity 384K, committed 384K, reserved 1048576K
+
+Card table byte_map: [0x0000000012090000,0x0000000012890000] byte_map_base: 0x000000000ea88000
+
+Marking Bits: (ParMarkBitMap*) 0x0000000062de3e30
+ Begin Bits: [0x00000000137e0000, 0x00000000177a0000)
+ End Bits:   [0x00000000177a0000, 0x000000001b760000)
+
+Polling page: 0x0000000000650000
+
+CodeCache: size=245760Kb used=327Kb max_used=327Kb free=245432Kb
+ bounds [0x0000000002cd0000, 0x0000000002f40000, 0x0000000011cd0000]
+ total_blobs=57 nmethods=0 adapters=38
+ compilation: enabled
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.029 loading class java/lang/Short
+Event: 0.029 loading class java/lang/Short done
+Event: 0.029 loading class java/lang/Integer
+Event: 0.029 loading class java/lang/Integer done
+Event: 0.029 loading class java/lang/Long
+Event: 0.030 loading class java/lang/Long done
+Event: 0.030 loading class java/lang/NullPointerException
+Event: 0.030 loading class java/lang/NullPointerException done
+Event: 0.030 loading class java/lang/ArithmeticException
+Event: 0.030 loading class java/lang/ArithmeticException done
+
+
+Dynamic libraries:
+0x00007ff6910c0000 - 0x00007ff6910f7000 	D:\luolin\java jdk\bin\java.exe
+0x00007ff8d6290000 - 0x00007ff8d647d000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ff8d34c0000 - 0x00007ff8d3573000 	C:\Windows\System32\KERNEL32.DLL
+0x00007ff8d2ec0000 - 0x00007ff8d3153000 	C:\Windows\System32\KERNELBASE.dll
+0x00007ff8d5b10000 - 0x00007ff8d5bb3000 	C:\Windows\System32\ADVAPI32.dll
+0x00007ff8d5c20000 - 0x00007ff8d5cbe000 	C:\Windows\System32\msvcrt.dll
+0x00007ff8d5dc0000 - 0x00007ff8d5e5e000 	C:\Windows\System32\sechost.dll
+0x00007ff8d35b0000 - 0x00007ff8d36d2000 	C:\Windows\System32\RPCRT4.dll
+0x00007ff8d5890000 - 0x00007ff8d5a27000 	C:\Windows\System32\USER32.dll
+0x00007ff8d2490000 - 0x00007ff8d24b0000 	C:\Windows\System32\win32u.dll
+0x00007ff8d3580000 - 0x00007ff8d35a9000 	C:\Windows\System32\GDI32.dll
+0x00007ff8d2c20000 - 0x00007ff8d2db9000 	C:\Windows\System32\gdi32full.dll
+0x00007ff8d2dc0000 - 0x00007ff8d2e60000 	C:\Windows\System32\msvcp_win.dll
+0x00007ff8d33c0000 - 0x00007ff8d34ba000 	C:\Windows\System32\ucrtbase.dll
+0x00007ff8c5ff0000 - 0x00007ff8c6269000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.17763.678_none_05b74150071d72bf\COMCTL32.dll
+0x00007ff8d52e0000 - 0x00007ff8d560c000 	C:\Windows\System32\combase.dll
+0x00007ff8d2360000 - 0x00007ff8d23de000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007ff8d4dc0000 - 0x00007ff8d4dee000 	C:\Windows\System32\IMM32.DLL
+0x00007ff8d2220000 - 0x00007ff8d228e000 	C:\Windows\System32\dtrampo.dll
+0x0000000062e70000 - 0x0000000062f42000 	D:\luolin\java jdk\jre\bin\msvcr100.dll
+0x00000000625c0000 - 0x0000000062e64000 	D:\luolin\java jdk\jre\bin\server\jvm.dll
+0x0000000000640000 - 0x0000000000648000 	C:\Windows\System32\PSAPI.DLL
+0x00007ff8c99e0000 - 0x00007ff8c99e9000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x00007ff8d4df0000 - 0x00007ff8d4e5d000 	C:\Windows\System32\WS2_32.dll
+0x00007ff8d03f0000 - 0x00007ff8d0414000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ff8cd470000 - 0x00007ff8cd47a000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ff8d0390000 - 0x00007ff8d03bd000 	C:\Windows\SYSTEM32\WINMMBASE.dll
+0x0000000000b60000 - 0x0000000000baa000 	C:\Windows\System32\cfgmgr32.dll
+0x00000000625b0000 - 0x00000000625bf000 	D:\luolin\java jdk\jre\bin\verify.dll
+0x0000000062580000 - 0x00000000625a9000 	D:\luolin\java jdk\jre\bin\java.dll
+0x00000000624e0000 - 0x0000000062503000 	D:\luolin\java jdk\jre\bin\instrument.dll
+0x0000000062560000 - 0x0000000062576000 	D:\luolin\java jdk\jre\bin\zip.dll
+
+VM Arguments:
+jvm_args: -javaagent:D:\software\ideaIU-2018.3.1.win\lib\idea_rt.jar=53557:D:\software\ideaIU-2018.3.1.win\bin -Dfile.encoding=GB2312 
+java_command: com.yondervision.mi.test.wangting1qi.HttpSend6010appapi00212
+java_class_path (initial): D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\classes;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\antlr-2.7.6.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\aopalliance-1.0.0.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\asm-all-3.2.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\aspectjrt-1.6.8.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\aspectjweaver-1.6.8.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\castor-1.3rc1-anttasks.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\castor-1.3rc1-codegen.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\castor-1.3rc1-core.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\castor-1.3rc1-ddlgen.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\castor-1.3rc1-jdo.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\castor-1.3rc1-xml-schema.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\castor-1.3rc1-xml.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\castor-1.3rc1.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\cglib-2.2.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\commons-beanutils-1.8.3.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\commons-collections-3.2.1.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\commons-fileupload.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\commons-logging.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\db2java.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\db2jcc.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\db2jcc_license_cu.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\dom4j-1.6.1.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\ibatis-2.3.4.726.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\jackson-all-1.7.6.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\javassist-3.12.0.GA.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\javax.persistence.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\javax.transaction.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\jstl-1.2.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\jta1.0.1.jar;D:\workspace\YBMAP_nb3\WebRoot\WEB-INF\lib\jtds-1.2.4.jar;D:\workspace\YBM
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=D:\luolin\java jdk
+CLASSPATH=.;D:\luolin\java jdk\lib\dt.jar;D:\luolin\java jdk\lib\tools.jar;D:\software\apache-tomcat-7.0.63-windows-x64\apache-tomcat-7.0.63\lib\servlet-api.jar;
+PATH=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;D:\luolin\java jdk\bin;D:\luolin\java jdk\jre\bin;D:\software\apache-tomcat-7.0.63-windows-x64\apache-tomcat-7.0.63\bin;D:\software\apache-tomcat-7.0.63-windows-x64\apache-tomcat-7.0.63\lib;D:\software\mysql-8.0.11-winx64\bin;D:\software\Git\cmd;D:\software\Mu\bin;C:\Program Files\TortoiseSVN\bin;D:\software\node\;D:\software\Python 3.6.0\Scripts\;D:\software\Python 3.6.0\;D:\software\Python 3.7.0\Scripts\;D:\software\Python 3.7.0\;C:\Users\Admin\AppData\Local\Microsoft\WindowsApps;D:\luolin\java jdk\bin;D:\luolin\java jdk\jre\bin;;D:\software\PyCharm 2019.1.2\bin;;C:\Users\Admin\AppData\Roaming\npm
+USERNAME=Admin
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=AMD64 Family 23 Model 8 Stepping 2, AuthenticAMD
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10.0 , 64 bit Build 17763 (10.0.17763.475)
+
+CPU:total 12 (initial active 12) (12 cores per cpu, 1 threads per core) family 23 model 8 stepping 2, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, mmxext, 3dnowpref, lzcnt, sse4a, tsc, tscinvbit, tscinv, bmi1
+
+Memory: 4k page, physical 16704764k(9413940k free), swap 25093360k(5684k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.191-b12) for windows-amd64 JRE (1.8.0_191-b12), built on Oct  6 2018 09:29:03 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Wed Sep 11 17:55:41 2019
+elapsed time: 0 seconds (0d 0h 0m 0s)
+

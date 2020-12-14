@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="CMI701">
+  <sql id="mi701_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <resultMap class="java.util.HashMap" id="ItemMap">
+     <result column="ITEMID" jdbcType="VARCHAR" property="itemid" />
+      <result column="ITEMVAL" jdbcType="VARCHAR" property="itemval" />
+  </resultMap>
+  
+  <resultMap class="java.util.HashMap" id="ColumnsMap">
+     <result column="NEWSPAPERCOLUMNS" jdbcType="VARCHAR" property="newspapercolumns" />
+  </resultMap>
+  
+  <resultMap class="java.util.HashMap" id="ClassificationMap">
+     <result column="CLASSIFICATION" jdbcType="VARCHAR" property="classification" />
+  </resultMap>
+  
+  <resultMap class="java.util.HashMap" id="ForumMap">
+     <result column="NEWSPAPERFORUM" jdbcType="VARCHAR" property="newspaperforum" />
+  </resultMap>
+
+  <resultMap class="com.yondervision.mi.result.WebApi70204_NewsBean" id="selectMi701Page_WebApi70204_Result">
+	<result column="SEQNO" jdbcType="INTEGER" property="seqno" />
+    <result column="NEWSPAPERFORUM" jdbcType="VARCHAR" property="newspaperforum" />
+    <result column="NEWSPAPERCOLUMNS" jdbcType="VARCHAR" property="newspapercolumns" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="INTRODUCTION" jdbcType="VARCHAR" property="introduction" />
+    <result column="IMAGE" jdbcType="VARCHAR" property="image" />
+    <result column="PRAISECOUNTS" jdbcType="INTEGER" property="praisecounts" />
+    <result column="FREEUSE1" jdbcType="VARCHAR" property="freeuse1" />
+    <result column="FREEUSE2" jdbcType="VARCHAR" property="freeuse2" />
+    <result column="COMMENTCOUNTS" jdbcType="INTEGER" property="commentcounts" />
+  </resultMap>
+  
+  <resultMap class="com.yondervision.mi.dto.Mi701" id="mi701Result">
+    <result column="SEQNO" jdbcType="INTEGER" property="seqno" />
+    <result column="CENTERID" jdbcType="CHAR" property="centerid" />
+    <result column="CLASSIFICATION" jdbcType="VARCHAR" property="classification" />
+    <result column="NEWSPAPERFORUM" jdbcType="VARCHAR" property="newspaperforum" />
+    <result column="NEWSPAPERCOLUMNS" jdbcType="VARCHAR" property="newspapercolumns" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="CITEDTITLE" jdbcType="VARCHAR" property="citedtitle" />
+    <result column="SUBTOPICS" jdbcType="VARCHAR" property="subtopics" />
+    <result column="SOURCE" jdbcType="VARCHAR" property="source" />
+    <result column="INTRODUCTION" jdbcType="VARCHAR" property="introduction" />
+    <result column="BLURBS" jdbcType="VARCHAR" property="blurbs" />
+    <result column="RELEASETIME" jdbcType="VARCHAR" property="releasetime" />
+    <result column="IMAGE" jdbcType="VARCHAR" property="image" />
+    <result column="VALIDFLAG" jdbcType="CHAR" property="validflag" />
+    <result column="DATEMODIFIED" jdbcType="VARCHAR" property="datemodified" />
+    <result column="DATECREATED" jdbcType="VARCHAR" property="datecreated" />
+    <result column="LOGINID" jdbcType="VARCHAR" property="loginid" />
+    <result column="PRAISECOUNTS" jdbcType="INTEGER" property="praisecounts" />
+    <result column="FREEUSE1" jdbcType="VARCHAR" property="freeuse1" />
+    <result column="FREEUSE2" jdbcType="VARCHAR" property="freeuse2" />
+    <result column="FREEUSE3" jdbcType="CHAR" property="freeuse3" />
+    <result column="FREEUSE4" jdbcType="INTEGER" property="freeuse4" />
+    <result column="FREEUSE5" jdbcType="VARCHAR" property="freeuse5" />
+    <result column="FREEUSE6" jdbcType="VARCHAR" property="freeuse6" />
+  </resultMap>
+  <resultMap class="com.yondervision.mi.dto.Mi701WithBLOBs" extends="CMI701.mi701Result" id="CMi701ResultWithBLOBs">
+    <result column="CONTENT" property="content" jdbcType="CLOB" />
+    <result column="CONTENTTXT" property="contenttxt" jdbcType="CLOB" />
+  </resultMap>
+  <resultMap class="java.util.HashMap" id="webapi701">
+     <result column="itemval" jdbcType="VARCHAR" property="itemval" />
+     <result column="cnt" jdbcType="VARCHAR" property="cnt" />
+  </resultMap>
+  <select id="self_columns_selectByAppApi701CommonForm" parameterClass="com.yondervision.mi.form.AppApi701CommonForm" resultMap="ColumnsMap">
+    select NEWSPAPERCOLUMNS
+    from MI701
+    where CENTERID = #centerId:VARCHAR#
+		and CLASSIFICATION=#newspapertimes:VARCHAR#
+		and NEWSPAPERFORUM=#newspaperforum:VARCHAR#
+		and NEWSPAPERCOLUMNS !=''
+		and VALIDFLAG='1' 
+	group by NEWSPAPERCOLUMNS
+	order by ABS(NEWSPAPERCOLUMNS) asc
+  </select>
+  
+  <select id="self_selectForumByClassification" parameterClass="java.util.HashMap" resultMap="ForumMap">
+    select NEWSPAPERFORUM
+    from MI701
+    where CENTERID = #centerId:VARCHAR#
+		and CLASSIFICATION=#newspapertimes:VARCHAR#
+		and VALIDFLAG='1' 
+	group by NEWSPAPERFORUM
+	order by ABS(NEWSPAPERFORUM) asc
+  </select>
+  
+  <select id="self_selectColumnsByClassification" parameterClass="java.util.HashMap" resultMap="ColumnsMap">
+    select NEWSPAPERCOLUMNS
+    from MI701
+    where CENTERID = #centerId:VARCHAR#
+		and CLASSIFICATION=#newspapertimes:VARCHAR#
+		and NEWSPAPERCOLUMNS !=''
+		and VALIDFLAG='1' 
+	group by NEWSPAPERCOLUMNS
+	order by ABS(NEWSPAPERCOLUMNS) asc
+  </select>
+  
+ <select id="self_selectColumnsNullCountByClassification" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+    select count(*) from MI701
+    where CENTERID = #centerId:VARCHAR#
+		and CLASSIFICATION=#newspapertimes:VARCHAR#
+		and (NEWSPAPERCOLUMNS ='' or NEWSPAPERCOLUMNS IS NULL)
+		and VALIDFLAG='1' 
+  </select>
+  
+  <select id="self_selectColumnsByTimesForum" parameterClass="java.util.HashMap" resultMap="ColumnsMap">
+    select NEWSPAPERCOLUMNS
+    from MI701
+    where CENTERID = #centerId:VARCHAR#
+		and CLASSIFICATION=#newspapertimes:VARCHAR#
+		and NEWSPAPERFORUM=#newspaperforum:VARCHAR#
+		and NEWSPAPERCOLUMNS !=''
+		and VALIDFLAG='1'
+	group by NEWSPAPERCOLUMNS
+	order by ABS(NEWSPAPERCOLUMNS) asc
+  </select>
+  
+ <select id="self_selectColumnsNullCountByTimesForum" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+    select count(*) from MI701
+    where CENTERID = #centerId:VARCHAR#
+		and CLASSIFICATION=#newspapertimes:VARCHAR#
+		and (NEWSPAPERCOLUMNS ='' or NEWSPAPERCOLUMNS IS NULL)
+		and NEWSPAPERFORUM=#newspaperforum:VARCHAR#
+		and VALIDFLAG='1' 
+  </select>
+  
+   <select id="self_selectColumnsByCenterid" parameterClass="java.util.HashMap" resultMap="ItemMap">
+    select ITEMID, ITEMVAL from MI007
+    where UPDICID = (select dicid from mi007 where itemid = 'newspapercolumns' and CENTERID = #centerId:VARCHAR#)
+    	and ITEMID in (select NEWSPAPERCOLUMNS as ITEMID from MI701
+    				   where CENTERID = #centerId:VARCHAR#
+    				        and FREEUSE8 like #channel:VARCHAR#
+    				   		and NEWSPAPERCOLUMNS !=''
+    				   		and VALIDFLAG='1'
+    				   		group by NEWSPAPERCOLUMNS)
+    order by ITEMVAL asc
+  </select>
+  
+  <select id="self_selectForumByCenterid" parameterClass="java.util.HashMap" resultMap="ItemMap">
+    select ITEMID, ITEMVAL from MI007
+    where UPDICID = (select dicid from mi007 where itemid = 'newspaperforum' and CENTERID = #centerId:VARCHAR#)
+    	and ITEMID in (select NEWSPAPERFORUM as ITEMID from MI701
+    				   where CENTERID = #centerId:VARCHAR#
+    				   		and VALIDFLAG='1'
+    				   		group by NEWSPAPERFORUM)
+    order by ITEMID asc
+  </select>
+  
+   <select id="self_selectColumnsNullCountByForum" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+    select count(*) from MI701
+    where CENTERID = #centerId:VARCHAR#
+		and CLASSIFICATION=#newspaperforum:VARCHAR#
+		and VALIDFLAG='1' 
+  </select>
+  
+  <!-- sql count数不对，不能达到想要效果-->
+  <select id="self_selectMi701Page_WebApi70204" parameterClass="com.yondervision.mi.form.WebApi70204Form" resultMap="selectMi701Page_WebApi70204_Result">
+	SELECT A.SEQNO,A.TITLE,A.INTRODUCTION,A.IMAGE,A.FREEUSE1,A.FREEUSE2,A.NEWSPAPERFORUM,A.NEWSPAPERCOLUMNS,A.PRAISECOUNTS,COUNT(*) COMMENTCOUNTS
+	FROM MI701 A LEFT JOIN MI703 B  ON A.SEQNO = B.NEWSSEQNO
+	WHERE
+		A.SEQNO = B.NEWSSEQNO
+	and
+		A.VALIDFLAG = '1'
+	and <![CDATA[ B.VALIDFLAG = '1']]>
+	    <isNotEmpty prepend="AND" property="centerId" >
+           <![CDATA[ A.CENTERID = #centerId:VARCHAR# ]]>
+  		</isNotEmpty>
+  		<isNotEmpty prepend="AND" property="classificationQry" >
+  			<![CDATA[ A.CLASSIFICATION = #classificationQry:VARCHAR# ]]>
+  		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="newspaperforumQry" >
+  			<![CDATA[ A.NEWSPAPERFORUM = #newspaperforumQry:VARCHAR# ]]>
+  		</isNotEmpty>	
+		<isNotEmpty prepend="AND" property="newspapercolumnsQry" >
+  			<![CDATA[ A.NEWSPAPERCOLUMNS = #newspapercolumnsQry:VARCHAR# ]]>
+  		</isNotEmpty>
+		<isNotEmpty prepend="AND" property="keyword" >
+  			<![CDATA[ (A.TITLE LIKE ('%'||#keyword:VARCHAR#||'%')
+					OR A.INTRODUCTION LIKE ('%'||#keyword:VARCHAR#||'%')
+					OR A.CONTENT LIKE ('%'||#keyword:VARCHAR#||'%')
+					OR A.CITEDTITLE LIKE ('%'||#keyword:VARCHAR#||'%')
+					OR A.SUBTOPICS LIKE ('%'||#keyword:VARCHAR#||'%')
+					OR A.SOURCE LIKE ('%'||#keyword:VARCHAR#||'%')
+					OR A.BLURBS LIKE ('%'||#keyword:VARCHAR#||'%'))]]>
+  		</isNotEmpty>
+	GROUP BY A.SEQNO,A.TITLE,A.INTRODUCTION,
+			A.IMAGE,A.FREEUSE1,A.FREEUSE2,A.NEWSPAPERFORUM,
+			A.NEWSPAPERCOLUMNS,A.PRAISECOUNTS
+	ORDER BY classification desc,newspaperforum asc,newspapercolumns asc,seqno desc
+  </select>
+  
+	<select id="self_selectClassificInMi701Count" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+    select count(*)
+    from MI701
+    where CENTERID = #centerId:VARCHAR#
+		and (CLASSIFICATION=#classification:VARCHAR#
+			or
+			NEWSPAPERFORUM LIKE ('%'||#classification:VARCHAR#||'%'))
+		and VALIDFLAG='1'
+		and FREEUSE8 like #channel:VARCHAR#
+		<isNotEmpty prepend="AND" property="inValidDate" >
+  			<![CDATA[ DATECREATED > #inValidDate:VARCHAR# ]]>
+  		</isNotEmpty>
+  </select>
+  
+  <select id="self_selectColumnsInMi701Count" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+    select count(*)
+    from MI701
+    where CENTERID = #centerId:VARCHAR#
+		and (CLASSIFICATION=#newspapercolumns:VARCHAR#
+			or 
+			NEWSPAPERFORUM=#newspapercolumns:VARCHAR#)
+		and VALIDFLAG='1'
+  </select>
+  
+   <select id="self_selectUpdicidZeroCountFromMi701" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+    select count(*) from MI701
+    where CENTERID = #centerId:VARCHAR#
+		and NEWSPAPERFORUM='0'
+		and VALIDFLAG='1' 
+  </select>
+  
+   <select id="self_columns_selectByAppApi702CommonForm" parameterClass="com.yondervision.mi.form.AppApi702CommonForm" resultMap="ClassificationMap">
+    select CLASSIFICATION
+    from MI701
+    where CENTERID = #centerId:VARCHAR#
+		and NEWSPAPERFORUM=#newspaperforum:VARCHAR#
+		and VALIDFLAG='1' 
+	group by CLASSIFICATION
+	order by ABS(CLASSIFICATION) asc
+  </select>
+  
+  <select id="self_selectColumnsNoTimesByCenterid" parameterClass="java.util.HashMap" resultMap="ItemMap">
+    select DICID as ITEMID, ITEMVAL from MI007
+    where DICID in (select CLASSIFICATION as ITEMID from MI701
+    				   where CENTERID = #centerId:VARCHAR#
+    				   		and NEWSPAPERFORUM !='0'
+    				   		and VALIDFLAG='1'
+    				   		group by CLASSIFICATION)
+    order by ITEMVAL asc
+  </select>
+  
+   <select id="self_selectColumnsByForum" parameterClass="java.util.HashMap" resultMap="ClassificationMap">
+    select CLASSIFICATION
+    from MI701
+    where CENTERID = #centerId:VARCHAR#
+		and NEWSPAPERFORUM=#newspaperforum:VARCHAR#
+		and VALIDFLAG='1'
+	group by CLASSIFICATION
+	order by ABS(CLASSIFICATION) asc
+  </select>
+  
+   <update id="updatePraisecountsByPrimaryKey" parameterClass="com.yondervision.mi.dto.Mi701">
+    update MI701
+    	SET PRAISECOUNTS = PRAISECOUNTS+1
+    where SEQNO = #seqno:INTEGER#
+  </update>
+  <update id="updatePraisecountsSubByPrimaryKey" parameterClass="com.yondervision.mi.dto.Mi701">
+    update MI701
+    	SET PRAISECOUNTS = PRAISECOUNTS-1
+    where SEQNO = #seqno:INTEGER#
+  </update>
+  
+	<select id="selectByExampleByRandomOnlyOne" parameterClass="com.yondervision.mi.dto.Mi701Example" resultMap="CMi701ResultWithBLOBs">
+    select SEQNO, CENTERID, CLASSIFICATION, NEWSPAPERFORUM, NEWSPAPERCOLUMNS, TITLE, CITEDTITLE,
+      SUBTOPICS, SOURCE, INTRODUCTION, BLURBS, RELEASETIME, IMAGE, VALIDFLAG, DATEMODIFIED,
+      DATECREATED, LOGINID, PRAISECOUNTS, FREEUSE1, FREEUSE2, FREEUSE3, FREEUSE4, FREEUSE5, FREEUSE6, CONTENT,CONTENTTXT
+    from MI701
+    <isParameterPresent>
+      <include refid="CMI701.mi701_Example_Where_Clause" />
+		order by rand() fetch first 1 rows only
+    </isParameterPresent>
+  </select>
+<!--   <select id="webapi701" resultMap="webapi701" parameterClass="java.util.HashMap" >
+  	select t2.itemval, count(t1.classification) cnt
+  	from (
+  		select t0.classification 
+		from mi701 t0 
+		where centerid=#centerId:VARCHAR# and freeuse3=1 and validflag=1 
+			and substr(releasetime, 1, 10)&gt;=#startdate:VARCHAR# and substr(releasetime, 1, 10)&lt;=#enddate:VARCHAR#
+			and classification in (
+			select distinct itemid from mi709 where centerid=#centerId:VARCHAR# and validflag=1 and serviceid in (
+				select serviceid from mi053 where pid=#pid:VARCHAR# and centerid=#centerId:VARCHAR# and validflag=1)
+		)
+	) t1 left join mi707 t2 on t2.centerid=#centerId:VARCHAR# and t1.classification=t2.itemid
+	group by t2.itemval
+  </select> -->
+  <select id="webapi701" resultMap="webapi701" parameterClass="java.util.HashMap" >
+  select t2.itemval, count(t1.classification) cnt
+  	from (
+  		select t0.classification 
+		from mi701 t0 
+        where centerid=#centerId:VARCHAR# and substr(releasetime, 1, 10)&gt;=#startdate:VARCHAR# and substr(releasetime, 1, 10)&lt;=#enddate:VARCHAR#
+        and freeuse3=1 and validflag=1 and freeuse8 like #pid:VARCHAR#
+	) t1 inner join mi707 t2 on t2.centerid=#centerId:VARCHAR# and t1.classification=t2.itemid and t2.freeuse4 ='1'
+	group by t2.itemval
+  </select>
+  
+  <select id="webapi701_01" resultMap="webapi701" parameterClass="java.util.HashMap" >
+  select t2.itemval, count(t1.classification) cnt
+  	from (
+  		select t0.classification 
+		from mi701 t0 
+        where centerid=#centerId:VARCHAR# and substr(releasetime, 1, 10)&gt;=#startdate:VARCHAR# and substr(releasetime, 1, 10)&lt;=#enddate:VARCHAR#
+        and freeuse3=1 and validflag=1
+	) t1 inner join mi707 t2 on t2.centerid=#centerId:VARCHAR# and t1.classification=t2.itemid and t2.freeuse4 ='1'
+	group by t2.itemval
+  </select>
+</sqlMap>

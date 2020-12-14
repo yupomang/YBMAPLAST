@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>意见反馈跟踪处理</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css"/>
+    <link rel="stylesheet" type="text/css" href="css/analysis.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css"/>
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" href="css/channelState.css">
+    <link rel="stylesheet" href="css/channelService.css">
+    <link rel="stylesheet" type="text/css" href="css/bussinessLog.css"/>
+</head>
+<body>
+
+
+<div class="channelAnalysis-chats bussiness-log">
+    <div class="channelAnalysis-top">
+        <form id="feedbackForm" method="post">
+            <p class="channelAnalysis-top-name">设备区分</p>
+            <select class="channelAnalysis-select" name="devType" id="deviceType"></select>
+
+            <p class="channelAnalysis-top-name">确认状态</p>
+            <select class="channelAnalysis-select" id="status" name="status"></select>
+
+            <p class="channelAnalysis-top-name">中心名称</p>
+            <select class="channelAnalysis-select" id="centerName" name="centerId"></select>
+            <br>
+            <p class="channelAnalysis-top-name">版本编号</p>
+            <input type="text" class="channelAnalysis-input" name="versionno">
+
+
+            <p class="channelAnalysis-top-name">开始日期</p>
+            <input type="text" class=" channelAnalysis-top-startTime" id="channelAnalysis-top-startTime" name="startdate" />
+            <p class="channelAnalysis-top-name et">结束日期</p>
+            <input type="text" class=" channelAnalysis-top-endTime" id="channelAnalysis-top-endTime"  name="enddate"/>
+            <a href="javascript:;" title="查询" class="channelAnalysis-top-queryBtn" id="querybtn">查询</a>
+        </form>
+    </div>
+</div>
+<div class="orgManage-box channelBox" style="margin:0;">
+    <div class="orgManage-table-btns buiManageBtns">
+        <a href="javascript:;" title="跟踪处理" id="orgManage-btn-tracking">跟踪处理</a>
+
+    </div>
+    <table id="setTable"></table>
+    <div id="orgManage-table-pages">
+        <pages :items="items" :current.sync="current"></pages>
+    </div>
+</div>
+<div class="sysMgmt-hidden-area orgManage-popup-hidden">
+    <!--跟踪处理-->
+    <div class="codeTable-create tracking-item">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>确认信息</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>确认状态</p>
+                        <select class="channelAnalysis-select" id="statusPop" name="statusPop"></select>
+                        <p>确认人意见</p>
+                        <select class="channelAnalysis-select" id="confirmdetail" name="confirmdetail"></select>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].feedback.dealWith();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/3rd/laydate.js"></script>
+<script type="text/javascript" src="js/page40401.js"></script>
+</body>
+</html>

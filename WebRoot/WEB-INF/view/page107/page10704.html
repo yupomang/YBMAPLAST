@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" type="text/css" href="css/analysis.css" />
+</head>
+<body>
+<div class="channelAnalysis-top">
+    <p class="channelAnalysis-top-name">客户名称</p>
+    <select id="custom-name"></select>
+    <p class="channelAnalysis-top-name">开始时间</p>
+    <input type="text" class="channelAnalysis-top-startTime" id="channelAnalysis-top-startTime" />
+    <p class="channelAnalysis-top-name">结束时间</p>
+    <input type="text" class="channelAnalysis-top-endTime" id="channelAnalysis-top-endTime" />
+    <a href="javascript:;" title="查询" class="channelAnalysis-top-queryBtn">查询</a>
+</div>
+<div class="channelOperation-table" id="table-vue" style="overflow-y:hidden">
+    <div v-bind:style="{'width': rows.length * 102 + 112 + 'px'}">
+        <ul class="table-vue-left" v-show="!isNull" v-bind:style="{'width': '112px'}">
+            <li class="table-vue-left-title">
+                <span class="table-vue-left-title1">指标</span>
+                <span class="table-vue-left-title2">渠道</span>
+            </li>
+<!--             <li v-for="title in rows[0].data" v-if="$index < (rows[0].data.length - 4)">{{ title.name }}</li>
+ -->            <li v-for="title in rows[0].data" v-if="$index < (rows[0].data.length)">{{ title.name }}</li>
+        </ul>
+        <template v-for="items in rows">
+            <ul class="table-channel" v-show="!isNull" v-bind:style="{'width': '102px'}">
+                <li class="table-channel-title">{{ items.appname }}</li>
+<!--                 <li v-for="data in items.data" v-if="$index < (items.data.length - 4)">{{ data.value }}</li>
+ -->                <li v-for="data in items.data" v-if="$index < (items.data.length)">{{ data.value }}</li>
+            </ul>
+        </template>
+    </div>
+    <p v-show="isNull" style="width:100%;font:14px/100px 'microsoft yahei';text-align:center;color:#333">该条件下暂无数据</p>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery.js"></script><script type="text/javascript" src="js/lib/jquery-migrate.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/3rd/laydate.js"></script>
+<script type="text/javascript" src="js/3rd/echarts.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/page10704.js"></script>
+</body>
+</html>

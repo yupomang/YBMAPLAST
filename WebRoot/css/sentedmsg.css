@@ -1,0 +1,38 @@
+/* code table */
+.code-table-left{float:left;width:485px;margin-left:10px;height:100%;overflow-x:hidden;background:#f4f5f9;border-right:1px solid #eee;border-left:1px solid #eee;}
+.code-table-left>h2{width:100%;height:58px;border-bottom:1px solid #eee;background:url(../images/list.jpg) 56px center no-repeat;font:16px/58px "microsoft yahei";color:#666;text-align:center;text-indent:14px;}
+.code-table-right{float:left;width:calc(100% - 272px);height:100%;margin:0 10px;}
+.code-table-right .common-btns{margin-top:10px;height:36px;}
+.netManagement-top{height:280px;border:1px solid #ededf0;}
+.netManagement-top .common-btns,.netManagement-bottom .common-btns{padding-top:10px;height:36px;padding-left:10px;}
+#netManagement-table{margin-bottom:10px;}
+.netManagement-bottom{height:210px;border:1px solid #ededf0;margin-top:10px;display: none;}
+.netManagement-right{width:600px;margin-left:16px;display: inline-block;vertical-align: top;}
+.netManagement-hidden{display:none;}
+.reservation-create select{width:298px;height:28px;border:1px solid #dadbdd;font:14px/28px "microsoft yahei";color:#666;}
+.netManagement-popup-height{height:auto;margin-bottom:20px;}
+
+
+.channelAnalysis-top{margin:15px 10px;border:1px solid #eee;background:#f4f5f9;height:70px;font-size:0;vertical-align: top;}
+.channelAnalysis-top-name{display:inline-block;font:12px/70px "microsoft yahei";color:#333;margin-right:5px;width:72px;text-align:right;vertical-align: middle}
+.no-indent{text-indent:0;}
+.width100{width:100px;}
+.channelAnalysis-top-name span,.channelAnalysis-top-name input {display:inline-block;vertical-align: middle;}
+.channelAnalysis-top-name input {margin-top:2px;margin-left:2px;}
+#channelAnalysis-top-droplist-customerName,#channelAnalysis-top-droplist-channel{display:inline-block;vertical-align:middle;width:180px;height:30px;margin-top:20px;}
+.channelAnalysis-top select{display:inline-block;width:160px;padding:0 20px 0 5px;height:28px;outline-style:none;-webkit-tap-highlight-color:rgba(0,0,0,0); border-radius: 0; box-shadow: 0;background:url(../images/droplist.png) #ffffff right center no-repeat;-webkit-appearance: none; -moz-appearance: none;appearance:none;border:1px solid #ccc;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;vertical-align: middle}
+.channelAnalysis-top select::-ms-expand{display: none;}
+.channelAnalysis-top-startTime,.channelAnalysis-top-endTime{display:inline-block;width:150px;height:28px;border:1px solid #dadbdd;background:url(../images/date.jpg) 141px center no-repeat #fff;padding:0 5px;margin-top:20px;}
+.startTime,.endTime{display:inline-block;width:150px;height:28px;border:1px solid #dadbdd;background:url(../images/date.jpg) 130px center no-repeat #fff;padding:0 10px;vertical-align: middle}
+.channelAnalysis-top-queryBtn{display:inline-block;width:90px;height:30px;background:#66cc66;text-align:center;font:13px/30px "microsoft yahei";color:#fff;margin-left:11px;vertical-align: middle}
+#channelAnalysis-top-droplist-customerName .hx-droplist,#channelAnalysis-top-droplist-channel .hx-droplist{width:178px;}
+#channelAnalysis-top-droplist-customerName .hx-droplist-placeholder,#channelAnalysis-top-droplist-channel .hx-droplist-placeholder{width:146px;background-position:152px center;}
+#channelAnalysis-top-droplist-customerName .hx-droplist:hover,#channelAnalysis-top-droplist-channel .hx-droplist:hover{border-color:#66cc66}
+
+.orgManage-popup-edit-container{margin: 10px 0 0 10px;}
+.preview{display: none;}
+.orgManage-popup-hidden{display: none;}
+.orgManage-table-btns{width:100%;height:58px;margin:0 auto;}
+.orgManage-popup-info-btns a{display:inline-block;font:14px/28px "microsoft yahei";border:1px solid transparent;color:#666;border-radius:3px;padding:0 16px 0 36px;}
+.orgManage-popup-info-btns a#orgManage-info-goBack{background:url(../images/goback.jpg) 14px center no-repeat;}
+.date-show{display: none}

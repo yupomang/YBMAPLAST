@@ -1,0 +1,174 @@
+/**
+* 业务咨询页面样式表
+*/
+
+#consultContent {height:554px;min-width:1000px;overflow:hidden;}
+#consultItemId,#consultSubItemId {width:500px; padding:3px 5px;}
+/*手机背景 */ 
+.phonebg {
+	background: url(bg_phone.png) no-repeat; 
+	width: 350px;
+	height: 548px;
+	margin: 0 auto;
+	padding: 0;
+}
+/*手机屏 */ 
+.screenbg{
+	position: relative;
+	background:#C6C6C6;
+	top:50px;
+	height: 460px;
+	margin-right:10px;
+	margin-left:9px;
+}
+/*业务咨询项/子项标题 */ 
+h1.item-title{
+	background:#84CBC8;
+	color:#ffffff;
+	text-align: center;
+	padding:5px;
+	font: 16px 微软雅黑,宋体;
+	font-weight: bold;
+}
+/*业务咨询项/子项内容 */ 
+.item-content{
+	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 425px;
+	top: 0;
+	margin: 0;
+}
+/*业务咨询选中项*/ 
+li.selected-item {
+	background-color: #F7B551 !important;
+}
+
+.item-content ul {
+	margin: 0;
+	padding: 0;
+	max-height: 380px;
+}
+.item-content li {
+	list-style: none;
+	margin: 6px 8px;
+	padding: 0;
+	display:block;
+	background:#eeeeee;
+	color:#000;
+	overflow: hidden;
+}
+.item-content li h2 {
+	margin: 2px 2px 5px 19px;
+	height: 38px;
+	overflow: hidden;
+	color: #0A213E;
+	font: 14px 微软雅黑,宋体;
+	cursor: text;
+	word-break:break-all; 
+	overflow:auto;
+}
+.item-content button {
+	background-color: transparent;
+	border: 0;
+	margin: 2px 3px;
+	padding: 1px 5px;
+	cursor: pointer;
+}
+.item-content div {
+	text-align: center;
+}
+
+/* 拖拽元素 */
+.item-content li div.drag {
+	width:19px ;
+	overflow: auto;
+	float:left;
+	height:65px;
+	background: url(drag.gif) repeat-y; 
+}
+
+#subItemContent img {
+	position: relative;
+	left: 15px;
+	top: 5px;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+/* 图标层 */
+#common_icon {
+	display:none;
+	position:absolute;
+	width:120px;
+	height:100px;
+	border:1px solid #ccc;
+	background-color: #FFF;
+}
+#common_icon img {
+	margin: 3px;
+	cursor: pointer;
+	width:16px;
+	height:16px;
+}
+
+#common_input {
+	display:none; 
+	position:absolute; 
+	padding-left:0px;
+	vertical-align: middle;
+	z-index:10;
+	font: 14px 微软雅黑,宋体;
+}
+
+/* 详细信息 */ 
+#conditioninfo,#stepinfo {display: none; position: absolute; width: 1000px; height: 550px; left: 30px; top: 12px;  z-index: 50; background-color: #ffe; box-shadow: 10px 10px 20px #aaa; opacity: 1;border: 8px solid #F29700;}
+
+#stepinfo {border: 8px solid #21AC39;}
+
+#condition_close,#step_close {position: absolute; width: 32px; height: 32px; border: 0; right: -20px; top: -20px; cursor: pointer; opacity: 1;}
+#condition_content,#step_content {width: 100%; height: 100%; opacity: 1; border: 0;}
+
+#addItem, #addsubItem {
+	width: 100%;
+	height: 30px;
+}
+#addItem span, #addsubItem span {
+	width: 25px;
+	margin: auto;
+}
+
+.drag-item * {
+	cursor: default;
+}
+.indicator {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	display: none;
+}
+
+span.icon {
+	display: block;
+	height: 16px;
+	background-repeat: no-repeat;
+	background-position: left middle;
+	padding-left: 18px;
+}
+
+span.icon_cond {background-image: url(icon_cond.png);}
+span.icon_del {background-image: url(icon_del.png);}
+span.icon_sub {background-image: url(icon_sub.png);}
+span.icon_add {background-image: url(icon_add.png);}
+span.icon_guide {background-image: url(icon_guide.png);}
+span.icon_symbol {
+	display: block;
+	height: 16px;
+}
+span.icon_symbol b {
+	margin: 0 2px;
+}
+
+.ondrag {width:297px;}

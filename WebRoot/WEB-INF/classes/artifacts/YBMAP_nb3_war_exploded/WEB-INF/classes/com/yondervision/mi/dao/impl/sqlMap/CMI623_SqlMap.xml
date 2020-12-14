@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="CMI623">
+  <resultMap class="java.util.HashMap" id="AppApi30302Map">
+    <result column="APPOBRANCHID" jdbcType="VARCHAR" property="appobranchid" />
+    <result column="APPOTEMPLATEID" jdbcType="VARCHAR" property="appotemplateid" />
+    <result column="BEGINDATE" jdbcType="VARCHAR" property="begindate" />
+    <result column="WEBSITE_NAME" jdbcType="VARCHAR" property="websiteName" />
+    <result column="MAXDAYS" jdbcType="INTEGER" javaType="java.lang.Integer" property="maxdays" />
+    <result column="FREEUSE1" jdbcType="VARCHAR" property="freeuse1" />
+  </resultMap>
+   <resultMap class="java.util.HashMap" id="AppApi30302Count">
+    <result column="APPOCNT" jdbcType="VARCHAR" property="appocnt" />
+    <result column="APPOTEMPLATEID" jdbcType="VARCHAR" property="appotemplateid" />
+    <result column="APPOBRANCHID" jdbcType="VARCHAR" property="appobranchid" />
+  </resultMap>
+   <resultMap class="java.util.HashMap" id="AppApi30302AppoDetail">
+    <result column="APPOCNT" jdbcType="VARCHAR" property="appocnt" />
+    <result column="TIMEINTERVAL" jdbcType="VARCHAR" property="timeinterval" />
+    <result column="APPOBRANTIMEID" jdbcType="VARCHAR" property="appobrantimeID" />
+  </resultMap>
+  <resultMap class="java.util.HashMap" id="AppApi30302AllCount">
+    <result column="APPOCNT" jdbcType="VARCHAR" property="appocnt" />
+    <result column="APPODATE" jdbcType="VARCHAR" property="appodate" />
+    <result column="APPOBRANCHID" jdbcType="VARCHAR" property="appobranchid" />
+  </resultMap>
+  <resultMap class="java.util.HashMap" id="TodayAppoAll">
+    <result column="TIMEINTERVAL" jdbcType="VARCHAR" property="timeinterval" />
+    <result column="APPODATE" jdbcType="VARCHAR" property="appodate" />
+    <result column="APPOBRANCHID" jdbcType="VARCHAR" property="appobranchid" />
+    <result column="FREEUSE1" jdbcType="VARCHAR" property="freeuse1" />
+    <result column="FREEUSE2" jdbcType="VARCHAR" property="freeuse2" />
+  </resultMap>
+  <resultMap class="java.util.HashMap" id="AppApi30303CountMap">
+    <result column="APPOTPLDETAILID" jdbcType="VARCHAR" property="appotpldetailid" />
+    <result column="APPOCNT" jdbcType="INTEGER" property="appocnt" />
+  </resultMap>
+  <resultMap class="java.util.HashMap" id="AppApi30303Detail">
+    <result column="APPOCNT" jdbcType="INTEGER" property="appocnt" />
+    <result column="APPOTPLDETAILID" jdbcType="VARCHAR" property="appotpldetailid" />
+    <result column="APPOBRANCHID" jdbcType="VARCHAR" property="appobranchid" />
+    <result column="TIMEINTERVAL" jdbcType="VARCHAR" property="timeinterval" />
+    <result column="FREEUSE1" jdbcType="VARCHAR" property="freeuse1" />
+    <result column="FREEUSE2" jdbcType="VARCHAR" property="freeuse2" />
+  </resultMap>
+  <resultMap class="java.util.HashMap" id="WebSiteInfo4AppoQuery">
+    <result column="WEBSITE_CODE" jdbcType="VARCHAR" property="website_code" />
+    <result column="WEBSITE_NAME" jdbcType="VARCHAR" property="website_name" />
+  </resultMap>
+  <select id="selectAppapi30302Website" parameterClass="java.util.HashMap" resultMap="AppApi30302Map">
+  	select A.APPOBRANCHID APPOBRANCHID,B.WEBSITE_NAME WEBSITE_NAME,A.MAXDAYS MAXDAYS,A.BEGINDATE BEGINDATE,A.APPOTEMPLATEID,A.FREEUSE1 
+  	FROM MI623 A, MI201 B 
+  	WHERE A.WEBSITE_CODE = B.WEBSITE_CODE  and a.centerid=b.centerid
+  	AND A.APPOBUSIID= #appobusiid:VARCHAR# 
+	and	A.VALIDFLAG = '1'
+	and B.VALIDFLAG = '1'
+	and a.centerid=#centerId:VARCHAR#
+	order by  A.APPOBRANCHID asc
+  </select>
+  <select id="selectAppapi30302Count" parameterClass="java.util.HashMap" resultMap="AppApi30302Count">
+  	select sum(APPOCNT) APPOCNT,APPOTEMPLATEID,APPOBRANCHID from mi624
+  	where  CENTERID= #centerId:VARCHAR# 
+  	and VALIDFLAG = '1'
+  	group by APPOTEMPLATEID,APPOBRANCHID
+  </select>
+  <select id="selectAppapi30302AppoCountDetail" parameterClass="java.util.HashMap" resultMap="AppApi30303Detail">
+  	SELECT A.APPOCNT,A.APPOBRANCHID,A.APPOTPLDETAILID,B.TIMEINTERVAL,C.FREEUSE1,C.FREEUSE2 FROM MI624 A,MI622 B,MI623 C
+	WHERE A.APPOTPLDETAILID=B.APPOTPLDETAILID  
+	AND A.CENTERID= #centerId:VARCHAR# 
+	AND A.VALIDFLAG='1' 
+	AND B.VALIDFLAG='1'
+	AND A.APPOBRANCHID=C.APPOBRANCHID
+	order by  A.FREEUSE4 asc
+  </select>
+  <select id="selectAppapi30302AllCount" parameterClass="java.util.HashMap" resultMap="AppApi30302AllCount">
+  	SELECT COUNT(*) APPOCNT,APPOBRANCHID,APPODATE FROM MI625 
+	where  CENTERID= #centerId:VARCHAR# 
+  	AND APPOSTATE='01'
+  	AND VALIDFLAG='1' 
+	GROUP BY APPODATE,APPOBRANCHID
+	order by  APPODATE asc
+  </select>
+  <select id="selectTodayAppo" parameterClass="java.util.HashMap" resultMap="TodayAppoAll">
+  	SELECT a.APPOBRANCHID,A.APPODATE,A.TIMEINTERVAL,B.FREEUSE1,B.FREEUSE2 FROM MI625 A,MI623  B
+	where  A.APPOBRANCHID = B.APPOBRANCHID and
+	A.CENTERID= #centerId:VARCHAR# 
+	AND A.APPODATE=#appodate:VARCHAR# 
+  	AND A.APPOSTATE='01'
+  	AND A.VALIDFLAG='1' 
+	order by  A.APPOBRANCHID asc
+  </select>
+   <select id="selectAppapi30303Count" parameterClass="java.util.HashMap" resultMap="AppApi30303CountMap">
+  	SELECT COUNT(*) APPOCNT,APPOTPLDETAILID FROM MI625 
+  	WHERE  APPOBRANCHID= #appobranchid:VARCHAR# 
+	AND APPOBUSIID= #appobusiid:VARCHAR# 
+	AND APPODATE= #appodate:VARCHAR# 
+	AND CENTERID= #centerId:VARCHAR# 
+	AND APPOSTATE='01' 
+	AND VALIDFLAG='1' 
+	GROUP BY APPOTPLDETAILID
+	order by  APPOTPLDETAILID asc
+  </select>
+   <select id="selectAppapi30303Detail" parameterClass="java.util.HashMap" resultMap="AppApi30303Detail">
+  	SELECT A.APPOCNT,A.APPOBRANCHID,A.APPOTPLDETAILID,B.TIMEINTERVAL,C.FREEUSE1,C.FREEUSE2 FROM MI624 A,MI622 B,MI623 C
+	WHERE A.APPOTPLDETAILID=B.APPOTPLDETAILID  
+	AND A.CENTERID= #centerId:VARCHAR# 
+	AND A.APPOBRANCHID= #appobranchid:VARCHAR# 
+	AND A.VALIDFLAG='1' 
+	AND B.VALIDFLAG='1'
+	AND A.APPOBRANCHID=C.APPOBRANCHID
+	order by  A.FREEUSE4 asc
+  </select>
+  <select id="selectWebSiteInfo4AppoQuery"  parameterClass="java.lang.String" resultMap="WebSiteInfo4AppoQuery">
+  	SELECT A.APPOBRANCHID AS WEBSITE_CODE,B.WEBSITE_NAME FROM MI623 A,MI201 B 
+  	WHERE A.WEBSITE_CODE=B.WEBSITE_CODE 
+  	AND A.VALIDFLAG='1' 
+  	AND B.VALIDFLAG='1' 
+  	AND A.CENTERID=#centerid:VARCHAR# 
+  	AND B.CENTERID=#centerid:VARCHAR# 
+  </select>
+</sqlMap>

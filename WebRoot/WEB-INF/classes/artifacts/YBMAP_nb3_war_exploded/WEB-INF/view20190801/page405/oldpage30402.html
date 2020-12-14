@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="css/serviceManagement.css" />
+</head>
+<body>
+<div class="serMgmt-messageTemplate-box">
+    <div class="common-btns">
+        <a href="javascript:;" title="新建" class="common-btns-create" id="sysMgmt-btn-add">新建</a>
+        <a href="javascript:;" title="删除" class="common-btns-del" id="sysMgmt-btn-del">删除</a>
+    </div>
+    <div id="serMgmt-messageTemplate-templateTable"></div>
+    <div id="serMgmt-messageTemplate-templateTable-pages">
+        <pages :items="items" :current.sync="current"></pages>
+    </div>
+</div>
+<div class="messageTemplate-add-and-edit">
+    <h2 class="messageTemplate-add-and-edit-title">
+        <a href="javascript:;" title="返回" class="common-btns-back" id="messageTemplate-back">返回</a>
+        <span>添加信息模板</span>
+    </h2>
+    <!--<h2 class="common-green-title">-->
+        <!--<span>添加信息模板</span>-->
+        <!--<a href="javascript:;" title="返回" class="common-btns-back" id="messageTemplate-back">返回</a>-->
+    <!--</h2>-->
+    <h4 class="messageTemplate-note">注：信息内容中 {key} 作为替换内容，自动添加要素信息</h4>
+    <ul class="opera-messageTemplate">
+        <li>
+            <p>所属渠道：</p>
+            <div>
+                <label>
+                    <input type="checkbox">
+                    <span>APP</span>
+                </label>
+                <label>
+                    <input type="checkbox">
+                    <span>微信</span>
+                </label>
+                <label>
+                    <input type="checkbox">
+                    <span>短信</span>
+                </label>
+                <label>
+                    <input type="checkbox">
+                    <span>通用</span>
+                </label>
+            </div>
+        </li>
+        <li>
+            <p>所属城市中心：</p>
+            <div id="opera-messageTemplate-droplist">
+                <droplist :items="items" :selectedValue.sync="selectedValue"></droplist>
+            </div>
+        </li>
+        <li>
+            <p>所属城市中心：</p>
+            <div>
+                <input type="text" class="opera-messageTemplate-text">
+                <span class="red-link">*</span>
+            </div>
+        </li>
+        <li>
+            <p>模板名称：</p>
+            <div>
+                <input type="text" class="opera-messageTemplate-text">
+                <span class="red-link">*</span>
+            </div>
+        </li>
+        <li>
+            <p>微信模板号：</p>
+            <div>
+                <input type="text" class="opera-messageTemplate-text">
+                <span class="red-link">*</span>
+            </div>
+        </li>
+        <li>
+            <p>批量关键字序号：</p>
+            <div>
+                <input type="text" class="opera-messageTemplate-text">
+                <span class="red-link">*</span>
+            </div>
+        </li>
+        <li>
+            <p>批量文件分割符：</p>
+            <div>
+                <input type="text" class="opera-messageTemplate-text">
+                <span class="red-link">*</span>
+            </div>
+        </li>
+        <li>
+            <p>批量记录起始位：</p>
+            <div>
+                <input type="text" class="opera-messageTemplate-text">
+                <span class="red-link">*</span>
+            </div>
+        </li>
+        <li>
+            <p>信息内容：</p>
+            <div>
+                <textarea></textarea>
+                <span class="red-link">*</span>
+                <div class="opera-messageTemplate-submit">
+                    <a href="javascript:;" title="保存" id="messageTemplate-save">保存</a>
+                    <a href="javascript:;" title="生成要素" id="generatingElements">生成要素</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <h2 class="common-green-title">要素信息列表</h2>
+    <div id="messageTemplate-infoList"></div>
+</div>
+<div class="serMgmt-messageTemplate-hidden">
+    <div class="messageTemplate-edit">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>编辑要素说明</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>模版要素序号</p>
+                        <input type="text" value="1" />
+                        <span class="red-link">*</span>
+                        <p>模板要素占位符</p>
+                        <input type="text" value="heieh" disabled />
+                        <span class="red-link">*</span>
+                        <p>模板要素备注</p>
+                        <input type="text" value="test1" />
+                        <span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="保存" class="popup-btns-ok" onclick="Common.popupClose();">保存</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/serviceManagement.js"></script>
+</body>
+</html>

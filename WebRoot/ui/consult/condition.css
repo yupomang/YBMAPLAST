@@ -1,0 +1,262 @@
+/**
+* 公共条件配置页面样式表
+*/
+html,body {height:100%;overflow:hidden;}
+
+/* 页面标题 */
+.title {
+	background:#F29700;
+	text-align: center;
+	padding:0px 0px 8px;
+}
+#title {
+	font: 16px 微软雅黑,宋体;
+	font-weight: bold;
+}
+/* 业务咨询项公共条件标题 */
+#condTitle {
+	background:#FCC15B;
+	padding:5px;
+	font: 14px 微软雅黑,宋体;
+}
+#condTitle input{
+	width: 820px;
+	background:#FBDC9C;
+	border:0px !important;
+	font: 14px 微软雅黑,宋体;
+}
+
+
+/*一级标题 */ 
+h1.item-title{
+	position: relative;
+	top:0px;
+	background:#84CBC8;
+	text-align: center;
+	padding:5px;
+	color:#ffffff;
+	font: 16px 微软雅黑,宋体;
+	font-weight: bold;
+}
+/*内容 */ 
+.item-content{
+	top:0px;
+	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 365px;
+}
+/*选中项*/ 
+li.selected-item {
+	background-color: #F7B551 !important;
+}
+.item-content ul {
+	margin: 0;
+	padding: 0;
+}
+.item-content li {
+	list-style: none;
+	margin: 6px 8px;
+	padding: 0;
+	display:block;
+	background:#eeeeee;
+	overflow: hidden;
+}
+
+.item-content li h2 {
+	margin: 2px 2px 5px 19px;
+	height: 38px;
+	overflow: hidden;
+	color: #0A213E;
+	font: 14px 微软雅黑,宋体;
+	cursor: text;
+	word-break:break-all; 
+	overflow:auto;
+}
+.item-content li h3 {
+	font: 12px 微软雅黑,宋体;
+	cursor: text;
+	word-break:break-all; 
+	overflow:auto;
+}
+#common_input {
+	display:none; 
+	position:absolute; 
+	padding-left:0px;
+	vertical-align: middle;
+	z-index:10;
+}
+.drag-item {
+	list-style-type:none;
+	display:block;
+	padding:5px;
+	border:1px solid #ccc;
+	background:#fafafa;
+	color:#444;
+}
+.drag-item * {
+	cursor: default;
+}
+.indicator {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	display: none;
+}
+#conditionContent {height:490px;}
+#conditionItemId,#groupItemId {width:490px;padding:5px;}
+/*手机背景 */ 
+.phonebg {
+	background: url(bg_phone2.png) no-repeat; 
+	width: 350px;
+	height: 480px;
+	margin: 0 auto;
+	padding: 0;
+}
+/*手机屏 */ 
+.screenbg{
+	position: relative;
+	background:#C6C6C6;
+	top:43px;
+	height: 400px;
+	margin-right:10px;
+	margin-left:9px;
+}
+/* 全部分类 */
+#allitem {
+	text-align: center !important;
+}
+#allitem h2 {
+	width:310px !important;
+	margin: 0;
+	height: 16px;
+}
+/* 全部查询时分类标题 */
+li.itemTitle h1 {
+	font: 16px 微软雅黑,宋体;
+	font-weight: bold;
+	text-align: center;
+	color:#0A213E;
+}
+li.view span {
+	float:left !important;
+}
+
+#groupItemContent li div{
+	display: block;
+	overflow: hidden;
+	margin: 0 0 2px;
+	text-align: left;
+	padding-top:3px;
+}
+#groupItemContent li div img{
+	float: right;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	margin-right: 5px;
+	background: url(up_down.png) no-repeat;
+}
+img.up {
+	background-position: 0 0;
+}
+img.down {
+	background-position: -16px 0 !important;
+}
+/* 删除分组元素 */
+#groupItemContent li span{
+	float: right;
+	display:block;
+	cursor: pointer;
+}
+
+#groupItemContent li h2{
+	float: left;
+	width: 216px;
+	height:auto;
+	font: 12px 微软雅黑,宋体;
+	font-weight: bold;
+	word-break:break-all; 
+	overflow:auto;
+}
+
+#groupItemContent li ul li{
+	display: block;
+	overflow: hidden;
+	border:0px solid #ccc;
+	margin: 0 0 2px;
+}
+
+/* 分组内容拖拽 */
+#groupItemContent li ul div.drag{
+	height:14px;
+}
+
+#groupItemContent li ul li img{
+	float: left;
+}
+
+#groupItemContent li h3{
+	float: left;
+	width: 240px;
+	word-break:break-all; 
+	overflow:auto;
+}
+
+/* 添加公共内容 */
+li.addDetail h3 {
+	color:#2641B4 !important;
+	word-break:break-all; 
+	overflow:auto;
+}
+
+li.addDetail span {
+	float: left !important;
+}
+
+/* 20131029 */
+span.icon {
+	display: block;
+	height: 16px;
+	background-repeat: no-repeat;
+	background-position: left middle;
+	padding-left: 18px;
+}
+span.icon_del {background-image: url(icon_del.png);}
+span.icon_sub {background-image: url(icon_sub.png);}
+span.icon_search {background-image: url(icon_search.png);}
+span.icon_add {background-image: url(icon_add.png);}
+span.icon_info {background-image: url(icon_info.png);}
+
+#conditionContent button {
+	background-color: transparent;
+	border: 0;
+	margin: 2px 3px;
+	padding: 1px 5px;
+	cursor: pointer;
+}
+/* 拖拽元素 */
+.item-content li div.drag {
+	width:19px ;
+	overflow: auto;
+	float:left;
+	height:65px;
+	background: url(drag.gif) repeat-y; 
+}
+.item-content div {
+	text-align: center;
+}
+
+#addconItem, #addgroupItem, #allitem {
+	width: 100%;
+	height: 30px;
+}
+#addconItem span, #addgroupItem span {
+	width: 25px;
+	margin: auto;
+	float:none !important;
+}
+#allitem span{
+	width: 50px;
+	margin: auto;
+}

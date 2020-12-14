@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>登陆超时</title>
+</head>
+<body>
+<script type="text/javascript">
+    try{
+        top.Common.dialog({
+            type: "error",
+            text: "登录超时，请重新登录！",
+            okShow: true,
+            cancelShow: false,
+            okText: "确定",
+            ok: function () {
+                top.location.href = "./login.html";
+            }
+        });
+    } catch (e) {
+        top.location.href = "./login.html";
+    }
+</script>
+</body>
+</html>
