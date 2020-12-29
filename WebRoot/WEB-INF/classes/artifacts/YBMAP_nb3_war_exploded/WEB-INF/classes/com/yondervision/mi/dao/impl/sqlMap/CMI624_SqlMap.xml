@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
-<sqlMap namespace="CMI624" >
-  <select id="selectMi624SumAppocnt" parameterClass="com.yondervision.mi.dto.Mi624" resultClass="java.lang.Integer" >
-    select sum(appocnt) from MI624 where APPOBRANCHID=#appobranchid:VARCHAR# and CENTERID=#centerid:VARCHAR# and validflag='1'
-  </select>
-</sqlMap>

@@ -1,6 +1,0 @@
-.desRule-box{margin:0 10px;height:auto;overflow:hidden;}
-.desRule-centers {width:238px;height:600px;border-left:solid 1px #ddd;border-right:solid 1px #ddd;background:#f4f5f9;float:left;}
-.desRule-centers li {display:block;width:238px;border-right:none;background:url(../images/ico_minus1.png) 30px center no-repeat;height:40px;border-bottom:solid 1px #eee;text-indent:53px;color:#333;font:13px/40px "microsoft yahei";position:relative;top:0;left:0;white-space:nowrap;text-overflow:ellipsis; overflow:hidden;cursor: pointer;}
-.desRule-centers li.on {background:url(../images/ico_minus1.png) #fff 30px center no-repeat;border-right:solid 1px #fff;}
-.desRule-right{padding:10px;float:left;width:calc(100% - 270px);}
-.desRule-hidden-area{display:none;}

@@ -3446,11 +3446,12 @@ public class AppApi001Contorller {
 	public String appapi00227(AppApi00225Form form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		form.setBusinName("异地贷款缴存使用证明打印");
 		Logger log = LoggerUtil.getLogger();
+		log.info("++++++++++++++++++++++++++++++++++++++zhangj+++++++++++++++++++++++++++++++++");
 		log.info(LOG.START_BUSIN.getLogText(form.getBusinName()));
 
 		long starTime = System.currentTimeMillis();
 		HashMap params = new HashMap();
-		String url = "http://172.16.0.208:7001/gjj-wsyyt/servlet/EmpPrintServlet";
+		String url = "http://172.16.0.207:7002/gjj-wsyyt/servlet/EmpPrintServlet";
 
 		log.info("form.getAccnum()======" + form.getAccnum());
 		log.info("form.getCertinum()======" + form.getCertinum());
