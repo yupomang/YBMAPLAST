@@ -171,7 +171,7 @@ public class MyTest {
 		File file = new File(destPath + saleContractNo + "_001.doc");
 		FileUtils.copyFile(tempFile, file );
 		//File pdfFile = FileUtil.wordToPdf(file, new File(destPath + saleContractNo + ".pdf"));
-
+		//67
 		File pdfFile = new File(destPath + saleContractNo + ".pdf");
 		//TODO copy doc文件
 		FileUtil.wordToPdf(file,pdfFile);

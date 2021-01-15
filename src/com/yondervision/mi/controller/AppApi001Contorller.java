@@ -211,7 +211,7 @@ public class AppApi001Contorller {
 	public String appapi00104(AppApi030Form form,  ModelMap modelMap, HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
 		Logger log = LoggerUtil.getLogger();
-		form.setBusinName("个人账户查询（用于反显）");	
+		form.setBusinName("个人账户查询（用于反显）");
 		log.info(LOG.START_BUSIN.getLogText(form.getBusinName()));
 		log.debug(DEBUG.SHOW_PARAM.getLogText(CommonUtil
 				.getStringParams(form)));

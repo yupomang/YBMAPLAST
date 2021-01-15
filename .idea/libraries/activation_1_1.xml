@@ -143,8 +143,6 @@
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/org.springframework.web.servlet-3.0.5.RELEASE.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/poi-3.11-20141221.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/poi-3.8-20120326.jar!/" />
-      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/poi-ooxml-3.8-20120326.jar!/" />
-      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/poi-ooxml-schemas-3.8-20120326.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/poi-scratchpad-3.8-20120326.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/quartz-all-1.8.5.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/slf4j-api-1.6.1.jar!/" />
@@ -166,7 +164,6 @@
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/xmlbeans-2.6.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/xmlschema-core-2.2.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/axis-src-1_4.zip!/" />
-      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/yd-voucherSign-1.0.6-RELEASE.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/tgoauth2sdk1.0.7.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/itext-2.1.7.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons-configuration-1.6.jar!/" />
@@ -185,10 +182,17 @@
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/xxpt.gateway.shared.client-1.1.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons-lang3-3.4.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/joda-time-2.9.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/poi-ooxml-3.8-20120326.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/poi-ooxml-schemas-3.8-20120326.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jodconverter-core-3.0-alfresco-patched-20120820.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jodconverter-2.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/aspose-words-16.1.0-jdk16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/yd-voucherSign-1.0.6-RELEASE.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/thumbnailator-0.4.8-javadoc.jar!/" />
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/axis-src-1_4.zip!/axis-1_4/docs/apiDocs" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/aspose-words-16.1.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/WebAPIClient.jar!/" />

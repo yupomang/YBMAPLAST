@@ -1,10 +1,12 @@
 package com.yondervision.mi.controller;
 
+import com.aspose.words.*;
 import com.yd.util.FileUtil;
 import com.yondervision.mi.common.ApiUserContext;
 import com.yondervision.mi.common.log.LoggerUtil;
 import com.yondervision.mi.form.AppApi00225Form;
 import com.yondervision.mi.form.AppApi00226Form;
+import com.yondervision.mi.util.ConvertUpMoneyUtil;
 import com.yondervision.mi.util.DigitalSealService;
 import com.yondervision.mi.util.ReadProperty;
 import com.yondervision.mi.util.security.Base64Decoder;
@@ -17,6 +19,8 @@ import com.yondervision.mi.common.ERRCODE.LOG;
 
 import org.apache.poi.POIXMLDocument;
 import org.apache.poi.xwpf.usermodel.*;
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sun.misc.BASE64Encoder;
@@ -26,6 +30,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 public class AppApi00337Controller {
@@ -133,35 +140,48 @@ public class AppApi00337Controller {
             log.info("appapi00337---存放pdf路径");
             Map<String, String> resultMap = new HashMap<String, String>();
         log.info("请求参数\"accinstcode\"的值为: " + form.getTransdate());
-        resultMap.put("accinstcode", form.getCentername() + "宁波公积金中心: \n" +
-                "                       我中心缴存职工的住房公积金缴存使用情况如下。");
-        resultMap.put("accname", form.getAccnum());
+        resultMap.put("Accinstcode",  form.getCentername()+": \r" +
+                "                   我中心缴存职工的住房公积金缴存使用情况如下。");
+        resultMap.put("accname", form.getAccname());
+        //表格固定值
+        /*resultMap.put("zgxm", "职工姓名");
+        resultMap.put("sfzh", "身份证号");
+        resultMap.put("dwmc", "单位名称");
+        resultMap.put("grgjjzh", "个人公积金账号");*/
+        //+++++++++++++++++++++++++++++++++++++++++++++++
             log.info("请求参数\"transdate\"的值为: " + form.getTransdate());
             resultMap.put("loancontrnum", form.getLoancontrnum());
-            log.info("resultMap请求参数\"loancontrnum\"的值为: " + form.getLoancontrnum());
+            log.info("resultMap请求编号参数\"loancontrnum\"的值为: " + form.getLoancontrnum());
             resultMap.put("indiaccstate", form.getIndiaccstate());
-        log.info("resultMap请求参数\"indiaccstate\"的值为: " + form.getIndiaccstate());
+        log.info("resultMap请求参数账户状态\"indiaccstate\"的值为: " + form.getIndiaccstate());
             resultMap.put("addr", form.getAddr());
-        log.info("resultMap请求参数\"addr\"的值为: " + form.getAddr());
+        log.info("resultMap请求参数公积金贷款城市\"addr\"的值为: " + form.getAddr());
             resultMap.put("accnum", form.getAccnum());
-        log.info("resultMap请求参数\"accnum\"的值为: " + form.getAccnum());
-            resultMap.put("unitaccname", form.getUnitaccname());
-        log.info("resultMap请求参数\"unitaccname\"的值为: " + form.getUnitaccname());
+        log.info("resultMap请求个人公积金账号参数\"accnum\"的值为: " + form.getAccnum());
+        String unitaccname = form.getUnitaccname();
+            resultMap.put("unitaccname", unitaccname);
+        log.info("resultMap请求单位名称参数\"unitaccname\"的值为: " + form.getUnitaccname());
             resultMap.put("year", form.getYear());
         log.info("resultMap请求参数\"year\"的值为: " + form.getYear());
             resultMap.put("certinum", form.getCertinum());
-        log.info("resultMap请求参数\"certinum\"的值为: " + form.getCertinum());
-            resultMap.put("unitprop", form.getUnitprop());
+        log.info("resultMap请求身份证号参数\"certinum\"的值为: " + form.getCertinum());
+        String unitp = getNumber(form.getUnitprop());
+        resultMap.put("unitprop", "单位：  "+unitp+"%");
         log.info("resultMap请求参数\"unitprop\"的值为: " + form.getUnitprop());
-            resultMap.put("bal", form.getBal());
-        log.info("resultMap请求参数\"bal\"的值为: " + form.getBal());
+        String money2 =  form.getBal();
+        String my2 = ConvertUpMoneyUtil.toChinese(money2);
+            resultMap.put("bal", my2);
+        log.info("resultMap请求缴存余额参数\"bal\"的值为: " + form.getBal());
             resultMap.put("linkphone", form.getLinkphone());
         log.info("resultMap请求参数\"linkphone\"的值为: " + form.getLinkphone());
-            resultMap.put("indiprop", form.getIndiprop());
+        String indip = getNumber(form.getIndiprop());
+        resultMap.put("indiprop", "单位：  "+indip+"%");
         log.info("resultMap请求参数\"indiprop\"的值为: " + form.getIndiprop());
             resultMap.put("projectname", form.getProjectname());
         log.info("resultMap请求参数\"projectname\"的值为: " + form.getProjectname());
-            resultMap.put("amt", form.getAmt());
+        String money3 =  form.getAmt();
+        String my3 = ConvertUpMoneyUtil.toChinese(money3);
+            resultMap.put("amt", my3);
         log.info("resultMap请求参数\"amt\"的值为: " + form.getAmt());
             resultMap.put("flag", form.getFlag());
         log.info("resultMap请求参数\"flag\"的值为: " + form.getFlag());
@@ -171,54 +191,58 @@ public class AppApi00337Controller {
         log.info("resultMap请求参数\"opnaccdate\"的值为: " + form.getOpnaccdate());
             resultMap.put("linkman", form.getLinkman());
         log.info("resultMap请求参数\"linkman\"的值为: " + form.getLinkman());
-            resultMap.put("indipaysum", form.getIndipaysum());
+        String money1 = form.getIndipaysum();
+        String my1 = ConvertUpMoneyUtil.toChinese(money1);
+        resultMap.put("indipaysum", my1);
         log.info("resultMap请求参数\"indipaysum\"的值为: " + form.getIndipaysum());
             resultMap.put("year1", form.getYear1());
         log.info("resultMap请求参数\"year1\"的值为: " + form.getYear1());
-            resultMap.put("basenum", form.getBasenum());
+        String money = form.getBasenum();
+        String my = ConvertUpMoneyUtil.toChinese(money);
+        resultMap.put("basenum", my);
         log.info("resultMap请求参数\"basenum\"的值为: " + form.getBasenum());
 
-            resultMap.put("time", form.getYear() + "年" + form.getMonth() + "月" + "—" +
-                    form.getYear() + "年" + form.getMonth() + "月");
+            resultMap.put("time", form.getYear() + "   年   " + form.getMonth() + "   月" + "      —      " +
+                    form.getYear1() + "   年   " + form.getMonth1() + "   月");
         log.info("resultMap请求参数\"time\"的值为: " + resultMap.get("time"));
 
-            if(StringUtils.equalsIgnoreCase("正常", form.getIndiaccstate())){
-                resultMap.put("indiaccstate","□正常  □封存\n" + "□欠款 ■其他" );
-            } else if(StringUtils.equalsIgnoreCase("封存",form.getIndiaccstate())){
-                resultMap.put("indiaccstate","□正常  ■封存\n" + "□欠款 □其他" );
-            }else if(StringUtils.equalsIgnoreCase("欠款",form.getIndiaccstate())){
-                resultMap.put("indiaccstate","□正常  □封存\n" + "■欠款 □其他" );
+            if(StringUtils.equalsIgnoreCase("0", form.getIndiaccstate())){
+                resultMap.put("indiaccstate","■    正常       □    封存\r" + "□    欠款       □    其他" );
+            } else if(StringUtils.equalsIgnoreCase("1",form.getIndiaccstate())){
+                resultMap.put("indiaccstate","□    正常       ■    封存\r" + "□    欠款       □    其他" );
+            }else if(StringUtils.equalsIgnoreCase("2",form.getIndiaccstate())){
+                resultMap.put("indiaccstate","□    正常       ■    封存\r" + "□    欠款       □    其他" );
             }else{
-                resultMap.put("indiaccstate","□正常  □封存\n" + "□欠款 ■其他" );
+                resultMap.put("indiaccstate","□    正常       □    封存\r" + "□    欠款       ■    其他" );
             }
 
         log.info("resultMap请求参数\"ndiaccstate\"的值为: " + resultMap.get("ndiaccstate"));
 
-            if(StringUtils.equalsIgnoreCase("无贷款记录",form.getFlag())){
-                resultMap.put("flag","■无贷款记录 □仅有一次贷款记录且贷款已还清\n" +
-                        "□有两次以上(含两次)贷款记录且贷款已还清");
-            } else if(StringUtils.equalsIgnoreCase("仅有一次贷款记录且贷款已还清",form.getFlag())){
-                resultMap.put("flag","□无贷款记录 ■仅有一次贷款记录且贷款已还清\n" +
-                        "□有两次以上(含两次)贷款记录且贷款已还清" );
+            if(StringUtils.equalsIgnoreCase("0",form.getFlag())){
+                resultMap.put("flag","   ■无贷款记录        □仅有一次贷款记录且贷款已还清\r" +
+                        "   □有两次以上(含两次)贷款记录且贷款已还清");
+            } else if(StringUtils.equalsIgnoreCase("1",form.getFlag())){
+                resultMap.put("flag","   □无贷款记录        ■仅有一次贷款记录且贷款已还清\r" +
+                        "   □有两次以上(含两次)贷款记录且贷款已还清" );
             } else {
-                resultMap.put("flag","□无贷款记录 □仅有一次贷款记录且贷款已还清\n" +
-                        "■有两次以上(含两次)贷款记录且贷款已还清");
+                resultMap.put("flag","   □无贷款记录        □仅有一次贷款记录且贷款已还清\r" +
+                        "   ■有两次以上(含两次)贷款记录且贷款已还清");
             }
         log.info("resultMap请求参数\"flag\"的值为: " + resultMap.get("flag"));
             resultMap.put("linkman", "   我中心保证以上信息真实准确。 " +
-                    "                 本证明自开具之日起，2个月内有效。\n " +
-                    "单位经办人： " + form.getLinkman() + "联系电话：" + form.getLinkphone() +
-                    "   单位公章（或业务专用章）：\n" +
-                    form.getTransdate());
+                    "                 本证明自开具之日起，2个月内有效。\r " + " \r" +
+                    "       单位经办人： " + form.getLinkman() + "       联系电话：" + form.getLinkphone() +
+                    "       单位公章（或业务专用章）：\r" +
+                    "       " + form.getTransdate());
 
 
-        resultMap.put("huizhiTemp", "回执                              编号" +
+        /*resultMap.put("huizhiTemp", "回执                              编号" +
                 "    你中心缴存职工（公积金账号：             ）缴存使用证明收悉。根据我" +
                 "中心异地贷款政策规定，该职工（□ 本人  □参贷）异地贷款申请审核结果为：  □准予贷款    □不予贷款");
 
         resultMap.put("repayment", "   □等额本金 \n" +
                 "   □等额本息 \n" +
-                "   □其他 \n");
+                "   □其他 \n");*/
         log.info("resultMap请求参数\"linkman\"的值为: " + resultMap.get("linkman"));
             String saleContractNo = dateFormat.format(new Date());
             //文件路径 @date : 2020-11-25 eg: /ispshare/ftpdir/身份证号
@@ -228,7 +252,7 @@ public class AppApi00337Controller {
 
 
             //searchAndReplace(templateFile, templateFile.split(".doc") + "_" +saleContractNo + form.getCertinum() +".doc", resultMap);
-        searchAndReplace(templateFile, TEMP_PATH + saleContractNo + "_" +form.getCertinum() +".doc", resultMap);
+        /*searchAndReplace(templateFile, TEMP_PATH + saleContractNo + "_" +form.getCertinum() +".doc", resultMap);
         log.info("appapi00337----模板文件转换pdf");
         //FileUtil.wordToPdf(new File(templateFile), new File( TEMP_PATH + form.getCertinum() +saleContractNo + "123456.pdf"));
         log.info("appapi00337----模板文件转换pdf完成");
@@ -238,7 +262,9 @@ public class AppApi00337Controller {
             log.info("appapi00337------ 替换生成doc1文件的文件路径为: " + TEMP_PATH + saleContractNo + "_" +form.getCertinum() +".doc");
         log.info("appapi00337------ 替换生成doc2文件的文件路径为: " + tempFile.getAbsoluteFile().getPath());
         log.info("appapi00337----doc文件转PDF文件--01");
-            File pdfFile = FileUtil.wordToPdf(tempFile, new File( TEMP_PATH + form.getCertinum() +saleContractNo + ".pdf"));
+            File pdfFile = FileUtil.wordToPdf(tempFile, new File( TEMP_PATH + form.getCertinum() +saleContractNo + ".pdf"));*/
+        doc2pdf(templateFile, TEMP_PATH + form.getCertinum() +saleContractNo + ".pdf", resultMap);
+        File pdfFile = new File( TEMP_PATH + form.getCertinum() +saleContractNo + ".pdf");
 
             //  doc文件转pdf
         log.info("appapi00337----doc文件转PDF文件--02");
@@ -379,6 +405,7 @@ public class AppApi00337Controller {
                         if (run.get(i).getText(run.get(i).getTextPosition()) != null &&
                                 run.get(i).getText(run.get(i).getTextPosition()).equals(key)) {
                             run.get(i).setText(map.get(key), 0);
+                            //run.get(i).setTextPosition(10);
                         }
                     }
                 }
@@ -404,7 +431,7 @@ public class AppApi00337Controller {
                                     cell.removeParagraph(0);
                                     XWPFParagraph xwpfParagraph1 = cell.addParagraph();
                                     String[] split = e.getValue().split("\n");
-                                    xwpfParagraph1.setAlignment(ParagraphAlignment.LEFT);//需要设置，否则中文换行会很生硬很难看
+                                    xwpfParagraph1.setAlignment(ParagraphAlignment.CENTER);//需要设置，否则中文换行会很生硬很难看
                                     for (String s : split) {
                                         XWPFRun run = xwpfParagraph1.createRun();//对某个段落设置格式
                                         run.setText(s);
@@ -415,6 +442,17 @@ public class AppApi00337Controller {
                                     cell.removeParagraph(0);
                                     //填充新数据
                                     cell.setText(e.getValue());
+                                    CTTc cttc = cell.getCTTc();
+                                    CTP ctp = cttc.getPList().get(0);
+                                    CTPPr ctppr = ctp.getPPr();
+                                    if (ctppr == null) {
+                                        ctppr = ctp.addNewPPr();
+                                    }
+                                    CTJc ctjc = ctppr.getJc();
+                                    if (ctjc == null) {
+                                        ctjc = ctppr.addNewJc();
+                                    }
+                                    ctjc.setVal(STJc.CENTER); //水平居中
                                 }
                             }
                         }
@@ -429,6 +467,90 @@ public class AppApi00337Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static boolean getLicense() {
+        boolean result = false;
+        License aposeLic = new License();
+        StringBuffer strlic = new StringBuffer();
+        strlic.append("<License>");
+        strlic.append("  <Data>");
+        strlic.append("    <Products>");
+        strlic.append("      <Product>Aspose.Total for Java</Product>");
+        strlic.append("      <Product>Aspose.Words for Java</Product>");
+        strlic.append("    </Products>");
+        strlic.append("    <EditionType>Enterprise</EditionType>");
+        strlic.append("    <SubscriptionExpiry>20991231</SubscriptionExpiry>");
+        strlic.append("    <LicenseExpiry>20991231</LicenseExpiry>");
+        strlic.append("    <SerialNumber>8bfe198c-7f0c-4ef8-8ff0-acc3237bf0d7</SerialNumber>");
+        strlic.append("  </Data>");
+        strlic.append("  <Signature>sNLLKGMUdF0r8O1kKilWAGdgfs2BvJb/2Xp8p5iuDVfZXmhppo+d0Ran1P9TKdjV4ABwAgKXxJ3jcQTqE/2IRfqwnPf8itN8aFZlV3TJPYeD3yWE7IT55Gz6EijUpC7aKeoohTb4w2fpox58wWoF3SNp6sK6jDfiAUGEHYJ9pjU=</Signature>");
+        strlic.append("</License>");
+
+        try {
+            aposeLic.setLicense(new ByteArrayInputStream(strlic.toString().getBytes()));
+            result = true;
+        } catch (Exception var4) {
+            var4.printStackTrace();
+        }
+        return result;
+    }
+    public static boolean doc2pdf(String inPath, String outPath, Map<String, String> map) {
+        // 验证License 若不验证则转化出的pdf文档会有水印产生
+        if (!getLicense()) {
+            return false;
+        }
+        FileOutputStream os = null;
+        try {
+            long old = System.currentTimeMillis();
+            // 新建一个空白pdf文档
+            File file = new File(outPath);
+            os = new FileOutputStream(file);
+            // Address是将要被转化的word文档
+            com.aspose.words.Document doc = new com.aspose.words.Document(inPath);
+            if(map.get("loancontrnum") != null && map.get("loancontrnum")!="") {
+                doc.getRange().replace(Pattern.compile("loancontrnum"), map.get("loancontrnum"));
+            }
+            NodeCollection tables = doc.getChildNodes(NodeType.TABLE, true);
+            for (Table table : (Iterable<Table>) tables) {
+                for (Row row : table.getRows()) {
+                    for (Cell cell : row.getCells()) {
+                        for (Run run : (Iterable<Run>) cell.getChildNodes(NodeType.RUN, true)) {
+                            String text = run.getText();
+                            String tempText = map.get(text);
+                            if (tempText != null) {
+                                text = tempText;
+                                run.getFont().setName("Courier New");
+                                run.getFont().setSize(10.0);
+                            }
+                            run.setText(text);
+                            boolean hidden = run.getFont().getHidden();
+                            if (hidden) {
+                                run.setText("");
+                            }
+                        }
+                    }
+                }
+            }
+            doc.save(os, SaveFormat.PDF);
+            // EPUB, XPS, SWF 相互转换
+            long now = System.currentTimeMillis();
+            // 转化用时
+            System.out.println("pdf转换成功，共耗时：" + ((now - old) / 1000.0) + "秒");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (os != null) {
+                try {
+                    os.flush();
+                    os.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -510,5 +632,30 @@ public class AppApi00337Controller {
         return null;
     }
 
+    public static String getNumber(String str) {
+        // 需要取整数和小数的字符串
+        // 控制正则表达式的匹配行为的参数(小数)
+        Pattern p = Pattern.compile("(\\d)");
+        //Matcher类的构造方法也是私有的,不能随意创建,只能通过Pattern.matcher(CharSequence input)方法得到该类的实例.
+        Matcher m = p.matcher(str);
+        //m.find用来判断该字符串中是否含有与"(\\d+\\.\\d+)"相匹配的子串
+        if (m.find()) {
+            //如果有相匹配的,则判断是否为null操作
+            //group()中的参数：0表示匹配整个正则，1表示匹配第一个括号的正则,2表示匹配第二个正则,在这只有一个括号,即1和0是一样的
+            str = m.group(1) == null ? "" : m.group(1);
+        } else {
+            //如果匹配不到小数，就进行整数匹配
+            p = Pattern.compile("(\\d+)");
+            m = p.matcher(str);
+            if (m.find()) {
+                //如果有整数相匹配
+                str = m.group(1) == null ? "" : m.group(1);
+            } else {
+                //如果没有小数和整数相匹配,即字符串中没有整数和小数，就设为空
+                str = "";
+            }
+        }
+        return str;
+    }
 
 }
