@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="CMI098">
+  <resultMap class="java.util.HashMap" id="webapi107100301">
+    <result column="servicetype" jdbcType="VARCHAR" javaType="java.lang.String" property="servicetype" />
+    <result column="cnt" jdbcType="VARCHAR" javaType="java.lang.String" property="cnt" />
+  </resultMap>
+  <resultMap class="java.util.HashMap" id="webapi107100302">
+    <result column="bsptype" jdbcType="VARCHAR" javaType="java.lang.String" property="bsptype" />
+    <result column="itemid" jdbcType="VARCHAR" javaType="java.lang.String" property="itemid" />
+    <result column="itemval" jdbcType="VARCHAR" javaType="java.lang.String" property="itemval" />
+    <result column="cnt" jdbcType="VARCHAR" javaType="java.lang.String" property="cnt" />
+  </resultMap>
+  <resultMap class="java.util.HashMap" id="webapi1071004">
+    <result column="pid" jdbcType="VARCHAR" javaType="java.lang.String" property="pid" />
+    <result column="servicetype" jdbcType="VARCHAR" javaType="java.lang.String" property="servicetype" />
+    <result column="itemid" jdbcType="VARCHAR" javaType="java.lang.String" property="itemid" />
+    <result column="itemval" jdbcType="VARCHAR" javaType="java.lang.String" property="itemval" />
+    <result column="cnt" jdbcType="VARCHAR" javaType="java.lang.String" property="cnt" />
+  </resultMap>
+  <resultMap class="java.util.HashMap" id="getLatestTransdate">
+    <result column="transday" jdbcType="VARCHAR" javaType="java.lang.String" property="transday" />
+  </resultMap>
+  <resultMap class="java.util.HashMap" id="selectAppointment">
+  	<result column="centerid" jdbcType="VARCHAR" javaType="java.lang.String" property="centerid" />
+    <result column="pid" jdbcType="VARCHAR" javaType="java.lang.String" property="pid" />
+    <result column="appodate" jdbcType="VARCHAR" javaType="java.lang.String" property="appodate" />
+    <result column="freeuse2" jdbcType="VARCHAR" javaType="java.lang.String" property="subtype" />
+    <result column="cnt" jdbcType="VARCHAR" javaType="java.lang.String" property="cnt" />
+  </resultMap>
+<!-- 四大服务类型线上统计汇总 -->
+ <select id="webapi107100301" parameterClass="com.yondervision.mi.dto.CMi107" resultMap="webapi107100301">
+	select servicetype, sum(transcnt) cnt 
+	from mi098 
+	where bsptype='0' 
+		and validflag='1'
+		and centerid=#centerid:VARCHAR# 
+		and substr(transday, 1, 7)=#startdate:VARCHAR#
+ 	group by servicetype
+ </select>
+ <!-- 缴存 提取 贷款业务办理 -->
+ <select id="webapi107100302" parameterClass="com.yondervision.mi.dto.CMi107" resultMap="webapi107100302">
+	select t1.bsptype, t1.itemid, t2.itemval, t1.cnt
+	from (
+		select bsptype, itemid, sum(transcnt) cnt 
+		from mi098 
+		where centerid=#centerid:VARCHAR#
+			and substr(transday, 1, 7)=#startdate:VARCHAR#
+			and validflag='1' 
+			and servicetype='2' 
+		group by bsptype, itemid) t1
+	left join (
+		select * from mi007 where updicid in 
+			(select dicid from mi007 where updicid=574 and itemid=2)) t2 
+	on t1.itemid=t2.itemid
+ </select>
+ <!-- 渠道业务量汇总-->
+ <select id="webapi1071004" parameterClass="com.yondervision.mi.dto.CMi107" resultMap="webapi1071004">
+	select t1.pid, t1.servicetype, t1.itemid, t2.itemval, t1.cnt
+	from (
+		select pid,servicetype, itemid, sum(transcnt) cnt 
+		from mi098 
+		where centerid=#centerid:VARCHAR# 
+			and validflag='1'
+			and bsptype='0' 
+			and substr(transday,1,7)=#startdate:VARCHAR#
+		group by pid, servicetype, itemid ) t1
+	left join (select * from mi007 where updicid in 
+		(select dicid from mi007 where updicid=574)) t2 
+	on t1.itemid=t2.itemid
+ </select>
+ <!-- 获取最近的交易日期-->
+ <select id="getLatestTransdate" resultMap="getLatestTransdate">
+	select distinct(transday) from mi098 order by transday desc
+ </select>
+ 
+ <select id="selectAppointment" parameterClass="java.util.HashMap" resultMap="selectAppointment">
+	select t0.centerid, t0.pid, t0.appodate, t0.freeuse2, count(*) cnt 
+	from (
+		select t1.centerid, t1.pid, t1.appodate, t2.freeuse1, t2.freeuse2 
+		from mi625 t1
+		left join mi620 t2 
+		on t1.appobusiid = t2.appobusiid 
+		where t2.freeuse1=2
+			and appodate &gt;= #transday:VARCHAR#
+   			and appodate &lt;= #currentDate:VARCHAR# ) t0
+	group by t0.centerid, t0.pid,t0.appodate, t0.freeuse2 
+ </select>
+ 
+</sqlMap>

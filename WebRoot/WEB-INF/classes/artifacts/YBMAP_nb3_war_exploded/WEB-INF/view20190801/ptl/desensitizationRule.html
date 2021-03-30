@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="css/desensitizationRule.css">
+</head>
+<body>
+<div class="desRule-box">
+    <ul class="desRule-centers" id="tree">
+        <li v-for="item in items"
+            @click="query(item.centerid, item.centername)"
+            :class="{'on': item.centerid == selected }">{{ item.centername }}</li>
+    </ul>
+    <div class="desRule-right">
+        <div class="common-btns">
+            <a href="javascript:;" title="新建" class="common-btns-create" id="btn-add">新建</a>
+            <a href="javascript:;" title="修改" class="common-btns-edit" id="btn-edit">修改</a>
+            <a href="javascript:;" title="删除" class="common-btns-del" id="btn-del">删除</a>
+            <a href="javascript:;" title="EXCEL导出" class="common-btns-downFile" id="btn-down">EXCEL导出</a>
+        </div>
+        <div id="desRule-Table"></div>
+        <div id="desRule-pages">
+            <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+        </div>
+    </div>
+</div>
+
+<div class="desRule-hidden-area">
+    <div class="desRule-create">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>脱敏规则-增加</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>脱敏数据项</p>
+                        <select id="create-msg"></select>
+                        <span class="red-link">*</span>
+                        <!--<p>日期格式限制</p>-->
+                        <!--<label>-->
+                            <!--<input type="radio" value="0" name="create-dateThem" onclick="$('.is-not-date').show();$('.is-date').hide();" checked>-->
+                            <!--<span>否</span>-->
+                        <!--</label>-->
+                        <!--<label>-->
+                            <!--<input type="radio" value="1" name="create-dateThem" onclick="$('.is-not-date').hide();$('.is-date').show();">-->
+                            <!--<span>是</span>-->
+                        <!--</label>-->
+                        <!--<div class="is-not-date">-->
+                            <!--<p>首部字数</p>-->
+                            <!--<input type="text" id="create-firstNum">-->
+                            <!--<p>尾部字数</p>-->
+                            <!--<input type="text" id="create-tailNum">-->
+                            <!--<p>替换字符</p>-->
+                            <!--<input type="text" id="create-replaceChar">-->
+                        <!--</div>-->
+                        <!--<div class="is-date" style="display:none">-->
+                            <!--<p>日期格式</p>-->
+                            <!--<select id="create-dateType">-->
+                                <!--<option>yyyy-MM</option>-->
+                                <!--<option>yyyyMMdd</option>-->
+                                <!--<option>dd</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <p>首部字数</p>
+                        <input type="text" id="create-firstNum">
+                        <p>尾部字数</p>
+                        <input type="text" id="create-tailNum">
+                        <p>替换字符</p>
+                        <input type="text" id="create-replaceChar">
+                        <p>脱敏前数据（示例）</p>
+                        <input type="text" id="create-demo1">
+                        <p>脱敏后数据（示例）</p>
+                        <input type="text" id="create-demo2">
+                        <p>描述</p>
+                        <input type="text" id="create-detail">
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].desRule.create();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- edit -->
+    <div class="desRule-edit">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>脱敏规则-修改</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>脱敏数据项</p>
+                        <select id="edit-msg"></select>
+                        <span class="red-link">*</span>
+                        <!--<p>日期格式限制</p>-->
+                        <!--<label>-->
+                            <!--<input type="radio" value="0" name="create-dateThem" onclick="$('.is-not-date').show();$('.is-date').hide();" checked>-->
+                            <!--<span>否</span>-->
+                        <!--</label>-->
+                        <!--<label>-->
+                            <!--<input type="radio" value="1" name="create-dateThem" onclick="$('.is-not-date').hide();$('.is-date').show();">-->
+                            <!--<span>是</span>-->
+                        <!--</label>-->
+                        <!--<div class="is-not-date">-->
+                            <!--<p>首部字数</p>-->
+                            <!--<input type="text" id="edit-firstNum">-->
+                            <!--<p>尾部字数</p>-->
+                            <!--<input type="text" id="edit-tailNum">-->
+                            <!--<p>替换字符</p>-->
+                            <!--<input type="text" id="edit-replaceChar">-->
+                        <!--</div>-->
+                        <p>首部字数</p>
+                        <input type="text" id="edit-firstNum">
+                        <p>尾部字数</p>
+                        <input type="text" id="edit-tailNum">
+                        <p>替换字符</p>
+                        <input type="text" id="edit-replaceChar">
+                        <!--<div class="is-date" style="display:none">-->
+                            <!--<p>日期格式</p>-->
+                            <!--<select id="edit-dateType">-->
+                                <!--<option>yyyy-MM</option>-->
+                                <!--<option>yyyyMMdd</option>-->
+                                <!--<option>dd</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <p>脱敏前数据（示例）</p>
+                        <input type="text" id="edit-demo1">
+                        <p>脱敏后数据（示例）</p>
+                        <input type="text" id="edit-demo2">
+                        <p>描述</p>
+                        <input type="text" id="edit-detail">
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].desRule.edit();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/desensitizationRule.js"></script>
+</body>
+</html>

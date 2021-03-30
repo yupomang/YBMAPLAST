@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean name="quartzScheduler"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="applicationContextSchedulerContextKey" value="applicationContext" />
+		<property name="configLocation" value="classpath:quartz.properties" />
+		<property name="triggers">
+			<list>
+				<!-- <ref bean="dlInfoSynchronousTrigger" /> -->
+				<ref bean="kmHeartBeatCheckTrigger" />
+				<ref bean="kmFlowDownLoanTrigger" />
+				<ref bean="kmMessageTingJobTrigger" />
+				<ref bean="insertMi099DataTrigger"/>
+				<ref bean="transSendMsgTrigger"/>
+			</list>
+		</property>
+		<property name="quartzProperties">
+			<props>
+				<prop key="org.quartz.scheduler.skipUpdateCheck">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 昆明的心跳检查配置 -->
+	<bean id="kmHeartBeatCheckJob" class="com.yondervision.mi.quartz.KMHeartBeatCheckJob"/>
+	<bean id="kmHeartBeatCheckJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass">
+			<value>com.yondervision.mi.quartz.config.MyDetailQuartzJobBean</value>
+		</property>	
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="targetObject" value="kmHeartBeatCheckJob" />
+				<entry key="targetMethod" value="execute" />
+			</map>
+		</property>
+	</bean>
+	
+	
+	<bean id="kmHeartBeatCheckTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="kmHeartBeatCheckJobDetail" />
+		<property name="cronExpression" value="0 0/10 * * * ?" />
+	</bean>
+	
+	
+	<!-- 昆明的流量控制配置-->
+	<bean id="kmFlowDownLoanJob" class="com.yondervision.mi.quartz.KMFlowDownLoanJob"/>
+	<bean id="kmFlowDownLoanJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass">
+			<value>com.yondervision.mi.quartz.config.MyDetailQuartzJobBeanTrafficMon</value>
+		</property>	
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="targetObject" value="kmFlowDownLoanJob" />
+				<entry key="targetMethod" value="execute" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="kmFlowDownLoanTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="kmFlowDownLoanJobDetail" />
+		<property name="cronExpression" value="0 0/20 * * * ?" />
+	</bean> 
+	
+	<!-- 定时推送控制配置 -->
+	<bean id="kmMessageTingJob" class="com.yondervision.mi.quartz.KMMessageTingJob"/>
+	<bean id="kmMessageTingJobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass">
+			<value>com.yondervision.mi.quartz.config.MyDetailQuartzJobBean</value>
+		</property>	
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="targetObject" value="kmMessageTingJob" />
+				<entry key="targetMethod" value="execute" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="kmMessageTingJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="kmMessageTingJobDetail" />
+		<property name="cronExpression" value="0/59 * * * * ?" />
+	</bean>
+	
+	<!-- 业务量统计插入mi099表配置 -->
+	<bean id="insertMi099Data" class="com.yondervision.mi.quartz.InsertMi099Data"/> 
+	<bean id="insertMi099DataDetail" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass"> 
+			<value>com.yondervision.mi.quartz.config.MyDetailQuartzJobBean</value> 
+		</property> 
+		<property name="jobDataAsMap"> 
+			<map> 
+				<entry key="targetObject" value="insertMi099Data" /> 
+				<entry key="targetMethod" value="execute" /> 
+			</map> 
+		</property> 
+	</bean> 
+	<bean id="insertMi099DataTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean"> 
+		<property name="jobDetail" ref="insertMi099DataDetail" /> 
+		<property name="cronExpression" value="0 0 2 * * ?" /> 
+	</bean>
+	<!-- 已发推送消息批量转移 -->
+	<bean id="transSendMsg" class="com.yondervision.mi.quartz.TransSendedMsg"/> 
+	<bean id="transSendMsgDetail" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass"> 
+			<value>com.yondervision.mi.quartz.config.MyDetailQuartzJobBean</value> 
+		</property> 
+		<property name="jobDataAsMap"> 
+			<map> 
+				<entry key="targetObject" value="transSendMsg" /> 
+				<entry key="targetMethod" value="execute" /> 
+			</map> 
+		</property> 
+	</bean> 
+	<bean id="transSendMsgTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean"> 
+		<property name="jobDetail" ref="transSendMsgDetail" /> 
+		<property name="cronExpression" value="0 0 1 * * ?" /> 
+	</bean>
+</beans>

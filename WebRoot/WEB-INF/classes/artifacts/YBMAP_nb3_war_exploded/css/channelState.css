@@ -1,0 +1,86 @@
+.orgManage-box{padding-left:10px;}
+/* orgManage-table-btns */
+.orgManage-table-btns{width:auto;height:auto;margin:0 auto;}
+.orgManage-table-btns a,.orgManage-popup-info-btns a{display:inline-block;font:14px/28px "microsoft yahei";border:1px solid transparent;color:#666;border-radius:3px;padding:0 16px 0 36px;}
+.orgManage-table-btns a:hover,.orgManage-popup-info-btns a:hover{border-color:#eee;}
+.orgManage-table-btns a#orgManage-btn-add{background:url(../images/add.jpg) 14px center no-repeat;}
+.orgManage-table-btns a#orgManage-btn-del{background:url(../images/del.jpg) 14px center no-repeat;}
+.orgManage-table-btns a#orgManage-btn-active{background:url(../images/active.jpg) 14px center no-repeat;}
+.orgManage-table-btns a#orgManage-btn-info{background:url(../images/info.jpg) 14px center no-repeat;}
+.orgManage-popup-info-btns a#orgManage-info-add{background:url(../images/add.jpg) 14px center no-repeat;}
+.orgManage-popup-info-btns a#orgManage-info-del{background:url(../images/del.jpg) 14px center no-repeat;}
+.orgManage-popup-info-btns a#orgManage-info-moveUp{background:url(../images/move_up.jpg) 14px center no-repeat;}
+.orgManage-popup-info-btns a#orgManage-info-moveDown{background:url(../images/move_down.jpg) 14px center no-repeat;}
+.orgManage-popup-info-btns a#orgManage-info-save{background:url(../images/save_icon.jpg) 14px center no-repeat;}
+.orgManage-popup-info-btns a#orgManage-info-goBack{background:url(../images/goback.jpg) 14px center no-repeat;}
+.orgManage-table-btns a#orgManage-btn-modify {background:url(../images/eidt.jpg) 12px center no-repeat;}
+.orgManage-table-btns a#orgManage-btn-mapinfo {background:url(../images/ico_map.png) 12px center no-repeat;}
+.orgManage-table-btns a#orgManage-btn-import {background:url(../images/ico_import.png) 12px center no-repeat;}
+.orgManage-table-btns a#orgManage-btn-download {background:url(../images/ico_download.png) 12px center no-repeat;}
+.orgManage-table-btns a#orgManage-btn-tracking {background:url(../images/pencil_01.png) 12px center no-repeat;}
+
+
+/* popup edit&create */
+.orgManage-popup-hidden{display:none;overflow:hidden;width:0;height:0;}
+.orgManage-popup-edit-container{width:100%;height:100%;}
+.orgManage-popup-bg{width:100%;height:100%;position:fixed;top:0;left:0;background:#000;filter:alpha(opacity=50);opacity: 0.5;z-index:99;}
+.orgManage-popup-edit{width:754px;height:auto;position:fixed;top:40px;left:0;bottom:0;right:0;margin:auto;z-index:100}
+.orgManage-popup-relative{width:754px;position:relative;background:#fff;}
+.orgManage-popup-close{background:url(../images/dialog_close.png) -40px 0 no-repeat;width:26px;height:26px;cursor: pointer;-webkit-transition:all 0.3s ease-in-out 0s;-moz-transition:all 0.3s ease-in-out 0s;-ms-transition:all 0.3s ease-in-out 0s;transition:all 0.3s ease-in-out 0s;}
+.orgManage-popup-close:hover{background-position: 0 0;}
+.orgManage-popup-edit-close,.orgManage-popup-info-close{position:absolute;right:-13px;top:-13px;}
+.orgManage-popup-edit-title,.orgManage-popup-info-title{width:100%;text-align:center;height:54px;margin-top:13px;font:18px/54px "microsoft yahei";color:#666;}
+.orgManage-popup-edit-title span,.orgManage-popup-info-title span{display:inline-block;border-bottom:2px solid #66cc66;padding:0 18px;}
+.orgManage-popup-shortInput{width:188px;height:28px;border:1px solid #dadbdd;padding:5px;border-radius:2px;float:left;font-size:13px;color:#666}
+.orgManage-popup-longInput{width:482px;height:28px;border:1px solid #dadbdd;padding:5px;border-radius:2px;float:left;color:#666}
+.orgManage-popup-textarea{width:482px;height:48px;border:1px solid #dadbdd;padding:5px;border-radius:2px;float:left;resize: none;color:#666}
+.orgManage-popup-from{margin: 34px auto 0;overflow:hidden;width:592px;}
+.orgManage-popup-from li {width:100%;height:auto;overflow:hidden;padding-bottom:10px;}
+.orgManage-popup-text{float:left;width:72px;padding-right:10px;text-align:right;font:14px/34px "microsoft yahei";color:#666;}
+.red-required{float:left;display:block;height:40px;width:12px;font:14px/36px "microsoft yahei";color:#ff0000;text-align:right;overflow:hidden;}
+.orgManage-popup-btns{width:100%;text-align:center;font-size:0;padding:24px 0 33px;}
+.orgManage-popup-btns p{cursor: pointer;width:92px;height:33px;text-align:center;display:inline-block;color:#fff;font:13px/33px "microsoft yahei";}
+.orgManage-popup-btns p.orgManage-popup-btns-ok{background:#66cc66;margin-right:6px;}
+.orgManage-popup-btns p.orgManage-popup-btns-cancel{background:#ccc}
+/* orgManage-table-btns */
+.orgManage-table-btns{width:100%;height:58px;margin:0 auto;}
+.orgManage-table-btns a,.orgManage-popup-info-btns a{display:inline-block;font:14px/28px "microsoft yahei";border:1px solid transparent;color:#666;border-radius:3px;padding:0 16px 0 36px;}
+.orgManage-table-btns a:hover,.orgManage-popup-info-btns a:hover{border-color:#eee;}
+.orgManage-table-btns a#orgManage-btn-add{background:url(../images/add.jpg) 14px center no-repeat;}
+.orgManage-table-btns a#orgManage-btn-del{background:url(../images/del.jpg) 14px center no-repeat;}
+.orgManage-table-btns a#orgManage-btn-active{background:url(../images/active.jpg) 14px center no-repeat;}
+.orgManage-table-btns a#orgManage-btn-info{background:url(../images/info.jpg) 14px center no-repeat;}
+.orgManage-popup-info-btns a#orgManage-info-add{background:url(../images/add.jpg) 14px center no-repeat;}
+.orgManage-popup-info-btns a#orgManage-info-del{background:url(../images/del.jpg) 14px center no-repeat;}
+.orgManage-popup-info-btns a#orgManage-info-moveUp{background:url(../images/move_up.jpg) 14px center no-repeat;}
+.orgManage-popup-info-btns a#orgManage-info-moveDown{background:url(../images/move_down.jpg) 14px center no-repeat;}
+.orgManage-popup-info-btns a#orgManage-info-save{background:url(../images/save_icon.jpg) 14px center no-repeat;}
+.orgManage-popup-info-btns a#orgManage-info-goBack{background:url(../images/goback.jpg) 14px center no-repeat;}
+/* popup regional info */
+.regional{width:100%;height:100%;}
+.orgManage-popup-info{width:754px;height:auto;position:fixed;top:40px;left:0;bottom:0;right:0;margin:auto;z-index:100}
+.orgManage-popup-info-btns{padding:15px 5px 0;}
+#orgManage-popup-info-container{width:1100px;height:auto;margin:20px auto;}
+.orgManage-popup-info-container{width:1100px;height:auto;margin:20px auto;display:none;}
+.orgManage-popup-info-container .mmGrid{margin-top:20px;}
+.info-area-code{width:70px;height:20px;border:1px solid #dadbdd;background:#f4f5f9;padding:2px 5px;font-size:12px;color:#333;display:none;}
+.info-area-name{width:190px;height:20px;border:1px solid #dadbdd;background:#f4f5f9;padding:2px 5px;font-size:12px;color:#333;display:none;}
+.info-save-link,.info-create-link{color:#66cc66;}
+.info-save-link{display:none;}
+.info-area-code.show,.info-area-name.show{display:inline-block;}
+
+
+.channelStateBtns {padding:15px;height:auto;width:auto;}
+.jtree {width:238px;height:600px;border-left:solid 1px #ddd;border-right:solid 1px #ddd;background:#f4f5f9;float:left;}
+.jtree>a {display:block;width:238px;border-right:none;background:url(../images/tree_1.jpg) 30px center no-repeat;display:block;height:40px;border-bottom:solid 1px #eee;text-indent:53px;color:#333;font:13px/40px "microsoft yahei";position:relative;top:0;left:0;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;}
+.jtree>a.on {background:url(../images/ico_minus.png) #fff 30px center no-repeat;border-right:solid 1px #fff;}
+.jtree div a{display:block;width:100%;text-indent:70px;border-bottom:solid 1px #eee;color:#333;font:13px/36px "microsoft yahei";}
+.jtree div a.on{background:url(../images/tree3.jpg) 60px center no-repeat;font-weight:700;}
+/*
+.jtree a {display:block;width:238px;border-right:none;background:url(../images/ico_minus.png) 30px center no-repeat;display:block;height:40px;border-bottom:solid 1px #eee;text-indent:53px;color:#333;font:13px/40px "microsoft yahei";position:relative;top:0;left:0;}
+.jtree a.on {background:url(../images/ico_minus.png) #fff 30px center no-repeat;border-right:solid 1px #fff;}*/
+.contentRight {width:873px;height:auto;float:left;margin-left:10px;}
+
+
+
+

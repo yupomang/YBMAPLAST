@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table_building</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" type="text/css" href="css/channelFlowMonitor.css">
+</head>
+<body>
+
+<div class="orgManage-box channelBox">
+	<div class="jtree">
+		<a href="javascript:;"
+		   v-for="item in centers"
+		   :class="{ 'on': item.centerid == select }"
+		   @click="checkCenter(item.centerid)">{{ item.centername }}</a>
+	</div>
+    <div class="contentRight">
+	    <div class="userStat">
+			<!--<div class="userStatItem userStatbg1">
+				<p>10,000</p>
+				<span>用户量上限</span>
+			</div>-->
+			<div class="userStatItem userStatbg2">
+				<p>10,000</p>
+				<!-- <span>业务量上限</span> -->                    <!-- 20161109 暂时替换为访问量上限 -->
+				<span>访问量上限</span>
+			</div>
+			 <i>实时总计</i>   
+			<!--<div class="userStatItem userStatbg3">
+				<p>10,000</p>
+				<span>用户量</span>
+			</div> --> <!-- 20161109 暂时隐藏 -->
+			<div class="userStatItem userStatbg4">
+				<p>10,000</p>
+				<span>访问量</span>
+			</div>                                         
+	    </div>
+	    <table id="channelStateTable"></table>
+	    
+	    <div class="statTitle">渠道流量监控统计图</div>
+	    <div class="statCont">
+		    <div class="statCont-query">
+			    <p>开始时间</p>
+			    <input type="text" id="query-start-time">
+			    <p>结束时间</p>
+			    <input type="text" id="query-end-time">
+			    <a href="javascript:;" title="查询" id="query-btn">查询</a>
+		    </div>
+	    	<div id="mainExcel" style="width:100%;height:250px;text-align:center;font-size:14px;line-height:250px;"></div>
+	    </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/3rd/echarts.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/3rd/laydate.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/channelFlowMonitor.js"></script>
+</body>
+</html>

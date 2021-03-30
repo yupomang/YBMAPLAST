@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="CMI107">
+
+	<resultMap class="java.util.HashMap" id="WebApi10704Map">
+		<result column="COUNTNUM" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="value" />
+		<result column="TRANSNAME" jdbcType="VARCHAR" property="name" />
+	</resultMap>
+
+
+	<resultMap class="java.util.HashMap" id="WebApi10705Map">
+		<result column="COUNTNUM" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="countnum" />
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+		<result column="pid" jdbcType="VARCHAR" property="pid" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="webapi10708Result">
+		<result column="pidcount" jdbcType="VARCHAR" property="pidcount" />
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="WebApi10706Map">
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+		<result column="flag" jdbcType="VARCHAR" property="flag" />
+		<result column="COUNTNUM" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="countnum" />
+			<result column="pid" jdbcType="VARCHAR" property="pid" />
+	</resultMap>
+
+	<resultMap class="java.util.HashMap" id="WebApi10707Map">
+		<result column="COUNTNUM" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="value" />
+		<result column="transtime" jdbcType="VARCHAR" property="name" />
+	</resultMap>
+	
+	<resultMap class="java.util.HashMap" id="WebApi10723Map">
+		<result column="COUNTNUM" jdbcType="VARCHAR" javaType="java.lang.String" property="value" />
+		<result column="centerid" jdbcType="VARCHAR" property="centerid" />
+		<result column="channeltype" jdbcType="VARCHAR" property="channeltype" />
+		<result column="pid" jdbcType="VARCHAR" property="pid" />
+		<result column="transdate" jdbcType="VARCHAR" property="transdate" />
+		<result column="transtype" jdbcType="VARCHAR" property="transtype" />
+		<result column="transtime" jdbcType="VARCHAR" property="transtime" />
+	</resultMap>
+
+	<resultMap class="java.util.HashMap" id="WebApi10708Map">
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+		<result column="sex" jdbcType="VARCHAR" property="sex" />
+	</resultMap>
+
+	<resultMap class="java.util.HashMap" id="WebApi10709Map">
+		<result column="birth" jdbcType="VARCHAR" property="birth" />
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+	</resultMap>
+
+	<resultMap class="java.util.HashMap" id="webapi10707User01Result">
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+		<result column="countsum" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="countsum" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="webapi10707User02Result">
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+		<result column="countnum" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="countnum" />
+		<result column="pidcreatedate" jdbcType="VARCHAR" property="pidcreatedate" />
+	</resultMap>
+
+	<resultMap class="java.util.HashMap" id="Channel2302Map">
+		<result column="countnum" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="countnum" />
+		<result column="createdate" jdbcType="VARCHAR" property="createdate" />
+		<result column="pid" jdbcType="VARCHAR" property="pid" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="WebApi10709Result">
+		<result column="countnum" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="value" />
+		<result column="transdate" jdbcType="VARCHAR" property="name" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="webapi10711Result">
+		<result column="countnum" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="value" />
+		<result column="appname" jdbcType="VARCHAR" property="name" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="webapi1071001Result">
+		<result column="countnum" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="countnum" />
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+		<result column="transname" jdbcType="VARCHAR" property="transname" />
+		<result column="flag" jdbcType="VARCHAR" property="flag" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="webapi1071001NewResult">
+		<result column="countnum" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="countnum" />
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+		<result column="servicename" jdbcType="VARCHAR" property="transname" />
+		<result column="flag" jdbcType="VARCHAR" property="flag" />
+	</resultMap>
+
+	<resultMap class="java.util.HashMap" id="webapi1071002Result">
+		<result column="countnum" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="countnum" />
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+		<result column="transname" jdbcType="VARCHAR" property="transname" />
+		<result column="flag" jdbcType="VARCHAR" property="flag" />
+		<result column="money" jdbcType="VARCHAR" property="money" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="webapi1071003Result">
+		<result column="centerid" jdbcType="VARCHAR" property="centerid" />
+		<result column="transtype" jdbcType="VARCHAR" property="transtype" />
+		<result column="money" jdbcType="VARCHAR" property="money" />
+		<result column="pid" jdbcType="VARCHAR" property="pid" />
+		<result column="freeuse1" jdbcType="VARCHAR" property="freeuse1" />
+		<result column="cnt" jdbcType="VARCHAR" property="cnt" />
+		<result column="channel" jdbcType="VARCHAR" property="channel" />
+		<result column="servicetype" jdbcType="VARCHAR" property="servicetype" />
+		<result column="serviceid" jdbcType="VARCHAR" property="serviceid" />
+		<result column="dicid" jdbcType="VARCHAR" property="dicid" />
+		<result column="itemid" jdbcType="VARCHAR" property="itemid" />
+		<result column="moneytype" jdbcType="VARCHAR" property="moneytype" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="selectWebapi10706UResult">
+		<result column="countnum" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="countnum" />
+		<result column="itemid" jdbcType="VARCHAR" property="itemid" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="selectWebapi10706TResult">
+		<result column="appname" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="appname" />
+		<result column="successnum" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="successnum" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="selectWebapi10706ZResult">
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+		<result column="countnum" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="countnum" />
+	</resultMap>
+
+	<resultMap class="java.util.HashMap" id="webapi107Appoint">
+	    <result column="zs" jdbcType="VARCHAR" javaType="java.lang.String" property="zscountnum" />
+	    <result column="cg" jdbcType="VARCHAR" javaType="java.lang.String" property="cgcountnum" />
+	    <result column="sb" jdbcType="VARCHAR" javaType="java.lang.String" property="sbcountnum" />
+	    <result column="pid" jdbcType="VARCHAR" property="pid" />
+	    <result column="servicename" jdbcType="VARCHAR" property="servicename" /> 
+	    <result column="itemid" jdbcType="VARCHAR" property="itemid" />
+	    <result column="itemval" jdbcType="VARCHAR" property="itemval" />
+	 </resultMap>
+	 
+	 <resultMap class="java.util.HashMap" id="webapi107Active">
+	 	<result column="channel" jdbcType="VARCHAR" property="channel" />
+	 	<result column="cnt" jdbcType="VARCHAR" javaType="java.lang.String" property="cnt" />
+	 </resultMap>
+
+	<select id="selectFunctionAll" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10704Map">
+
+		select count(*) countnum ,transname from mi107
+		<dynamic prepend="where">
+
+			<isNotEqual prepend="and" property="centerId"
+				compareValue="00000000">
+				CENTERID= #centerId:VARCHAR#
+			</isNotEqual>
+			<isNotEmpty prepend="and" property="startdate">
+				transdate>=#startdate:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enddate">
+	    <![CDATA[transdate<=#enddate:VARCHAR#]]>
+			</isNotEmpty>
+		</dynamic>
+
+		and TRANSTYPE not in('5401','5451')
+		<!-- where TRANSTYPE not in('5401','5451') AND CENTERID= #centerId:VARCHAR# 
+			and transdate>=#startdate:VARCHAR# and <![CDATA[transdate<=#enddate:VARCHAR#]]> -->
+		group by TRANSNAME order by countnum desc
+
+	</select>
+	<select id="selectFunction" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10704Map">
+
+		select count(*) countnum ,transname from mi107
+		<dynamic prepend="where">
+
+			<isNotEqual prepend="and" property="centerId"
+				compareValue="00000000">
+				CENTERID= #centerId:VARCHAR#
+			</isNotEqual>
+			<isNotEmpty prepend="and" property="startdate">
+				transdate>=#startdate:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enddate">
+	    <![CDATA[transdate<=#enddate:VARCHAR#]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="channeltype">
+				channeltype=#channeltype:VARCHAR#
+			</isNotEmpty>
+		</dynamic>
+		and TRANSTYPE not in('5401','5451')
+		<!-- where TRANSTYPE not in('5401','5451') AND CENTERID= #centerId:VARCHAR# 
+			and transdate>=#startdate:VARCHAR# and <![CDATA[transdate<=#enddate:VARCHAR#]]> 
+			and channeltype=#channeltype:VARCHAR# -->
+		group by TRANSNAME order by countnum desc
+
+	</select>
+
+	<!-- 渠道运行情况统计，统计各个渠道的数量 -->
+	<!-- 2017-09-05 去掉非统计标识数据 -->
+	<select id="selectCountByChannel05" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10705Map">
+		select t040.pid,t040.appname,t.countnum from
+		(select count(*) countnum ,pid from mi107 t1  where validflag='1' 
+		<isNotEmpty prepend="and" property="centerid">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="pid">
+			pid =#pid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="startdate">
+			transdate &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			transdate &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		and transtype in (select t2.buztype 
+					 from mi052 t1, mi051 t2, mi050 t3 
+					 where t1.serviceid=t2.serviceid and t1.apiid=t3.apiid and t1.freeuse1='1')
+		group by pid)t
+		join mi040 t040 on t.pid=t040.pid
+
+	</select>
+
+
+	<!-- 统计一个渠道下面的业务成功失败的情况 -->
+	<!-- 2017-09-05 去掉非统计标识数据 -->
+	<select id="selectCountByChannel06" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10706Map">
+		select t040.pid,t040.appname,t.freeuse1 flag,t.countnum from
+		(select pid,freeuse1,count(*) countnum from mi107 t1 where validflag='1'
+		<isNotEmpty prepend="and" property="centerid">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="startdate">
+			transdate &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			transdate &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		and transtype in (select t2.buztype 
+					 from mi052 t1, mi051 t2, mi050 t3 
+					 where t1.serviceid=t2.serviceid and t1.apiid=t3.apiid and t1.freeuse1='1')
+		group by pid,freeuse1)t
+		join mi040 t040 on t.pid=t040.pid
+
+	</select>
+
+	<!-- 统计一个渠道下面活跃用户的情况 -->
+	<select id="selectCountByChannel08" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10705Map">
+		select t040.appname,t3.countnum from
+		(select t2.pid,count(*)countnum from
+		(select t.pid,t.userid from
+		(select pid,userid from mi107 where validflag='1' and pid !=''
+		and userid in(select userid from mi031)
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="startdate">
+			transdate &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			transdate &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		group by pid,userid)t
+		join (select pid,userid from mi031 where validflag='1' and
+		centerid=#centerid:VARCHAR#) t031 on t.pid=t031.pid and
+		t.userid=t031.userid)t2 group by pid)t3
+		join mi040 t040 on t3.pid=t040.pid
+	</select>
+
+	<!-- 渠道运行情况统计，栏目内容更新数量 -->
+	<select id="selectWebapi10706U" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="selectWebapi10706UResult">
+		select classification itemid,count(*)countnum from mi701 where
+		validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="startdate">
+			SUBSTR(RELEASETIME,1,10) &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			SUBSTR(RELEASETIME,1,10) &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		group by classification
+
+	</select>
+
+	<!-- 渠道运行情况统计，信息推送量 -->
+	<select id="selectWebapi10706T" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="selectWebapi10706TResult">
+		select t040.appname,t.successnum from
+		(select pid,count(*)successnum from mi403 where validflag='1' and status='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="startdate">
+			SUBSTR(DATECREATED,1,10) &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			SUBSTR(DATECREATED,1,10) &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		group by pid)t
+		join mi040 t040 on t.pid=t040.pid
+
+	</select>
+
+	<!-- 渠道运行情况统计，渠道注册人数 -->
+	<select id="selectWebapi10706Z" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="selectWebapi10706ZResult">
+		select t040.appname,t.countnum from
+		(select pid,count(*)countnum from mi031 where validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="startdate">
+			SUBSTR(DATECREATED,1,10) &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			SUBSTR(DATECREATED,1,10) &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		group by pid)t
+		join mi040 t040 on t.pid=t040.pid
+	</select>
+
+	<!-- 渠道运行情况统计，渠道注册人数2,不传时间，查询一个渠道所有的userid -->
+	<select id="selectWebapi10706ZZ" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="selectWebapi10706ZResult">
+		select t040.appname,t.countnum from
+		(select pid,count(*)countnum from mi031 where validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		group by pid)t
+		join mi040 t040 on t.pid=t040.pid
+	</select>
+
+	<!-- 统计一个渠道下面功能活跃度的情况 -->
+	<!-- 2017-09-05 去掉非统计标识数据 -->
+	<select id="selectCountByChannel21" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10704Map">
+		<!-- select count(distinct userid)countnum,pid from mi107 group by pid; -->
+		select count(*)countnum,t1.transname from mi107 t1 
+		<dynamic prepend="where">
+
+			<isNotEmpty prepend="and" property="centerId">
+				t1.CENTERID= #centerId:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="pid">
+				t1.pid=#pid:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="startdate">
+				t1.transdate &gt;=#startdate:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enddate">
+				t1.transdate &lt;=#enddate:VARCHAR#
+			</isNotEmpty>
+		and transtype in (select t2.buztype 
+					 from mi052 t1, mi051 t2, mi050 t3 
+					 where t1.serviceid=t2.serviceid and t1.apiid=t3.apiid and t1.freeuse1='1')
+		</dynamic>
+		group by t1.pid,t1.transname
+
+	</select>
+
+	<!-- 访问时间段分布统计 -->
+	<select id="selectCountByChannel22" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10707Map">
+		<!-- select count(*) countnum,transtime,pid from mi107 where pid='10000101' 
+			group by pid,transtime; -->
+		select count(*)countnum,transtime from mi107 t0 
+		<dynamic prepend="where">
+
+			<isNotEmpty prepend="and" property="centerid">
+				CENTERID= #centerid:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="pid">
+				pid=#pid:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="startdate">
+				transdate &gt;=#startdate:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enddate">
+				transdate &lt;=#enddate:VARCHAR#
+			</isNotEmpty>
+		and transtype in (select t2.buztype 
+					 from mi052 t1, mi051 t2, mi050 t3 
+					 where t1.serviceid=t2.serviceid and t1.apiid=t3.apiid and t1.freeuse1='1')
+		</dynamic>
+		group by transtime
+
+	</select>
+	
+	
+	<!-- 访问时间段分布统计 -->
+	<!-- 2017-09-05 去掉非统计标识数据 -->
+	<select id="selectCountByChannel23" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10723Map">
+		<!-- select count(*) countnum,transtime,pid from mi107 where pid='10000101' 
+			group by pid,transtime; -->
+		select count(*) countnum,t1.transtime,t1.centerid,t1.channeltype,t1.pid,t1.transdate,t1.transtype from mi107 t1 
+		<dynamic prepend="where">
+
+			<isNotEmpty prepend="and" property="centerid">
+				t1.CENTERID= #centerid:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="pid">
+				t1.pid=#pid:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="startdate">
+				t1.transdate &gt;=#startdate:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enddate">
+				t1.transdate &lt;=#enddate:VARCHAR#
+			</isNotEmpty>
+		and transtype in (select t2.buztype 
+					 from mi052 t1, mi051 t2, mi050 t3 
+					 where t1.serviceid=t2.serviceid and t1.apiid=t3.apiid and t1.freeuse1='1')
+		</dynamic>
+		group by t1.transtime,t1.centerid,t1.channeltype,t1.pid,t1.transdate,t1.transtype
+
+	</select>
+
+	<!-- 用户分析-用户增长统计1-累计 -->
+	<select id="webapi10707User01" parameterClass="com.yondervision.mi.dto.CMi031"
+		resultMap="webapi10707User01Result">
+		select b.appname,a.countsum from
+		(select pid,count(*) countsum from
+		mi031 where validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="pid">
+			pid=#pid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			SUBSTR(datecreated,1,10)&lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		group by pid)a
+		join
+		(select pid,appname from mi040)b
+		on a.pid=b.pid
+	</select>
+
+	<!-- 用户分析-用户增长统计2-新增 -->
+	<select id="webapi10707User02" parameterClass="com.yondervision.mi.dto.CMi031"
+		resultMap="webapi10707User02Result">
+		select b.appname,a.countnum,a.pidcreatedate from
+		(select pid,count(*)countnum,SUBSTR(datecreated,1,10) pidcreatedate from
+		mi031 where validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="pid">
+			pid=#pid:VARCHAR#
+		</isNotEmpty>
+		group by SUBSTR(datecreated,1,10),pid having
+		SUBSTR(datecreated,1,10)&gt;=#startdate:VARCHAR# and
+		SUBSTR(datecreated,1,10) &lt;=#enddate:VARCHAR# order by
+		pidcreatedate)a
+		join
+		(select pid,appname from mi040)b
+		on a.pid=b.pid
+	</select>
+
+	<!-- 用户分析-用户性别属性统计 -->
+	<select id="selectCountByChannel24" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10708Map">
+		select t1.appname,t029.sex from
+		(select t031.userid,t040.appname,t031.personalid from
+
+		(select pid,userid,personalid from mi031 where validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="pid">
+			pid =#pid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="startdate">
+			SUBSTR(datecreated,1,10) between #startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			#enddate:VARCHAR#
+		</isNotEmpty>
+		<!-- <isNotEmpty prepend="and" property="startdate"> SUBSTR(datecreated,1,10)&gt;=#startdate:VARCHAR# 
+			</isNotEmpty> <isNotEmpty prepend="and" property="enddate"> SUBSTR(datecreated,1,10)&lt;=#enddate:VARCHAR# 
+			</isNotEmpty> -->
+		)t031
+
+		join mi040 t040 on t031.pid=t040.pid)t1
+		join mi029 t029 on t1.personalid=t029.personalid where t029.sex is not
+		null
+		<!-- and t029.sex &lt;&gt;'' -->
+
+	</select>
+
+	<!-- 用户分析-用户年龄属性统计 -->
+	<select id="selectCountByChannel25" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10709Map">
+		select t1.appname,t029.birth from
+		(select t031.personalid,t040.appname from
+		(select pid,userid,personalid from mi031 where validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="pid">
+			pid =#pid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="startdate">
+			SUBSTR(datecreated,1,10)&gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			SUBSTR(datecreated,1,10)&lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		)t031
+
+		join mi040 t040 on t031.pid=t040.pid)t1
+		join mi029 t029 on t1.personalid=t029.personalid where t029.birth is not
+		null
+		<!-- and birth !='' -->
+
+	</select>
+
+
+	<!-- 业务分析-渠道分布统计 -->
+	<select id="webapi10708" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="webapi10708Result">
+		<!-- select t107.pidcount,t040.appname from
+		(select pid,count(*)pidcount
+		from mi107 where validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="pid">
+			pid=#pid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="startdate">
+			transdate &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			transdate &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		group by pid)t107
+		join mi040 t040 on t107.pid=t040.pid -->
+
+		select appname, count(*) pidcount from ( 
+			select t5.appname from (
+				select pid, transtype, freeuse3 from mi107
+					where validflag='1' and freeuse1='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="pid">
+			pid=#pid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="startdate">
+			transdate &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			transdate &lt;=#enddate:VARCHAR#
+		</isNotEmpty>  
+			) t0
+			join (
+				select t2.buztype, t3.url 
+				from mi052 t1, mi051 t2, mi050 t3 
+				where t1.serviceid=t2.serviceid and t1.apiid=t3.apiid and t1.freeuse1='1' and t2.moneytype='0'
+			) t4
+			on t4.buztype=t0.transtype and t4.url=ltrim(rtrim(SUBSTR(t0.freeuse3,2)))
+			join mi040 t5 on t5.pid=t0.pid
+		)t7 group by appname
+	</select>
+
+	<!-- 业务分析-用户分布统计 -->
+	<select id="webapi10711" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="webapi10711Result">
+		select sum(t107.countnum)countnum,t040.appname from
+		(select
+		pid,userid,count(*)countnum from mi107 where validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="pid">
+			pid=#pid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="startdate">
+			transdate &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			transdate &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		group by pid,userid)t107
+		join mi040 t040 on t107.pid=t040.pid
+		group by t040.appname
+
+	</select>
+
+	<!-- 业务分析-时间段分布统计 （跨年） -->
+	<select id="webapi1070901" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10709Result">
+		select count(*) countnum,SUBSTR(transdate,1,4)transdate from mi107
+		where validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="pid">
+			pid=#pid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="startdate">
+			transdate &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			transdate &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		group by SUBSTR(transdate,1,4)
+
+	</select>
+
+	<!-- 业务分析-时间段分布统计 （跨月） -->
+	<select id="webapi1070902" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10709Result">
+		select count(*) countnum,SUBSTR(transdate,1,7)transdate from mi107
+		where validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="pid">
+			pid=#pid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="startdate">
+			transdate &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			transdate &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		group by SUBSTR(transdate,1,7)
+
+	</select>
+	<!-- 业务分析-时间段分布统计 （跨天） -->
+	<select id="webapi1070903" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10709Result">
+		select count(*) countnum,SUBSTR(transdate,1,10)transdate from mi107
+		where validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="pid">
+			pid=#pid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="startdate">
+			transdate &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			transdate &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		group by SUBSTR(transdate,1,10)
+
+	</select>
+
+	<!-- 业务分析-业务量统计非资金类） -->
+	<select id="webapi1071001" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="webapi1071001Result">
+		select t040.appname,t1.transname,t1.freeuse1 flag,t1.countnum from
+
+		(select pid,transname,freeuse1,count(*)countnum from mi107 where
+		validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="pid">
+			pid =#pid:VARCHAR#
+		</isNotEmpty>
+		<isNotNull property="transTypeList">
+			<iterate prepend="AND" property="transTypeList" open="("
+				close=")" conjunction="AND">
+				transtype != #transTypeList[]#
+			</iterate>
+		</isNotNull>
+		<isNotEmpty prepend="and" property="startdate">
+			transdate &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			transdate &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		group by pid,transname,freeuse1)t1
+		join mi040 t040 on t1.pid=t040.pid
+	</select>
+ 
+ <!-- 业务分析-业务量统计非资金类）-->
+ <select id="webapi1071001New" parameterClass="com.yondervision.mi.dto.CMi107" resultMap="webapi1071001NewResult">
+  	select t040.appname,t33.servicename,t33.freeuse1 flag,t33.countnum from
+        (select t22.pid,t22.servicename,t22.freeuse1,count(*)countnum  from
+	        (select t11.pid,t11.buztype,t11.servicename,t5.freeuse1,t5.freeuse2  from
+	                (select t1.pid,t4.buztype,t4.serviceid,t4.servicename from mi053 t1 join mi051 t4 on t1.serviceid=t4.serviceid 
+	                where t4.servicetype=#servicetype:VARCHAR#
+	                
+	                <isNotEmpty prepend="and" property="pid">
+		    			t1.pid =#pid:VARCHAR#
+					</isNotEmpty>
+	                
+	                and t1.centerid=#centerid:VARCHAR#  and t1.validflag='1' and t4.validflag='1' and t4.moneytype='0'
+	                
+	                )t11
+	        join mi052 t2 on t11.serviceid=t2.serviceid join mi050 t3 on t2.apiid=t3.apiid join mi107 t5 on t11.pid=t5.pid and t11.buztype=t5.transtype and t3.url=ltrim(rtrim(SUBSTR(t5.freeuse3,2,18) )) 
+	        where t2.freeuse1='1' and t2.validflag='1' and t3.validflag='1' and t5.validflag='1' 
+	        and t5.centerid=#centerid:VARCHAR#
+	        <isNotEmpty prepend="and" property="pid">
+	   			t5.pid =#pid:VARCHAR#
+			</isNotEmpty>
+			and transdate &gt;=#startdate:VARCHAR# and transdate &lt;=#enddate:VARCHAR#)t22 
+		group by t22.pid,t22.servicename,t22.freeuse1)t33
+		join mi040 t040 on t33.pid=t040.pid
+	</select>
+
+	<!-- 业务分析-业务量统计资金类 -->
+	<select id="webapi1071002" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="webapi1071002Result">
+		select t040.appname,t1.transname,t1.freeuse1 flag,t1.countnum,t1.money
+		from
+
+		(select pid,transname,freeuse1,count(*)countnum,sum(money)money from mi107
+		where validflag='1'
+		<isNotEqual prepend="and" property="centerid" compareValue="00000000">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEqual>
+		<isNotEmpty prepend="and" property="pid">
+			pid =#pid:VARCHAR#
+		</isNotEmpty>
+		<isNotNull property="transTypeList">
+			<iterate prepend="AND" property="transTypeList" open="("
+				close=")" conjunction="OR">
+				transtype = #transTypeList[]#
+			</iterate>
+		</isNotNull>
+		<isNotEmpty prepend="and" property="startdate">
+			transdate &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			transdate &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		group by pid,transname,freeuse1)t1
+		join mi040 t040 on t1.pid=t040.pid
+
+	</select>
+
+	<!-- 业务分析-定时任务
+	<select id="webapi1071003" parameterClass="com.yondervision.mi.dto.CMi107" resultMap="webapi1071003Result">
+		select t5.centerid, t5.transtype, t5.money, t5.pid, t5.freeuse1, t5.cnt, 
+			t6.channel, t7.servicetype, t7.serviceid, t8.dicid, t8.itemid
+		from (select centerid, transtype, sum(money) money, pid, freeuse1,count(1) cnt from
+				(select t0.centerid, t0.channeltype, t0.transtype, t0.money, t0.pid, t0.freeuse1 
+				 from 
+					(select centerid, channeltype, transtype, money, appid, pid, freeuse1, freeuse3
+					 from mi107
+					 where transdate=#mitransdate:VARCHAR#) t0
+				 join 
+					(select t2.buztype, t3.url 
+					 from mi052 t1, mi051 t2, mi050 t3 
+					 where t1.serviceid=t2.serviceid and t1.apiid=t3.apiid and t1.freeuse1='1' and t2.moneytype='0') t4
+				 on t4.buztype=t0.transtype and t4.url=ltrim(rtrim(SUBSTR(t0.freeuse3,2))))
+			 group by centerid, pid, transtype, freeuse1) t5
+		 join mi040 t6 on t5.pid=t6.pid
+		 join mi051 t7 on t5.transtype=t7.buztype
+		 join mi007 t8 on t7.freeuse1=t8.dicid
+		 order by t5.centerid, t5.transtype, t5.pid
+	</select>-->
+	
+	<!-- 业务分析-定时任务-->
+	<!-- 2017-09-05 增加资金类业务 -->
+	<select id="webapi1071003" parameterClass="com.yondervision.mi.dto.CMi107" resultMap="webapi1071003Result">
+		select t5.centerid, t5.transtype, t5.money, t5.pid, t5.freeuse1, t5.cnt, 
+			t6.channel, t7.servicetype, t7.serviceid, t8.dicid, t8.itemid,t5.moneytype
+		from (select centerid, transtype, sum(money) money, pid, freeuse1,count(1) cnt,moneytype from
+				(select t0.centerid, t0.channeltype, t0.transtype, t0.money, t0.pid, t0.freeuse1,t4.moneytype
+				 from 
+					(select centerid, channeltype, transtype, money, appid, pid, freeuse1, freeuse3
+					 from mi107
+					 where transdate=#mitransdate:VARCHAR#) t0
+				 join 
+					(select t2.buztype, t3.url,t2.moneytype 
+					 from mi052 t1, mi051 t2, mi050 t3 
+					 where t1.serviceid=t2.serviceid and t1.apiid=t3.apiid and t1.freeuse1='1') t4
+				 on t4.buztype=t0.transtype and t4.url=ltrim(rtrim(SUBSTR(t0.freeuse3,2))))
+			 group by centerid, pid, transtype, freeuse1,moneytype) t5
+		 join mi040 t6 on t5.pid=t6.pid
+		 join mi051 t7 on t5.transtype=t7.buztype
+		 join mi007 t8 on t7.freeuse1=t8.dicid
+		 order by t5.centerid, t5.transtype, t5.pid
+	</select>
+	
+	<select id="webapi107Appoint" parameterClass="com.yondervision.mi.dto.CMi107" resultMap="webapi107Appoint">
+		select t0.pid, t0.servicename, t0.itemid, t0.itemval, 
+			count(*) zs, count(*) cg, 0 as sb 
+		from (
+			select t1.pid, t2.appobusiname as servicename, t3.itemid, t3.itemval from mi625 t1
+			left join mi620 t2 on t1.appobusiid = t2.appobusiid
+			left join (select * from mi007 where updicid=576) t3 on t2.freeuse2 = t3.itemid
+			where t2.freeuse1 = 2 and t1.validflag=1
+					and t1.centerid= #centerid:VARCHAR#
+					and t1.pid =#pid:VARCHAR#
+					and t1.appodate &gt;=#startdate:VARCHAR#
+					and t1.appodate &lt;=#enddate:VARCHAR#
+        		) t0
+		group by t0.pid, t0.servicename, t0.itemid, t0.itemval
+	</select>
+	
+	<select id="webapi107Active" parameterClass="com.yondervision.mi.dto.CMi107" resultMap="webapi107Active">
+		select channeltype as channel ,count(*) as cnt
+		from (
+			select t0.channeltype, t0.userid 
+			from (
+				select * 
+				from mi107 t1 
+				where t1.transdate &gt;= #startdate:VARCHAR# 
+					and t1.transdate &lt;= #enddate:VARCHAR# 
+					and t1.centerid = #centerid:VARCHAR#) t0
+			inner join mi031 t2 on t0.userid=t2.userid and t0.channeltype=t2.channel
+			group by t0.channeltype,t0.userid
+		) group by channeltype
+	</select>
+	<select id="selectUserCount" parameterClass="com.yondervision.mi.dto.CMi107" resultMap="webapi107Active">
+		select channel, count(*) as cnt 
+		from mi031 
+		where centerid = #centerid:VARCHAR#
+		group by channel
+	</select>
+	<select id="selectWebApiRegister" parameterClass="com.yondervision.mi.dto.CMi107" resultMap="webapi107Active">
+			select channel, count(*) as cnt 
+			from mi031 
+			where datecreated &lt;= #enddate:VARCHAR#
+			and centerid = #centerid:VARCHAR#
+			group by channel
+	</select>
+</sqlMap>

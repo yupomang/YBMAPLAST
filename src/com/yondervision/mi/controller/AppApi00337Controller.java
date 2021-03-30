@@ -3,12 +3,17 @@ package com.yondervision.mi.controller;
 import com.aspose.words.*;
 import com.yd.util.FileUtil;
 import com.yondervision.mi.common.ApiUserContext;
+import com.yondervision.mi.common.ERRCODE;
 import com.yondervision.mi.common.log.LoggerUtil;
 import com.yondervision.mi.form.AppApi00225Form;
 import com.yondervision.mi.form.AppApi00226Form;
+import com.yondervision.mi.form.AppApi030Form;
+import com.yondervision.mi.service.MsgSendApi001Service;
+import com.yondervision.mi.util.CommonUtil;
 import com.yondervision.mi.util.ConvertUpMoneyUtil;
 import com.yondervision.mi.util.DigitalSealService;
 import com.yondervision.mi.util.ReadProperty;
+import com.yondervision.mi.util.security.AES;
 import com.yondervision.mi.util.security.Base64Decoder;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
@@ -21,7 +26,9 @@ import org.apache.poi.POIXMLDocument;
 import org.apache.poi.xwpf.usermodel.*;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sun.misc.BASE64Encoder;
 
@@ -37,6 +44,11 @@ import java.util.regex.Pattern;
 @Controller
 public class AppApi00337Controller {
 
+    @Autowired
+    private MsgSendApi001Service msgSendApi001Service = null;
+    public void setMsgSendApi001Service(MsgSendApi001Service msgSendApi001Service) {
+        this.msgSendApi001Service = msgSendApi001Service;
+    }
     //date : 2020-11-25
     private static String TEMP_PATH = ReadProperty.getString("temp_path");
 
@@ -68,13 +80,14 @@ public class AppApi00337Controller {
 
         request.setAttribute("centerId", form.getCenterId()); //date : 2020-11-25
         request.setAttribute("accnum",form.getAccnum());
-        request.setAttribute("seqno", form.getChannel());
+        request.setAttribute("seqno", "1");
         request.setAttribute("projectname", form.getProjectname());
         request.setAttribute("qdapprnum", "YTJ" + UUID.randomUUID());
         request.setAttribute("transdate", dateFormat.format(new Date()));
         request.setAttribute("certinum", form.getCertinum());
-        request.setAttribute("userId", form.getUserid());
+        request.setAttribute("userId", "9990");
         request.setAttribute("buzType", form.getBuzType());
+        request.setAttribute("channel", form.getChannel());
 
         log.info("请求参数centerId的值为: " + request.getAttribute("centerId"));
         log.info("请求参数accnum的值为: " + request.getAttribute("accnum"));
@@ -89,7 +102,7 @@ public class AppApi00337Controller {
         log.info("appapi00337---获取请求路径: "  + request.getRequestURI());
         log.info("appapi00337---调用同公积金中心通信接口开始。begin");
 
-        log.info("验证appapi0227数据结果");
+        /*log.info("验证appapi0227数据结果");
         log.info("请求参数\"transdate\"的值为: " + form.getTransdate());
         log.info("请求参数\"loancontrnum\"的值为: " + form.getLoancontrnum());
         log.info("请求参数\"indiaccstate\"的值为: " + form.getIndiaccstate());
@@ -115,8 +128,91 @@ public class AppApi00337Controller {
         log.info("请求参数\"year1\"的值为: " + form.getYear1());
         log.info("请求参数\"basenum\"的值为: " + form.getBasenum());
 
-        log.info("appapi00337------参数查询失败");
+        log.info("appapi00337------参数查询失败");*/
 
+        //本地YB调appapi03824接口
+        ModelMap modelMap = new ModelMap();
+        AppApi030Form formk = new AppApi030Form();
+        formk.setCenterId(form.getCenterId());
+        formk.setAccnum(form.getAccnum());
+        formk.setSeqno("1");
+        formk.setProjectname(form.getProjectname());
+        formk.setQdapprnum("YTJ" + UUID.randomUUID());
+        formk.setTransdate(dateFormat.format(new Date()));
+        formk.setCertinum(form.getCertinum());
+        formk.setUserId(form.getUserId());
+        formk.setBuzType(form.getBuzType());
+
+        //formk.setChannel("40");
+        AppApi038Contorller apppApi038Contorller = new AppApi038Contorller();
+        String rep = apppApi038Contorller.appapi03824(formk,modelMap,request,response);
+        System.out.println("03824查询结果："+rep);
+        JSONObject json1 = JSONObject.fromObject(rep);
+        log.info("json1.toString()==========" + json1.toString());
+        String accname = json1.get("accname").toString();
+        form.setAccname(accname);
+
+        String indiaccstate = json1.get("indiaccstate").toString();
+        form.setIndiaccstate(indiaccstate);
+
+        String addr = json1.get("addr").toString();
+        form.setAddr(addr);
+
+        String accnum1 = json1.get("accnum").toString();
+        form.setAccnum(accnum1);
+
+        String unitaccname1 = json1.get("unitaccname").toString();
+        form.setUnitaccname(unitaccname1);
+
+        String year = json1.get("year").toString();
+        form.setYear(year);
+
+        String certinum2 = json1.get("certinum").toString();
+        form.setCertinum(certinum2);
+
+        String unitprop = json1.get("unitprop").toString();
+        form.setUnitprop(unitprop);
+
+        String recode1 = json1.get("recode").toString();
+        form.setRecode(recode1);
+
+        String bal = json1.get("bal").toString();
+        form.setBal(bal);
+
+        String linkphone = json1.get("linkphone").toString();
+        form.setLinkphone(linkphone);
+
+        String indiprop = json1.get("indiprop").toString();
+        form.setIndiprop(indiprop);
+
+        String projectname = json1.get("projectname").toString();
+        form.setProjectname(projectname);
+
+        String amt = json1.get("amt").toString();
+        form.setAmt(amt);
+
+        String flag = json1.get("flag").toString();
+        form.setFlag(flag);
+
+        String month1 = json1.get("month1").toString();
+        form.setMonth1(month1);
+
+        String month = json1.get("month").toString();
+        form.setMonth(month);
+
+        String opnaccdate = json1.get("opnaccdate").toString();
+        form.setOpnaccdate(opnaccdate);
+
+        String linkman = json1.get("linkman").toString();
+        form.setLinkman(linkman);
+
+        String indipaysum = json1.get("indipaysum").toString();
+        form.setIndipaysum(indipaysum);
+
+        String year1 = json1.get("year1").toString();
+        form.setYear1(year1);
+
+        //开始打印
         String templateFile = TEMP_PATH + "temp.doc";//模板文件名 date : 2020-11-25
         long endTime = System.currentTimeMillis();
         long Time = endTime - starTime;
@@ -658,4 +754,33 @@ public class AppApi00337Controller {
         return str;
     }
 
+   /* public String appapi03824(AppApi030Form form, ModelMap modelMap, HttpServletRequest request,
+                              HttpServletResponse response) throws Exception{
+        Logger log = LoggerUtil.getLogger();
+        form.setBusinName("职工住房公积金缴存情况证明");
+        log.info(LOG.START_BUSIN.getLogText(form.getBusinName()));
+        log.debug(ERRCODE.DEBUG.SHOW_PARAM.getLogText(CommonUtil
+                .getStringParams(form)));
+        ApiUserContext.getInstance();
+        request.setAttribute("centerId", form.getCenterId());
+        if(form.getChannel().trim().equals("40")||form.getChannel().trim().equals("42")||form.getChannel().trim().equals("52")||form.getChannel().trim().equals("91")||form.getChannel().trim().equals("92")||form.getChannel().trim().equals("93")||form.getChannel().trim().equals("94")||form.getChannel().trim().equals("95")||form.getChannel().trim().equals("96")){
+            log.info("zhangchenw_request:" + request.toString() + "response:" + response.toString());
+            String rep=msgSendApi001Service.send(request, response);
+            log.info("rep="+rep);
+            log.info(LOG.END_BUSIN.getLogText(form.getBusinName()));
+            AES aes = new AES(form.getCenterId() ,form.getChannel() ,form.getAppid() ,form.getAppkey());
+            response.getOutputStream().write(aes.encrypt(rep.getBytes("UTF-8")).getBytes("UTF-8"));
+            log.info("加密后rep="+aes.encrypt(rep.getBytes("UTF-8")));
+            log.info(LOG.END_BUSIN.getLogText(form.getBusinName()));
+            return "/index";
+        }else
+        {
+            log.info("zhangwang_request:" + request.toString() + "response:" + response.toString());
+            String rep=msgSendApi001Service.send(request, response);
+            response.getOutputStream().write(rep.getBytes("UTF-8"));
+            log.info("rep="+rep);
+            log.info(LOG.END_BUSIN.getLogText(form.getBusinName()));
+            return "/index";
+        }
+    }*/
 }

@@ -1,0 +1,545 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" type="text/css" href="css/analysis.css" />
+</head>
+<body>
+<div class="channelAnalysis-top" id="filter-form">
+    <p v-show="cu.hide" class="channelAnalysis-top-name" style="display: none;">客户名称</p>
+    <select v-show="cu.hide" name="" class="cn" v-model="cu.selected" style="display: none;">
+        <option v-for="option in cu.options" v-bind:value="option.value">
+            {{ option.text }}
+        </option>
+    </select>
+    <p v-show="ch.hide" class="channelAnalysis-top-name">渠道</p>
+    <select v-show="ch.hide" name="" id="channel" class="s-channel" v-model="ch.selected" style="width: 155px;">
+        <option v-for="option in ch.options" v-bind:value="option.value">
+            {{ option.text }}
+        </option>
+    </select>
+    <p class="channelAnalysis-top-name before">开始时间</p>
+    <input type="text" class="channelAnalysis-top-startTime before" id="channelAnalysis-top-startTime" />
+    <p class="channelAnalysis-top-name before">结束时间</p>
+    <input type="text" class="channelAnalysis-top-endTime before" id="channelAnalysis-top-endTime" />
+    <p class="channelAnalysis-top-name added">年份</p>
+    <select name="" id="year" class="added">
+    </select>
+    <p class="channelAnalysis-top-name added">月份</p>
+    <select name="" id="month" class="added">
+    </select>
+    <a href="javascript:;" title="查询" @click="filter" class="channelAnalysis-top-queryBtn">查询</a>
+</div>
+<div class="channelAnalysis-tab">
+    <a href="javascript:;" title="渠道分布统计"  class="on">渠道分布统计</a>
+    <a href="javascript:;" title="业务量统计">业务量统计</a>
+    <a href="javascript:;" title="业务量统计表">业务量统计表</a>
+    <a href="javascript:;" title="各渠道业务量统计表">各渠道业务量统计表</a>
+    <!--<a href="javascript:;" title="用户分布统计">用户分布统计</a>-->
+    <!--<a href="javascript:;" title="时间段分布统计">时间段分布统计</a>-->
+</div>
+<div class="channelAnalysis-chats">
+    <!--
+        busAnalysis1: 渠道分布统计
+        busAnalysis2: 业务量统计
+        busAnalysis3: 用户分布统计
+        busAnalysis4: 时间段分布统计
+    -->
+    <div id="busAnalysis1">
+
+    </div>
+    <div id="busAnalysis2">
+        <label>
+            <input type="checkbox" v-model="isFunds">
+            <span>资金类业务</span>
+        </label>
+        <!--非资金类业务table-->
+        <div class="multiple-table" v-show="isShow && !isFunds"><!--  && item3Length != 1 -->
+            <div class="overflow-box multiple-table-wrap"
+                 v-bind:style="{ 'width': items.data.length * 314 + 451 + 'px' }">
+                <!-- 一级分类名称 -->
+                <ul class="multiple-class-title">
+                    <li class="multiple-table-top-title">
+                        <span class="multiple-table-top-nameX">业务情况</span>
+                        <span class="multiple-table-top-nameY">业务类型</span>
+                        <hr class="multiple-table-title-hr">
+                    </li>
+                    <!-- items,items1,items2加30是为了增加小计的高度 -->
+                    <li class="multiple-table-title-deep-color"
+                        v-if="items.count>0"
+                        v-bind:style="{'height': 30 * items.count + 30 + 'px', 'line-height': 30 * items.count + 30 + 'px'}"
+                        title="{{ items.classType }}">
+                        {{ items.classType }}
+                    </li>
+                    <li class="multiple-table-title-deep-color"
+                        v-if="items1.count>0"
+                        v-bind:style="{'height': 30 * items1.count + 30 + 'px', 'line-height': 30 * items1.count + 30 + 'px'}"
+                        title="{{ items1.classType }}">
+                        {{ items1.classType }}
+                    </li>
+                    <li class="multiple-table-title-deep-color"
+                        v-if="items2.count>0"
+                        v-bind:style="{'height': 30 * items2.count + 30 + 'px', 'line-height': 30 * items2.count + 30 + 'px'}"
+                        title="{{ items2.classType }}">
+                        {{ items2.classType }}
+                    </li>
+                    <li class="multiple-table-title-deep-color"
+                        v-if="items3.count>0"
+                        v-bind:style="{'height': 30 * items3.count + 'px', 'line-height': 30 * items3.count + 'px'}"
+                        title="{{ items3.classType }}">
+                        {{ items3.classType }}
+                    </li>
+                </ul>
+                <!-- 二级分类名称 -->
+                <ul class="multiple-table-title">
+                    <li class="multiple-table-top-title"></li>
+                    <li v-if="itemLength>0"
+                        v-for="title in items.data[0].data[0].value"
+                        title="{{ title.classTitle }}"
+                        class="multiple-table-title-light-color"
+                        v-bind:style="{'height': 30 * title.classValue.length + 'px', 'line-height': 30 * title.classValue.length + 'px'}">
+                        {{ title.classTitle }}
+                    </li>
+                    <li v-if="itemLength>0" class="multiple-table-title-light-color deep-gray-bg">小计</li>
+                    <li v-if="item1Length>0"
+                        v-for="title in items1.data[0].data[0].value"
+                        title="{{ title.classTitle }}"
+                        class="multiple-table-title-light-color"
+                        v-bind:style="{'height': 30 * title.classValue.length + 'px', 'line-height': 30 * title.classValue.length + 'px'}">
+                        {{ title.classTitle }}
+                    </li>
+                    <li v-if="item1Length>0" class="multiple-table-title-light-color deep-gray-bg">小计</li>
+                    <li v-if="item2Length>0"
+                        v-for="title in items2.data[0].data[0].value"
+                        title="{{ title.classTitle }}"
+                        class="multiple-table-title-light-color"
+                        v-bind:style="{'height': 30 * title.classValue.length + 'px', 'line-height': 30 * title.classValue.length + 'px'}">
+                        {{ title.classTitle }}
+                    </li>
+                    <li v-if="item2Length>0" class="multiple-table-title-light-color deep-gray-bg">小计</li>
+                    <li v-if="item3Length>0"
+                        v-for="title in items3.data[0].data[0].value"
+                        title="{{ title.classTitle }}"
+                        class="multiple-table-title-light-color"
+                        v-bind:style="{'height': 30 * title.classValue.length + 'px', 'line-height': 30 * title.classValue.length + 'px'}"
+                        :class="{'deep-gray-bg': title.classValue.length == 1 && title.classValue[0].name == '' }">
+                        {{ title.classTitle }}
+                    </li>
+                </ul>
+                <!-- 最底层分类名称 -->
+                <ul class="multiple-table-title">
+                    <li class="multiple-table-top-title"></li>
+                    <template v-for="item in items.data[0].data[0].value">
+                        <li v-if="itemLength>0"
+                            v-for="subItem in item.classValue"
+                            title="{{ subItem.name }}"
+                            class="multiple-table-title-light-color"
+                            :class="{'deep-gray-bg': subItem.name == '' }">
+                            {{ subItem.name == '' ? '小计' : subItem.name }}
+                        </li>
+                    </template>
+                    <li v-if="itemLength>0" class="multiple-table-title-light-color deep-gray-bg"></li>
+                    <template v-for="item in items1.data[0].data[0].value">
+                        <li v-if="item1Length>0"
+                            v-for="subItem in item.classValue"
+                            title="{{ subItem.name }}"
+                            class="multiple-table-title-light-color"
+                            :class="{'deep-gray-bg': subItem.name == '' }">
+                            {{ subItem.name == '' ? '小计' : subItem.name }}
+                        </li>
+                    </template>
+                    <li v-if="item1Length>0" class="multiple-table-title-light-color deep-gray-bg"></li>
+                    <template v-for="item in items2.data[0].data[0].value">
+                        <li v-if="item2Length>0"
+                            v-for="subItem in item.classValue"
+                            title="{{ subItem.name }}"
+                            class="multiple-table-title-light-color"
+                            :class="{'deep-gray-bg': subItem.name == '' }">
+                            {{ subItem.name == '' ? '小计' : subItem.name }}
+                        </li>
+                    </template>
+                    <li v-if="item2Length>0" class="multiple-table-title-light-color deep-gray-bg"></li>
+                    <template v-for="item in items3.data[0].data[0].value">
+                        <li v-if="item3Length>0"
+                            v-for="subItem in item.classValue"
+                            title="{{ subItem.name }}"
+                            class="multiple-table-title-light-color"
+                            :class="{'deep-gray-bg': (item.classValue.length == 1 && item.classValue[0].name == '') || subItem.name == '' }">
+                            {{ subItem.name == '' && item.classValue.length != 1 ? '小计' : subItem.name }}
+                        </li>
+                    </template>
+                </ul>
+                <!-- 具体分类数字 -->
+                <ul class="multiple-tables" v-for="(itemIndex, item) in items.data">
+                    <!-- 具体分类数字 头部标题 -->
+                    <li class="multiple-tables-title" v-if="items.data[0].data[0].name != ''">
+                        <h2>{{ item.appname }}</h2>
+                        <p v-if="$index != 3"
+                           v-for="headerTitle in item.data"
+                           v-bind:style="{ 'background-color': bgColor[$index], 'width': widthArr[item.data.length] }">
+                            {{ headerTitle.name }}
+                        </p>
+                        <p v-if="$index == 3"
+                           v-for="headerTitle in item.data"
+                           v-bind:style="{ 'background-color': bgColor[$index], 'width': '90px' }">
+                            {{ headerTitle.name }}
+                        </p>
+                    </li>
+                    <li class="multiple-tables-title" v-if="items.data[0].data[0].name == '' && items1.data[0].data[0].name != ''">
+                        <h2>{{ items1.data[0].appname }}</h2>
+                        <p v-if="$index != 3"
+                           v-for="headerTitle in items1.data[0].data"
+                           v-bind:style="{ 'background-color': bgColor[$index], 'width': widthArr[items1.data[0].data.length] }">
+                            {{ headerTitle.name }}
+                        </p>
+                        <p v-if="$index == 3"
+                           v-for="headerTitle in items1.data[0].data"
+                           v-bind:style="{ 'background-color': bgColor[$index], 'width': '90px' }">
+                            {{ headerTitle.name }}
+                        </p>
+                    </li>
+                    <li class="multiple-tables-title"
+                        v-if="items.data[0].data[0].name == '' && items1.data[0].data[0].name == '' && items2.data[0].data[0].name != ''">
+                        <h2>{{ items2.data[0].appname }}</h2>
+                        <p v-if="$index != 3"
+                           v-for="headerTitle in items2.data[0].data"
+                           v-bind:style="{ 'background-color': bgColor[$index], 'width': widthArr[items2.data[0].data.length] }">
+                            {{ headerTitle.name }}
+                        </p>
+                        <p v-if="$index == 3"
+                           v-for="headerTitle in items2.data[0].data"
+                           v-bind:style="{ 'background-color': bgColor[$index], 'width': '90px' }">
+                            {{ headerTitle.name }}
+                        </p>
+                    </li>
+                    <li class="multiple-tables-title"
+                        v-if="items.data[0].data[0].name == '' && items1.data[0].data[0].name == '' && items2.data[0].data[0].name == '' && items3.data[0].data[0].name != ''">
+                        <h2>{{ items3.data[0].appname }}</h2>
+
+                        <p v-if="$index != 3"
+                           v-for="headerTitle in items3.data[0].data"
+                           v-bind:style="{ 'background-color': bgColor[$index], 'width': widthArr[items3.data[0].data.length] }">
+                            {{ headerTitle.name }}
+                        </p>
+                        <p v-if="$index == 3"
+                           v-for="headerTitle in items3.data[0].data"
+                           v-bind:style="{ 'background-color': bgColor[$index], 'width': '90px' }">
+                            {{ headerTitle.name }}
+                        </p>
+                    </li>
+                    <li>
+                        <!-- 具体分类数字 底部数字 -->
+                        <ul v-for="(namesIndex, names) in item.data"
+                            v-bind:style="{ 'width': widthArr[item.data.length] }">
+                            <template v-for="classItem in names.value">
+                                <li v-if="itemLength>0"
+                                    v-for="val in classItem.classValue"
+                                    title="{{ items.classType }}-{{ item.appname}}-{{ val.name }}-{{names.name}}: {{val.value}}"
+                                    :class="{'deep-gray-bg': val.name == '' }">
+                                    {{ val.value }}
+                                </li>
+                            </template>
+                            <!-- items,items1,items2大类有小计 -->
+                            <li v-if="itemLength>0 && namesIndex == 0"
+                                class="deep-gray-bg"
+                                title="{{ items.classType }}-{{ item.appname}}-{{names.name}}-小计: {{items.classCount}}">
+                                {{ items.classCount }}
+                            </li>
+                            <li v-if="itemLength>0 && namesIndex == 1"
+                                class="deep-gray-bg"
+                                title="{{ items.classType }}-{{ item.appname}}-{{names.name}}-小计: {{items.classSuccess}}">
+                                {{items.classSuccess}}
+                            </li>
+                            <li v-if="itemLength>0 && namesIndex == 2"
+                                class="deep-gray-bg"
+                                title="{{ items.classType }}-{{ item.appname}}-{{names.name}}-小计: {{items.classFail}}">
+                                {{items.classFail}}
+                            </li>
+                            <!-- items1 begin -->
+                            <template v-for="classItem in items1.data[itemIndex].data[namesIndex].value">
+                                <li v-if="item1Length>0"
+                                    v-for="val in classItem.classValue"
+                                    title="{{ items1.classType }}-{{ items1.data[itemIndex].appname}}-{{ val.name }}-{{items1.data[itemIndex].data[namesIndex].name}}: {{val.value}}"
+                                    :class="{'deep-gray-bg': val.name == '' }">
+                                    {{ val.value }}
+                                </li>
+                            </template>
+                            <!-- items,items1,items2大类有小计 -->
+                            <li v-if="item1Length>0 && namesIndex == 0"
+                                class="deep-gray-bg"
+                                title="{{ items1.classType }}-{{ item.appname}}-{{names.name}}-小计: {{items1.classCount}}">
+                                {{items1.classCount}}
+                            </li>
+                            <li v-if="item1Length>0 && namesIndex == 1"
+                                class="deep-gray-bg"
+                                title="{{ items1.classType }}-{{ item.appname}}-{{names.name}}-小计: {{items1.classSuccess}}">
+                                {{items1.classSuccess}}
+                            </li>
+                            <li v-if="item1Length>0 && namesIndex == 2"
+                                class="deep-gray-bg"
+                                title="{{ items1.classType }}-{{ item.appname}}-{{names.name}}-小计: {{items1.classFail}}">
+                                {{items1.classFail}}
+                            </li>
+                            <template v-for="classItem in items2.data[itemIndex].data[namesIndex].value">
+                                <li v-if="item2Length>0"
+                                    v-for="val in classItem.classValue"
+                                    title="{{ items2.classType }}-{{ items2.data[itemIndex].appname}}-{{ val.name }}-{{items2.data[itemIndex].data[namesIndex].name}}: {{val.value}}"
+                                    :class="{'deep-gray-bg': val.name == '' }">
+                                    {{ val.value }}
+                                </li>
+                            </template>
+                            <!-- items,items1,items2大类有小计 -->
+                            <li v-if="item2Length>0 && namesIndex == 0"
+                                class="deep-gray-bg"
+                                title="{{ items2.classType }}-{{ item.appname}}-{{names.name}}-小计: {{items2.classCount}}">
+                                {{items2.classCount}}
+                            </li>
+                            <li v-if="item2Length>0 && namesIndex == 1"
+                                class="deep-gray-bg"
+                                title="{{ items2.classType }}-{{ item.appname}}-{{names.name}}-小计: {{items2.classSuccess}}">
+                                {{items2.classSuccess}}
+                            </li>
+                            <li v-if="item2Length>0 && namesIndex == 2"
+                                class="deep-gray-bg"
+                                title="{{ items2.classType }}-{{ item.appname}}-{{names.name}}-小计: {{items2.classFail}}">
+                                {{items2.classFail}}
+                            </li>
+                            <template v-for="classItem in items3.data[itemIndex].data[namesIndex].value">
+                                <li v-if="item3Length>0"
+                                    v-for="val in classItem.classValue"
+                                    title="{{ items3.classType }}-{{ items3.data[itemIndex].appname}}-{{ val.name }}-{{items3.data[itemIndex].data[namesIndex].name == '' ? classItem.classTitle : items3.data[itemIndex].data[namesIndex].name }}: {{val.value}}"
+                                    :class="{'deep-gray-bg': (classItem.classValue.length == 1 && classItem.classValue[0].name == '') || val.name == '' }">
+                                    {{ val.value }}
+                                </li>
+                            </template>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--资金类业务table-->
+        <div class="multiple-table" v-show="isShow && isFunds">
+            <div class="overflow-box  multiple-table-wrap" v-bind:style="{ 'width': fundsItems.length * 314 + 178 + 'px' }">
+                <ul class="multiple-table-title multiple-table-title-border">
+                    <li class="multiple-table-top-title">
+                        <span class="multiple-table-top-nameX isfunds-multiple-table-top-nameX">业务情况</span>
+                        <span class="multiple-table-top-nameY isfunds-multiple-table-top-nameY">业务类型</span>
+                        <hr class="multiple-table-title-hr isfunds-multiple-table-title-hr">
+                    </li>
+                    <li class="multiple-table-title-deep-color"  v-for="title in fundsItems[0].data[0].value" title="{{ title.name }}">{{ title.name }}</li>
+                </ul>
+                <ul class="multiple-tables" v-for="item in fundsItems">
+                    <li class="multiple-tables-title">
+                        <h2>{{ item.appname }}</h2>
+                        <p v-if="$index != 3" v-for="headerTitle in item.data"
+                           v-bind:style="{ 'background-color': bgColor[$index], 'width': widthArr[item.data.length] }">{{ headerTitle.name }}</p>
+                        <p v-if="$index == 3" v-for="headerTitle in item.data"
+                           v-bind:style="{ 'background-color': bgColor[$index], 'width': '90px' }">{{ headerTitle.name }}</p>
+                    </li>
+                    <li>
+                        <ul v-if="$index != 3" v-for="names in item.data" v-bind:style="{ 'width': widthArr[item.data.length] }">
+                            <li v-for="val in names.value" title="{{ item.appname}}-{{ val.name }}-{{names.name}}: {{val.value}}">{{ val.value }}</li>
+                        </ul>
+                        <ul v-if="$index == 3" v-for="names in item.data" v-bind:style="{ 'width': '90px' }">
+                            <li v-for="val in names.value" title="{{ item.appname}}-{{ val.name }}-{{names.name}}: {{val.value}}">{{ val.value }}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p class="null-filter" v-show="!isShow">该条件下暂无数据</p>
+        <!-- || (!isFunds && item3Length == 1) -->
+    </div>
+    <div id="busAnalysis3">
+        <div class="box3" v-show="isReady">
+            <ul class="box3-left-title">
+                <li>业务办理类业务统计量</li>
+                <li>数据分类</li>
+                <li>线上服务量小计</li>
+                <li>线上业务小计</li>
+                <li>线下业务小计</li>
+                <li>线上+线下</li>
+                <li>线上占比</li>
+            </ul>
+            <ul class="box3-list" v-for="item in datas">
+                <li v-if="$index == 0">缴存业务</li>
+                <li v-if="$index == 1">提取业务</li>
+                <li v-if="$index == 2">贷款业务</li>
+                <li v-if="$index == 3">业务办理合计</li>
+                <li>{{ comdify(item.xsfwl) }}</li>
+                <li>{{ comdify(item.xsyw) }}</li>
+                <li>{{ comdify(item.xxyw) }}</li>
+                <li>{{ comdify(item.xsxx) }}</li>
+                <li>{{ item.xszb }}</li>
+            </ul>
+        </div>
+        <div class="box3-count" v-show="isReady">
+            <h3 class="box3-count-title">8大渠道服务总量统计</h3>
+            <ul>
+                <li>
+                    <h3>信息查询</h3>
+                    <h3>{{ comdify(xxcx) }}</h3>
+                </li>
+                <li>
+                    <h3>信息发布</h3>
+                    <h3>{{ comdify(xxfb) }}</h3>
+                </li>
+                <li>
+                    <h3>互动交流</h3>
+                    <h3>{{ comdify(hdjl) }}</h3>
+                </li>
+                <li>
+                    <h3>业务办理</h3>
+                    <h3>{{ comdify(ywbl) }}</h3>
+                </li>
+                <li>
+                    <h3>线上总计</h3>
+                    <h3>{{ comdify(xszj) }}</h3>
+                </li>
+            </ul>
+        </div>
+        <div class="box3-download" v-show="isReady">
+            <a href="javascript:;" @click="exportExcel">导出</a>
+        </div>
+    </div>
+    <div id="busAnalysis4">
+        <div class="box4">
+            <div class="box4-container" v-show="datas.length > 1">
+                <div class="box4-left" v-show="isReady">
+                    <h3 class="box4-left-title">功能分类</h3>
+                    <dl>
+                        <dt style="height:240px;padding:76px 12px 0;">一、信息查询</dt>
+                        <dd>公开信息查询</dd>
+                        <dd>个人信息查询</dd>
+                        <dd>单位信息查询</dd>
+                        <dd>凭证、单据打印</dd>
+                        <dd>业务办理进度</dd>
+                        <dd>发布文件下载</dd>
+                        <dd>其他</dd>
+                        <dd class="box4-left-title-count">小计一</dd>
+                    </dl>
+                    <dl>
+                        <dt style="height:120px;padding:16px 12px 0;">二、信息发布</dt>
+                        <dd>公开信息发布</dd>
+                        <dd>消息推送</dd>
+                        <dd>其他</dd>
+                        <dd class="box4-left-title-count">小计二</dd>
+                    </dl>
+                    <dl>
+                        <dt style="height:150px;padding:32px 12px 0;">三、互动交流"</dt>
+                        <dd>政策业务咨询</dd>
+                        <dd>线上调查</dd>
+                        <dd>投诉、建议</dd>
+                        <dd>其他</dd>
+                        <dd class="box4-left-title-count">小计三</dd>
+                    </dl>
+                    <dl>
+                        <dt style="height:420px;padding:168px 12px 0;">四、业务办理</dt>
+                        <dd class="box4-left-title-count">缴存业务（小计）</dd>
+                        <dd>预约办理</dd>
+                        <dd>提交申请</dd>
+                        <dd>办结</dd>
+                        <dd class="box4-left-title-count">提取业务（小计）</dd>
+                        <dd>预约办理</dd>
+                        <dd>提交申请</dd>
+                        <dd>办结</dd>
+                        <dd class="box4-left-title-count">贷款业务（小计）</dd>
+                        <dd>预约办理</dd>
+                        <dd>提交申请</dd>
+                        <dd>办结</dd>
+                        <dd>其他</dd>
+                        <dd class="box4-left-title-count">小计四</dd>
+                    </dl>
+                    <h3 class="box4-left-title-count">总计</h3>
+                </div>
+                <!--<div class="box4-left-placeholder"></div>-->
+                <div class="box4-right" v-show="isReady">
+                    <ul class="box4-right-title">
+                        <li v-show="datas[0].hasOwnProperty('hotLineRate')">
+                            <p>12329热线</p>
+                            <span>办理量</span>
+                            <span>比例</span>
+                        </li>
+                        <li v-show="datas[0].hasOwnProperty('msgRate')">
+                            <p>12329短信</p>
+                            <span>办理量</span>
+                            <span>比例</span>
+                        </li>
+                        <li v-show="datas[0].hasOwnProperty('webRate')">
+                            <p>门户网站</p>
+                            <span>办理量</span>
+                            <span>比例</span>
+                        </li>
+                        <li v-show="datas[0].hasOwnProperty('ishRate')">
+                            <p>网上大厅</p>
+                            <span>办理量</span>
+                            <span>比例</span>
+                        </li>
+                        <li v-show="datas[0].hasOwnProperty('selfRate')">
+                            <p>自助终端</p>
+                            <span>办理量</span>
+                            <span>比例</span>
+                        </li>
+                        <li v-show="datas[0].hasOwnProperty('appRate')">
+                            <p>手机APP</p>
+                            <span>办理量</span>
+                            <span>比例</span>
+                        </li>
+                        <li v-show="datas[0].hasOwnProperty('wechatRate')">
+                            <p>官方微信</p>
+                            <span>办理量</span>
+                            <span>比例</span>
+                        </li>
+                        <li v-show="datas[0].hasOwnProperty('weiboRate')">
+                            <p>官方微博</p>
+                            <span>办理量</span>
+                            <span>比例</span>
+                        </li>
+                        <li v-show="datas[0].hasOwnProperty('zjRate')">
+                            <p>小计</p>
+                            <span>办理量</span>
+                            <span>比例</span>
+                        </li>
+                    </ul>
+                    <!--<div class="box4-right-title-placeholder"></div>-->
+                    <dl v-for="data in datas" track-by="$index" v-bind:style="{ 'background-color': isCount($index) ? '#e5e5e5':'#fff', 'font-weight': isCount($index) ? 'bold':'normal' }">
+                        <dd v-if="data.hasOwnProperty('hotLineVal')">{{ comdify(data.hotLineVal) }}</dd>
+                        <dd v-if="data.hasOwnProperty('hotLineRate')">{{ data.hotLineRate }}</dd>
+                        <dd v-if="data.hasOwnProperty('msgVal')">{{ comdify(data.msgVal) }}</dd>
+                        <dd v-if="data.hasOwnProperty('msgRate')">{{ data.msgRate }}</dd>
+                        <dd v-if="data.hasOwnProperty('webVal')">{{ comdify(data.webVal) }}</dd>
+                        <dd v-if="data.hasOwnProperty('webRate')">{{ data.webRate }}</dd>
+                        <dd v-if="data.hasOwnProperty('ishVal')">{{ comdify(data.ishVal) }}</dd>
+                        <dd v-if="data.hasOwnProperty('ishRate')">{{ data.ishRate }}</dd>
+                        <dd v-if="data.hasOwnProperty('selfVal')">{{ comdify(data.selfVal) }}</dd>
+                        <dd v-if="data.hasOwnProperty('selfRate')">{{ data.selfRate }}</dd>
+                        <dd v-if="data.hasOwnProperty('appVal')">{{ comdify(data.appVal) }}</dd>
+                        <dd v-if="data.hasOwnProperty('appRate')">{{ data.appRate }}</dd>
+                        <dd v-if="data.hasOwnProperty('wechatVal')">{{ comdify(data.wechatVal) }}</dd>
+                        <dd v-if="data.hasOwnProperty('wechatRate')">{{ data.wechatRate }}</dd>
+                        <dd v-if="data.hasOwnProperty('weiboVal')">{{ comdify(data.weiboVal) }}</dd>
+                        <dd v-if="data.hasOwnProperty('weiboRate')">{{ data.weiboRate }}</dd>
+                        <dd v-if="data.hasOwnProperty('zjVal')">{{ comdify(data.zjVal) }}</dd>
+                        <dd v-if="data.hasOwnProperty('zjRate')">{{ data.zjRate }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="box4-download" v-show="isReady">
+            <a href="javascript:;" @click="exportExcel">导出</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery.js"></script><script type="text/javascript" src="js/lib/jquery-migrate.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/3rd/laydate.js"></script>
+<script type="text/javascript" src="js/3rd/echarts.common.min.js"></script>
+<script type="text/javascript" src="js/analysis.js"></script>
+</body>
+</html>

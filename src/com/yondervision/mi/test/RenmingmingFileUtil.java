@@ -165,7 +165,7 @@ public class RenmingmingFileUtil {
     public static String getNumber(String str) {
         // 需要取整数和小数的字符串
         // 控制正则表达式的匹配行为的参数(小数)
-        Pattern p = Pattern.compile("(\\d)");
+        Pattern p = Pattern.compile("(\\d+)");
         //Matcher类的构造方法也是私有的,不能随意创建,只能通过Pattern.matcher(CharSequence input)方法得到该类的实例.
         Matcher m = p.matcher(str);
         //m.find用来判断该字符串中是否含有与"(\\d+\\.\\d+)"相匹配的子串

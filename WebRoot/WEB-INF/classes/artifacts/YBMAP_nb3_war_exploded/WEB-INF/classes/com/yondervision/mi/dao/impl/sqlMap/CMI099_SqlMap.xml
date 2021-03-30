@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="CMI099">
+  <resultMap class="java.util.HashMap" id="webapi09901Result">
+    <result column="zs" jdbcType="VARCHAR" javaType="java.lang.String" property="zscountnum" />
+    <result column="cg" jdbcType="VARCHAR" javaType="java.lang.String" property="cgcountnum" />
+    <result column="sb" jdbcType="VARCHAR" javaType="java.lang.String" property="sbcountnum" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="serviceid" jdbcType="VARCHAR" property="serviceid" />
+    <result column="servicename" jdbcType="VARCHAR" property="servicename" /> 
+    <result column="itemid" jdbcType="VARCHAR" property="itemid" />
+    <result column="itemval" jdbcType="VARCHAR" property="itemval" />
+    <result column="transamt" jdbcType="VARCHAR" javaType="java.lang.String" property="transAMT" />
+  </resultMap>
+  
+  	<resultMap class="java.util.HashMap" id="WebApi10704Map">
+		<result column="COUNTNUM" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="value" />
+		<result column="TRANSNAME" jdbcType="VARCHAR" property="name" />
+	</resultMap>
+  
+  	<resultMap class="java.util.HashMap" id="WebApi10705Map">
+		<result column="COUNTNUM" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="countnum" />
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+	</resultMap>
+	
+	<resultMap class="java.util.HashMap" id="WebApi10706Map">
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+		<result column="pid" jdbcType="VARCHAR" property="pid" />
+		<result column="transcntsum" jdbcType="VARCHAR" javaType="java.lang.String" property="transcntsum" />
+		<result column="successsum" jdbcType="VARCHAR" javaType="java.lang.String" property="successsum" />
+		<result column="failsum" jdbcType="VARCHAR" javaType="java.lang.String" property="failsum" />
+	</resultMap>
+	<resultMap class="java.util.HashMap" id="webapi10708">
+		<result column="appname" jdbcType="VARCHAR" property="appname" />
+		<result column="pidcount" jdbcType="VARCHAR" javaType="java.lang.String"
+			property="pidcount" />
+	</resultMap>
+	
+	<resultMap class="java.util.HashMap" id="selectSearchInfo">
+		<result column="centerid" jdbcType="VARCHAR" property="centerid" />
+		<result column="pid" jdbcType="VARCHAR" property="pid" />
+		<result column="channel" jdbcType="VARCHAR" property="channel" />
+		<result column="subtype" jdbcType="VARCHAR" property="subtype" />
+		<result column="transdate" jdbcType="VARCHAR" property="transdate" />
+		<result column="bsptype" jdbcType="VARCHAR" property="bsptype" />
+		<result column="cnt" jdbcType="VARCHAR" property="cnt" />
+		<result column="succcnt" jdbcType="VARCHAR" property="succcnt" />
+		<result column="failcnt" jdbcType="VARCHAR" property="failcnt" />
+		<result column="amt" jdbcType="VARCHAR" property="amt" />
+	</resultMap>
+ <!-- 业务分析-业务量统计非资金类）-->
+ <select id="webapi09901" parameterClass="com.yondervision.mi.dto.CMi107" resultMap="webapi09901Result">
+	select t099.pid,t099.serviceid,t099.zs,t099.cg,t099.sb,
+		t051.servicename,t007.itemid,t007.itemval,t099.transamt 
+	from (
+		select pid,serviceid,freeuse1,sum(transcnt) zs,sum(succcnt) cg,sum(failcnt) sb, sum(transamt) transamt 
+		from mi099 
+		where centerid=#centerid:VARCHAR# 
+			and pid=#pid:VARCHAR# 
+			and transdate&gt;=#startdate:VARCHAR# 
+			and transdate&lt;=#enddate:VARCHAR# 
+			and servicetype=#servicetype:VARCHAR# 
+			and (freeuse4 is null or freeuse4!=1)
+			and serviceid in (select t2.serviceid from mi052 t1, mi051 t2, mi050 t3 
+		 		where t1.serviceid=t2.serviceid and t1.apiid=t3.apiid and t1.freeuse1='1')
+		group by pid,serviceid,freeuse1
+	) t099 
+	join mi051 t051 on t051.serviceid=t099.serviceid
+ 	join mi007 t007 on t007.dicid=t099.freeuse1 
+ </select>
+ 
+ <!-- 渠道运行情况统计，统计各个渠道的数量 -->
+	<select id="selectCountByChannel05" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10705Map">
+		select t040.appname,t.countnum from
+		(select sum(transcnt) countnum ,pid from mi099 where validflag='1'
+		<isNotEmpty prepend="and" property="centerid">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="pid">
+			pid =#pid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="startdate">
+			transdate &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			transdate &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		and buztype in (select t2.buztype 
+					 from mi052 t1, mi051 t2, mi050 t3 
+					 where t1.serviceid=t2.serviceid and t1.apiid=t3.apiid and t1.freeuse1='1') 
+		group by pid)t 
+		join mi040 t040 on t.pid=t040.pid
+
+	</select>
+	
+	<!-- 统计一个渠道下面的业务成功失败的情况 -->
+	<select id="selectCountByChannel06" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10706Map">
+		select t040.pid,t040.appname,t.transcntsum,t.successsum,t.failsum from
+		(select pid,sum(transcnt) transcntsum,sum(succcnt) successsum,sum(failcnt) failsum from mi099 where validflag='1'
+		<isNotEmpty prepend="and" property="centerid">
+			CENTERID= #centerid:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="startdate">
+			transdate &gt;=#startdate:VARCHAR#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="enddate">
+			transdate &lt;=#enddate:VARCHAR#
+		</isNotEmpty>
+		and buztype in (select t2.buztype 
+					 from mi052 t1, mi051 t2, mi050 t3 
+					 where t1.serviceid=t2.serviceid and t1.apiid=t3.apiid and t1.freeuse1='1') 
+		group by pid,freeuse1)t
+		join mi040 t040 on t.pid=t040.pid
+
+	</select>
+	
+ 	<!-- 统计一个渠道下面功能活跃度的情况 -->
+	<select id="selectCountByChannel21" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="WebApi10704Map">
+		<!-- select count(distinct userid)countnum,pid from mi107 group by pid; -->
+		select m007.itemval transname,t.countnum from 
+		(select sum(transcnt) countnum ,buztype from mi099 where validflag='1'
+			<isNotEmpty prepend="and" property="centerId">
+				CENTERID= #centerId:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="pid">
+				pid=#pid:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="startdate">
+				transdate &gt;=#startdate:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enddate">
+				transdate &lt;=#enddate:VARCHAR#
+			</isNotEmpty>
+			 and buztype in (select t2.buztype 
+					 from mi052 t1, mi051 t2, mi050 t3 
+					 where t1.serviceid=t2.serviceid and t1.apiid=t3.apiid and t1.freeuse1='1')
+		group by buztype) t 
+		join mi007 m007 on t.buztype=m007.itemid
+
+	</select>
+	
+	<select id="webapi10708" parameterClass="com.yondervision.mi.dto.CMi107"
+		resultMap="webapi10708">
+		select t2.appname, t1.pidcount from
+			(select pid, sum(transcnt) pidcount from mi099
+				where validflag=1 and (freeuse4 is null or freeuse4!=1)
+			<isNotEmpty prepend="and" property="centerid">
+				CENTERID= #centerid:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="pid">
+				pid=#pid:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="startdate">
+				transdate &gt;=#startdate:VARCHAR#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="enddate">
+				transdate &lt;=#enddate:VARCHAR#
+			</isNotEmpty>
+			and serviceid in (select t2.serviceid from mi052 t1, mi051 t2, mi050 t3 
+				 where t1.serviceid=t2.serviceid and t1.apiid=t3.apiid and t1.freeuse1='1')
+			group by pid)t1
+		join mi040 t2 on t2.pid=t1.pid 
+	</select>
+	
+	<select id="selectSearchInfo" parameterClass="java.util.HashMap"
+		resultMap="selectSearchInfo">
+		select centerid,pid,channel,subtype,transdate,0 as bsptype,
+    			sum(transcnt) cnt, sum(succcnt) succcnt, 
+    			sum(failcnt) failcnt, sum(transamt) amt
+   		from mi099 where servicetype=1 and subtype!='06' 
+   			and transdate &gt;= #transday:VARCHAR#
+   			and transdate &lt;= #currentDate:VARCHAR#
+   		group by centerid, pid, channel, subtype, transdate
+	</select>
+	
+	<select id="selectTransactions" parameterClass="java.util.HashMap"
+		resultMap="selectSearchInfo">
+		select centerid,pid,channel,subtype,transdate,0 as bsptype,
+    		sum(transcnt) cnt, sum(succcnt) succcnt, 
+    		sum(failcnt) failcnt, sum(transamt) amt
+   		from mi099 where servicetype=2 and subtype in ('17','20','23','25') 
+   			and transdate &gt;= #transday:VARCHAR#
+   			and transdate &lt;= #currentDate:VARCHAR# 
+   		group by centerid, pid, channel, subtype, transdate
+	</select>
+</sqlMap>

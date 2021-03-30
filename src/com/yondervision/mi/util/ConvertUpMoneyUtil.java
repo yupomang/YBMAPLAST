@@ -22,7 +22,7 @@ public class ConvertUpMoneyUtil {
             return "抱歉，请输入数字！";
         }
 
-        if("0".equals(str) || "0.00".equals(str) || "0.0".equals(str)) {
+        if("0".equals(str) || "0.00".equals(str) || "0.0".equals(str) || "".equals(str)) {
             return "无";
         }
 
@@ -67,13 +67,25 @@ public class ConvertUpMoneyUtil {
         // 小数部分数字
         int[] decimals = toIntArray(decimalStr);
         // 返回最终的大写金额
-        String result = getChineseInteger(integers, isWan) + getChineseDecimal(decimals);
-        if(flag){
-            // 如果是负数，加上"负"
-            return "负" + result;
+        System.out.println(decimalStr);
+        if(org.apache.commons.lang.StringUtils.equalsIgnoreCase(decimalStr,"00") || org.apache.commons.lang.StringUtils.equalsIgnoreCase(decimalStr,"0") || org.apache.commons.lang.StringUtils.equalsIgnoreCase(decimalStr,"")) {
+            String result = getChineseInteger(integers, isWan) + getChineseDecimal(decimals)+"整";
+            if(flag){
+                // 如果是负数，加上"负"
+                return "负" + result;
+            }else{
+                return result;
+            }
         }else{
-            return result;
+            String result = getChineseInteger(integers, isWan) + getChineseDecimal(decimals);
+            if(flag){
+                // 如果是负数，加上"负"
+                return "负" + result;
+            }else{
+                return result;
+            }
         }
+
     }
 
     /**

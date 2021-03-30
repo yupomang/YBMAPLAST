@@ -1,0 +1,46 @@
+.bussiness-log .channelAnalysis-top {
+    padding: 15px 0;
+    height: auto;
+
+}
+
+.channelAnalysis-tab {
+    margin-top: 20px;
+}
+
+.bussiness-log .channelAnalysis-top-name {
+    width: 93px;
+    text-align: right;
+    vertical-align: top;
+    line-height: 30px;
+    height: 30px;
+}
+
+.channelAnalysis-top-startTime, .channelAnalysis-top-endTime {
+    margin: 0;
+    width: 200px;
+    padding: 0;
+    background: url(../images/date.jpg) 177px center no-repeat #fff;
+}
+
+.channelAnalysis-input,
+.channelAnalysis-select {
+    display: inline-block;
+    width: 200px;
+    height: 28px;
+    border: 1px solid #dadbdd;
+    background: #fff;
+    padding: 0;
+    vertical-align: middle;
+    margin-bottom: 15px;
+}
+
+.channelAnalysis-top select {
+    width: 202px;
+}
+
+.red-required {
+    float: none;
+    display: inline-block;
+    height: 23px;
+}

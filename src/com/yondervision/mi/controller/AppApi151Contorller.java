@@ -32,7 +32,7 @@ public class AppApi151Contorller {
         log.info("requestTime1111:" + requestTime);
 
         //读取配置文件，连接钉钉接口
-        String api = "/bpms/openapi/procInst/executeInstTodo.json";
+        String api = "/http/bpms/openapi/procInst/executeInstTodo.json";
         ApplicationContext app = new ClassPathXmlApplicationContext("applicationContext.xml");
         //PostClient postClient = ExecutableClient.getInstance().newPostClient(api);
         ExecutableClient executableClient = (ExecutableClient) app.getBean("executableClient");

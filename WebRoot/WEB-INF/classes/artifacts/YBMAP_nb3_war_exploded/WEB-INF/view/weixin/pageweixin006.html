@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/master.css" />
+    <link rel="stylesheet" type="text/css" href="css/wechat.css" />
+</head>
+<body>
+<div id="wechat-focusInfoConfig-Vue">
+    <div class="wechat-focusInfoConfig-left" v-show="!isLib">
+        <div class="wechat-focusInfoConfig-img1">
+            <img v-bind:src="img" width="328" height="175" alt="">
+            <p class="wechat-focusInfoConfig-img-title">{{ title }}</p>
+        </div>
+        <div class="wechat-focusInfoConfig-text">
+            <div>
+                {{ welcomeWord }}
+            </div>
+            <p v-for="item in checked" track-by="$index" v-if="item.isShow">{{ $index + 1 }}.{{ item.value }}</p>
+        </div>
+    </div>
+    <div class="wechat-focusInfoConfig-right" v-show="!isLib">
+        <div class="wechat-focusInfoConfig-right-bg">
+            <h2 class="wechat-focusInfoConfig-right-title">标题</h2>
+            <div class="wechat-focusInfoConfig-img-input">
+                <input type="text" maxlength="28" v-model="title" />
+                <p>{{ title.length }}/28</p>
+            </div>
+            <h2 class="wechat-focusInfoConfig-right-title shortTitle">封面<span>(建议尺寸：536像素 * 300像素)</span></h2>
+            <div class="wechat-focusInfoConfig-img-upfile">
+                <form id="imageform" method="post" enctype="multipart/form-data" action="weixinapi00401.json">
+                    <input type="file"  class="inputfile" id="uploadfile" name="uploadfile"/>
+                </form>
+                <div id="inputFile">上传图片</div>
+                <div id="selectPic" @click="isLib = true;">从图片库中选择</div>
+            </div>
+            <div class="uploaded-img" v-show="img != 'images/upload_placeholder.jpg'">
+                <img v-bind:src="img" width="138" height="77" alt="">
+                <a href="javascript:;" title="删除" @click="imgDel()">删除</a>
+            </div>
+            <h2 class="wechat-focusInfoConfig-right-title shortTitle">欢迎语</h2>
+            <div class="wechat-focusInfoConfig-right-textarea">
+                <textarea id="" cols="30" maxlength="64" rows="10" v-model="welcomeWord"></textarea>
+                <span>{{ welcomeWord.length }}/64</span>
+            </div>
+            <h2 class="wechat-focusInfoConfig-right-title shortTitle">选择功能</h2>
+            <div class="wechat-focusInfoConfig-right-checkboxs">
+                <label v-for="item in items">
+                    <input type="checkbox" v-model="item.isShow" />
+                    <span>{{ item.value }}</span>
+                </label>
+            </div>
+        </div>
+        <a href="javascript:;" title="完成" class="wechat-focusInfoConfig-right-savebtn" @click="save()">完成</a>
+    </div>
+    <div id="picLib" v-show="isLib">
+        <h2 class="picLib-title">
+            <span>选择图片</span>
+        </h2>
+        <div class="picLib-left">
+            <a v-for="list in groupList"
+               href="javascript:;"
+               title="{{ list.groupname }}"
+               @click="getLibPics(list);"
+               v-bind:class="{ 'on': currentGrounp == list.groupid }">{{ list.groupname }}({{ list.jl }})</a>
+        </div>
+        <div class="picLib-right">
+            <div class="picLib-upload">
+                <div class="picLib-upload-tips">大小: 不超过1M,    格式: gif,jpg,jpeg,bmp,png</div>
+                <div class="picLib-upload-btn">
+                    <form id="imageform_lib" method="post" enctype="multipart/form-data" action="webapi13002.do?dirname={{ currentGrounp }}&uploadtype=image">
+                        <input type="file"  class="inputfile" id="uploadfile_lib" name="file"/>
+                    </form>
+                    <a href="javascript:;" title="上传图片">上传图片</a>
+                </div>
+            </div>
+            <div class="picLib-right-imgsList-box">
+                <ul class="picLib-pics">
+                    <template v-for="pic in libPics">
+                        <li @click="selectImg(pic)" v-bind:class="{ 'on': select == pic, 'cant-select': pic.freeuse1 != 'image' }">
+                            <img v-bind:src="pic.picurl" width="164" height="88" alt="" />
+                            <p>{{ pic.realname }}</p>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+        <div class="picLib-bottom">
+            <a href="javascript:;" title="确定" @click="selectPic()">确定</a>
+            <a href="javascript:;" title="取消" @click="isLib = false;">取消</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery.js"></script><script type="text/javascript" src="js/lib/jquery-migrate.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/lib/jquery-form.js"></script>
+<script type="text/javascript" src="js/wx006.js"></script>
+</body>
+</html>

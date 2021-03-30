@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>日志代码</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css"/>
+    <link rel="stylesheet" type="text/css" href="css/analysis.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css"/>
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" href="css/wechat.css">
+    <link rel="stylesheet" href="css/channelState.css">
+    <link rel="stylesheet" href="css/channelService.css">
+</head>
+<body>
+<div class="channelSearch">
+    日志代码 <input type="text" id="logcode"> <a href="javascript:;" title="查询" id="btnquery">查询</a>
+</div>
+<div class="orgManage-box channelBox">
+    <div class="orgManage-table-btns buiManageBtns">
+        <a href="javascript:;" title="新建" id="orgManage-btn-add">新建</a>
+        <a href="javascript:;" title="修改" id="orgManage-btn-modify">修改</a>
+        <a href="javascript:;" title="删除" id="orgManage-btn-del">删除</a>
+        <a href="javascript:;" title="批量导入" id="orgManage-btn-import">批量导入</a>
+        <a href="javascript:;" title="批量导出" id="orgManage-btn-download">批量导出</a>
+
+    </div>
+    <table id="setTable"></table>
+    <div id="orgManage-table-pages">
+        <pages :items="items" :current.sync="current"></pages>
+    </div>
+</div>
+<div class="sysMgmt-hidden-area orgManage-popup-hidden">
+    <!--add-->
+    <div class="codeTable-create">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>日志代码-增加</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>日志代码</p>
+                        <input type="text" id="create-logcode">
+                        <span class="red-link">*</span>
+                        <p>日志内容</p>
+                        <input type="text" id="create-logText">
+                        <span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].exceptionCode.add();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- edit -->
+    <div class="codeTable-edit">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>日志代码-修改</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>日志代码</p>
+                        <input type="text" id="edit-logcode" readonly = "readonly">
+                        <span class="red-link">*</span>
+                        <p>日志内容</p>
+                        <input type="text" id="edit-logText">
+                        <span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].exceptionCode.edit();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--导入-->
+    <div class="orgManage-popup-edit-container5">
+        <div class="orgManage-popup-bg"></div>
+        <div class="orgManage-popup-edit">
+            <div class="orgManage-popup-relative">
+                <div class="orgManage-popup-edit-close orgManage-popup-close" onclick="Common.popupClose();"></div>
+                <div class="import">
+                    <h3>日志代码-批量导入</h3>
+                    <form id = "uploadform" class="dlg-form" ENCTYPE="multipart/form-data" novalidate="novalidate">
+                        <div class="importFile" style="display: inline-block;">
+                            上传路径：<a class="importChooseFileBtn" href="javascript:;">选择...</a>
+                            <span id="excelfile">未上传</span>
+                            <input type="file" id="file" name="excelfile" required="required" >
+                        </div>
+                        <input type="hidden" id="path" name="path" value="ptl/ptl40008"/>
+                        <input type="hidden" id="ruleMapStr" name="ruleMapStr" value="{logcode:'#1',logtext:'#2'}"/>
+                        <input type="hidden" id="tableName" name="tableName" value="mi009"/>
+                    </form>
+                </div>
+                <div class="orgManage-popup-btns">
+                    <p class="orgManage-popup-btns-ok" onclick="window.frames['main'].exceptionCode.submitExl();">确定</p>
+                    <p class="orgManage-popup-btns-cancel" onclick="Common.popupClose();">取消</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--导出-->
+    <div class="codeTable-export">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>日志代码-批量导出</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <form id="exportForm" method="post">
+                            <p>生成文件名称</p>
+                            <input type="text" id="fileName" required="true" value="">
+                            <span>.xls</span>
+                            <span class="red-link">*</span>
+                            <input type="hidden" name="titles" id="export-title" value="logcode,logtext"/>
+                            <input type="hidden" name="expotrTableName" id="export-table-name" value="mi009"/>
+                        </form>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].exceptionCode.exportExl();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/3rd/laydate.js"></script>
+<script type="text/javascript" src="js/3rd/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/ptl40008.js"></script>
+</body>
+</html>

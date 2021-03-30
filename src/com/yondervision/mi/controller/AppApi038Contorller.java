@@ -619,6 +619,7 @@ public class AppApi038Contorller {
 		request.setAttribute("centerId", form.getCenterId());
 		if(form.getChannel().trim().equals("40")||form.getChannel().trim().equals("42")||form.getChannel().trim().equals("52")||form.getChannel().trim().equals("91")||form.getChannel().trim().equals("92")||form.getChannel().trim().equals("93")||form.getChannel().trim().equals("94")||form.getChannel().trim().equals("95")||form.getChannel().trim().equals("96")){
 			String rep=msgSendApi001Service.send(request, response);
+			log.info("zhangc_request:"+request.toString()+"response:"+response.toString());
 			log.info("rep="+rep);
 			log.info(LOG.END_BUSIN.getLogText(form.getBusinName()));
 			AES aes = new AES(form.getCenterId() ,form.getChannel() ,form.getAppid() ,form.getAppkey());
@@ -629,6 +630,7 @@ public class AppApi038Contorller {
 		}else
 		{
 			String rep=msgSendApi001Service.send(request, response);
+			log.info("zhangch_request:"+request.toString()+"response:"+response.toString());
 			response.getOutputStream().write(rep.getBytes("UTF-8"));
 			log.info("rep="+rep);
 			log.info(LOG.END_BUSIN.getLogText(form.getBusinName()));

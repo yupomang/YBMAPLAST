@@ -1,0 +1,29 @@
+/* message template */
+.serMgmt-messageTemplate-box{padding:10px 20px;}
+#serMgmt-messageTemplate-templateTable{margin-bottom:24px;}
+#serMgmt-messageTemplate-templateTable a{color:#666;}
+.serMgmt-messageTemplate-box .common-btns{height:36px;}
+.messageTemplate-add-and-edit{padding:10px 20px;display:none;}
+.messageTemplate-add-and-edit .common-btns{height:36px;}
+.messageTemplate-note{font:12px/36px "microsoft yahei";color:#999;}
+.opera-messageTemplate{width:100%;height:auto;overflow:hidden;font-size:0;text-align:left;border:1px solid #ccc;padding-top:10px;}
+.opera-messageTemplate>li{display:inline-block;width:500px;height:auto;font-size:0;padding-bottom:10px;}
+.opera-messageTemplate>li>p{display:inline-block;height:30px;font:14px/30px "microsoft yahei";color:#333;text-align:right;width:140px;margin-right:10px;vertical-align: top}
+.opera-messageTemplate>li>div{display:inline-block;height:30px;font:14px/30px "microsoft yahei";color:#333;text-align:left;width:350px;}
+.opera-messageTemplate>li>div input{vertical-align: middle;margin:-2px 4px 0 6px;}
+.opera-messageTemplate-text{width:210px;height:28px;border:1px solid #ccc;padding:0 5px;}
+.opera-messageTemplate>li:last-child{width:100%;}
+.opera-messageTemplate>li:last-child div{width:770px;height:184px;}
+.opera-messageTemplate>li>div textarea{resize: none;width:710px;height:130px;border:1px solid #ccc;display:inline-block;margin-left:6px;padding:5px;}
+.opera-messageTemplate>li>div .red-link{vertical-align: top}
+.opera-messageTemplate-submit{height:40px;padding-left:200px;}
+.opera-messageTemplate-submit a{display:inline-block;width:93px;height:30px;text-align:center;font:14px/30px "microsoft yahei";color:#fff;background:#44b549;margin-right:12px;}
+.messageTemplate-add-and-edit .common-green-title{height:40px;line-height:40px;}
+#messageTemplate-infoList a{color:#666;}
+.serMgmt-messageTemplate-hidden{display:none;}
+#opera-messageTemplate-droplist .hx-droplist{margin-left:6px;}
+#messageTemplate-back{display:inline-block;font:14px/28px "microsoft yahei";border:1px solid transparent;color:#666;border-radius:3px;padding:0 16px 0 36px;background:url(../images/goback.jpg) 14px center no-repeat;}
+#messageTemplate-back:hover{border-color:#eee;}
+
+.messageTemplate-add-and-edit-title{font:16px/64px "microsoft yahei";color:#666;}
+.messageTemplate-add-and-edit-title span{background:url(../images/title_bar.jpg) 0 center no-repeat;padding-left:14px;}

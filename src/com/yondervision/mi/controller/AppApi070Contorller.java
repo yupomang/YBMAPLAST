@@ -444,7 +444,8 @@ public class AppApi070Contorller {
 		    else {
 		      encoding = request.getCharacterEncoding();
 		    }
-			String url = "http://172.16.0.186:7001/gjj-wsyyt/servlet/realEstateStateServlet";//生产环境
+			//String url = "http://172.16.0.186:7001/gjj-wsyyt/servlet/realEstateStateServlet";//生产环境
+			String url = "http://172.16.0.207:7002/gjj-wsyyt/servlet/realEstateStateServlet";//生产环境
 //			String url = "http://172.16.0.172:7001/gjj-wsyyt/servlet/realEstateStateServlet";//测试环境
 	        HashMap hashMap = new HashMap();
 	        hashMap.put("pubaccnum", form.getPubaccnum());
@@ -466,7 +467,7 @@ public class AppApi070Contorller {
 //		    else {
 //		      encoding = request.getCharacterEncoding();
 //		    }
-			String url = "http://172.16.0.186:7001/gjj-wsyyt/servlet/realEstateStateServlet";//生产环境
+			String url = "http://172.16.0.207:7002/gjj-wsyyt/servlet/realEstateStateServlet";//生产环境
 //			String url = "http://172.16.0.172:7001/gjj-wsyyt/servlet/realEstateStateServlet";//测试环境
 	        HashMap hashMap = new HashMap();
 	        hashMap.put("pubaccnum", form.getPubaccnum());

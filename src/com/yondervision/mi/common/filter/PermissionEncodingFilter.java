@@ -86,7 +86,10 @@ public class PermissionEncodingFilter implements Filter {
 				||req.getServletPath().startsWith("/webapi80007")||req.getServletPath().startsWith("/webapi80008")
 				||req.getServletPath().startsWith("/appapi00228")||req.getServletPath().startsWith("/appapi00235")
 				||req.getServletPath().startsWith("/appapi00237")||req.getServletPath().startsWith("/webapi80009")
-				||req.getServletPath().startsWith("/webapi80010")){
+				||req.getServletPath().startsWith("/webapi80010")||req.getServletPath().startsWith("/webapi80015")
+				||req.getServletPath().startsWith("/webapi80016")||req.getServletPath().startsWith("/webapi80017")
+				||req.getServletPath().startsWith("/webapi80018")||req.getServletPath().startsWith("/webapi80019")
+				||req.getServletPath().startsWith("/webapi80020")){
 			System.out.println("hello world：徐志文"+req.getServletPath());
 			chain.doFilter(req, response);
 			return; 
@@ -253,7 +256,10 @@ public class PermissionEncodingFilter implements Filter {
 					||req.getServletPath().startsWith("/appapi50023")||req.getServletPath().startsWith("/appapi07030")
 					||req.getServletPath().startsWith("/appapi00199")||req.getServletPath().startsWith("/appapi00144")
 					||req.getServletPath().startsWith("/appapi00145")||req.getServletPath().startsWith("/appapi00158")
-					||req.getServletPath().startsWith("/appapi00227")||req.getServletPath().startsWith("/appapi00239")){
+					||req.getServletPath().startsWith("/appapi00227")||req.getServletPath().startsWith("/appapi00239")
+					||req.getServletPath().startsWith("/appapi00337")||req.getServletPath().startsWith("/appapi00338")
+					||req.getServletPath().startsWith("/appapi00339")||req.getServletPath().startsWith("/appapi00341")
+					||req.getServletPath().startsWith("/appapi00342")){
 				chain.doFilter(req, response); 
 			}else if (req.getServletPath().startsWith("/synchro")){
 				System.out.println("第三方 调用内容同步导入数据相关功能开始");
@@ -694,7 +700,7 @@ public class PermissionEncodingFilter implements Filter {
 
 		}finally{
 			if(req.getServletPath().startsWith("/appapi") || req.getServletPath().startsWith("/yfapi")) {
-				if("/appapi90106.json,/appapi90415.json,/appapi90206.json,/appapi40107.json,/appapi99901.json,/appapi30314.json,/appapi30316.json,/appapi30315.json,/appapi30292.json,/appapi30291.json,/appapi00199.json,/appapi00144.json,/appapi00145.json,/appapi00158.json,/appapi62591.json,/appapi62592.json,/appapi62593.json,/appapi50023.json,/appapi07030.json,/appapi00227.json,/appapi00239.json".indexOf(req.getServletPath())<0){
+				if("/appapi90106.json,/appapi90415.json,/appapi90206.json,/appapi40107.json,/appapi99901.json,/appapi30314.json,/appapi30316.json,/appapi30315.json,/appapi30292.json,/appapi30291.json,/appapi00199.json,/appapi00144.json,/appapi00145.json,/appapi00158.json,/appapi62591.json,/appapi62592.json,/appapi62593.json,/appapi50023.json,/appapi07030.json,/appapi00227.json,/appapi00239.json,/appapi00337.json,/appapi03824.json,/appapi00338.json,/appapi00339.json,/appapi00341.json,/appapi00342.json".indexOf(req.getServletPath())<0){
 					check.minusFlow(req.getParameter("centerId"),req.getParameter("channel"));
 				}
 			}

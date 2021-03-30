@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="css/userView.css" />
+</head>
+<body>
+<div class="userview-sub-title">
+    <a href="userView.html" title="返回">返回</a>
+    <span>|</span>
+    <p class="userview-sub-title-icons7">预约业务</p>
+</div>
+<div class="userview-sub7-header">
+    <a href="javascript:;" title="已预约" class="on">已预约</a>
+    <a href="javascript:;" title="已办结">已办结</a>
+    <a href="javascript:;" title="已撤销">已撤销</a>
+</div>
+<div class="userview-sub7-box1">
+    <table cellpadding="0" class="userview-sub1-view userview-block">
+        <tr align="center" class="userview-sub1-table-title">
+            <td height="48" width="118">序号</td>
+            <td width="184">预约凭证号</td>
+            <td width="152">预约网点</td>
+            <td width="102">预约日期</td>
+            <td width="90">预约时段</td>
+            <td width="88">预约业务</td>
+            <td width="76">预约状态</td>
+            <td width="118">用户名</td>
+            <td width="72">姓名</td>
+            <td width="106">联系方式</td>
+        </tr>
+        <tr align="center" v-for="item in list">
+            <td height="48" width="118">{{ $index + 1 }}</td>
+            <td width="184">{{ item.apponum }}</td>
+            <td width="152">{{ item.appobranchname }}</td>
+            <td width="102">{{ item.appodate }}</td>
+            <td width="90">{{ item.timeinterval }}</td>
+            <td width="88">{{ item.appobusiname }}</td>
+            <td width="76">{{ states[item.appostate] }}</td>
+            <td width="118">{{ item.userid }}</td>
+            <td width="72">{{ item.username }}</td>
+            <td width="106">{{ item.tel }}</td>
+        </tr>
+    </table>
+    <div id="userView7-page1">
+        <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+    </div>
+</div>
+<div class="userview-sub7-box2">
+    <table cellpadding="0" class="userview-sub1-view userview-block">
+        <tr align="center" class="userview-sub1-table-title">
+            <td height="48" width="118">序号</td>
+            <td width="84">预约凭证号</td>
+            <td width="102">预约网点</td>
+            <td width="102">预约日期</td>
+            <td width="90">预约时段</td>
+            <td width="88">预约业务</td>
+            <td width="76">预约状态</td>
+            <td width="68">用户名</td>
+            <td width="122">公积金帐号</td>
+            <td width="134">证件号</td>
+            <td width="72">姓名</td>
+            <td width="106">联系方式</td>
+        </tr>
+        <tr align="center">
+            <td height="48" width="118">2</td>
+            <td width="84">Y00345</td>
+            <td width="102">昆明公积金中心</td>
+            <td width="102">2016-08-06</td>
+            <td width="90">9:00-11:00</td>
+            <td width="88">公积金提取</td>
+            <td width="76">已办结 </td>
+            <td width="68">ioneld</td>
+            <td width="122">7627367263868</td>
+            <td width="134">229494840484000</td>
+            <td width="72">周小安</td>
+            <td width="106">13069048888</td>
+        </tr>
+    </table>
+    <div id="userView7-page2">
+        <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+    </div>
+</div>
+<div class="userview-sub7-box3">
+    <table cellpadding="0" class="userview-sub1-view userview-block">
+        <tr align="center" class="userview-sub1-table-title">
+            <td height="48" width="118">序号</td>
+            <td width="84">预约凭证号</td>
+            <td width="102">预约网点</td>
+            <td width="102">预约日期</td>
+            <td width="90">预约时段</td>
+            <td width="88">预约业务</td>
+            <td width="76">预约状态</td>
+            <td width="68">用户名</td>
+            <td width="122">公积金帐号</td>
+            <td width="134">证件号</td>
+            <td width="72">姓名</td>
+            <td width="106">联系方式</td>
+        </tr>
+        <tr align="center">
+            <td height="48" width="118">3</td>
+            <td width="84">Y00345</td>
+            <td width="102">昆明公积金中心</td>
+            <td width="102">2016-08-06</td>
+            <td width="90">9:00-11:00</td>
+            <td width="88">公积金提取</td>
+            <td width="76">已办结 </td>
+            <td width="68">ioneld</td>
+            <td width="122">7627367263868</td>
+            <td width="134">229494840484000</td>
+            <td width="72">周小安</td>
+            <td width="106">13069048888</td>
+        </tr>
+    </table>
+    <div id="userView7-page3">
+        <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+    </div>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/userView.js"></script>
+</body>
+</html>

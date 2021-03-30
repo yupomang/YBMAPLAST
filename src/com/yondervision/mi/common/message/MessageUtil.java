@@ -71,7 +71,10 @@ public class MessageUtil implements APPMessageI{
 					||request.getServletPath().startsWith("/appapi00241")||request.getServletPath().startsWith("/appapi00242")
 					||request.getServletPath().startsWith("/appapi00243")||request.getServletPath().startsWith("/appapi00244")
 					||request.getServletPath().startsWith("/appapi00245")||request.getServletPath().startsWith("/webapi80009")
-					||request.getServletPath().startsWith("/webapi80010")){
+					||request.getServletPath().startsWith("/webapi80010")||request.getServletPath().startsWith("/webapi80015")
+					||request.getServletPath().startsWith("/webapi80016")||request.getServletPath().startsWith("/webapi80017")
+					||request.getServletPath().startsWith("/webapi80018")||request.getServletPath().startsWith("/webapi80019")
+					||request.getServletPath().startsWith("/webapi80020")){
 				req = sendTY(request, response, httpURL);
 			}else if(request.getServletPath().startsWith("/appapi04101") ){
 				req = sendYiBu(request, response, httpURL);

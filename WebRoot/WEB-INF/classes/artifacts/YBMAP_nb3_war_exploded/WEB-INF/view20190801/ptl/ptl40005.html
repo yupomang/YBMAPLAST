@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="css/systemManagement.css" />
+</head>
+<body>
+<div class="sysMgmt-fnDeploy-menu">
+    <div class="sysMgmt-fnDeploy-top">
+        <p class="sysMgmt-fnDeploy-top-name">功能编号</p>
+        <input type="text" class="sysMgmt-fnDeploy-top-input" id="funcid">
+        <p class="sysMgmt-fnDeploy-top-name">功能名称</p>
+        <input type="text" class="sysMgmt-fnDeploy-top-input" id="funcname">
+        <p class="sysMgmt-fnDeploy-top-name">客户级别</p>
+        <div id="sysMgmt-fnDeploy-droplist">
+            <droplist :items="items" :selectedValue.sync="selectedValue"></droplist>
+        </div>
+        <a href="javascript:;" title="查询" class="sysMgmt-fnDeploy-top-greenBtn">查询</a>
+    </div>
+    <div class="sysMgmt-fnDeploy-btns">
+        <div class="common-btns">
+            <a href="javascript:;" title="新建" class="common-btns-create" id="fnDeploy-btn-add">新建</a>
+            <a href="javascript:;" title="修改" class="common-btns-edit" id="fnDeploy-btn-edit">修改</a>
+            <a href="javascript:;" title="删除" class="common-btns-del" id="fnDeploy-btn-del">删除</a>
+        </div>
+    </div>
+    <div id="sysMgmt-fnDeploy-table"></div>
+    <div id="sysMgmt-fnDeploy-table-pages">
+        <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+    </div>
+</div>
+<div class="sysMgmt-fnDeploy-sub">
+    <h2 class="sysMgmt-fnDeploy-sub-title">父功能名称：客户管理</h2>
+    <div class="common-btns">
+        <a href="javascript:;" title="返回" class="common-btns-back" id="fnDeploy-sub-back">返回</a>
+        <a href="javascript:;" title="新建" class="common-btns-create" id="fnDeploy-sub-add">新建</a>
+        <a href="javascript:;" title="修改" class="common-btns-edit" id="fnDeploy-sub-edit">修改</a>
+        <a href="javascript:;" title="删除" class="common-btns-del" id="fnDeploy-sub-del">删除</a>
+        <a href="javascript:;" title="上移" class="common-btns-moveUp" id="fnDeploy-sub-up">上移</a>
+        <a href="javascript:;" title="下移" class="common-btns-moveDown" id="fnDeploy-sub-down">下移</a>
+        <a href="javascript:;" title="保存顺序" class="common-btns-save" id="fnDeploy-sub-save">保存顺序</a>
+    </div>
+    <div id="sysMgmt-fnDeploy-sub-table"></div>
+    <div id="sysMgmt-fnDeploy-subtable-pages">
+        <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+    </div>
+</div>
+<div class="sysMgmt-hidden-area">
+    <div class="fnDeploy-create">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>功能配置-新建</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>功能编号</p>
+                        <input type="text" value="" id="create-funcid" placeholder="长度是8位数字。例：00010200" />
+                        <span class="red-link">*</span>
+                        <p>功能名称</p>
+                        <input type="text" value="" id="create-funcname" />
+                        <span class="red-link">*</span>
+                        <p>客户级别</p>
+                        <select id="fnDeploy-create-select">
+                        </select>
+                        <span class="red-link">*</span>
+                        <p>是否有子功能</p>
+                        <select id="fnDeploy-create-subFn">
+                            <option value="0">否</option>
+                            <option value="1">是</option>
+                        </select>
+                        <span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].fnDeploy.create();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- edit -->
+    <div class="fnDeploy-edit">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>功能配置-修改</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>功能编号</p>
+                        <input type="text" value="" id="edit-funcid" placeholder="长度是8位数字。例：00010200" />
+                        <span class="red-link">*</span>
+                        <p>功能名称</p>
+                        <input type="text" id="edit-funcname" value="" />
+                        <span class="red-link">*</span>
+                        <p>客户级别</p>
+                        <select id="fnDeploy-edit-select">
+                        </select>
+                        <span class="red-link">*</span>
+                        <p>是否有子功能</p>
+                        <select id="fnDeploy-edit-subFn">
+                            <option value="0">否</option>
+                            <option value="1">是</option>
+                        </select>
+                        <span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="修改" class="popup-btns-ok" onclick="window.frames['main'].fnDeploy.editPost();">修改</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- sub create -->
+    <div class="fnDeploy-sub-create">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>配置子功能-新建</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>父功能名称</p>
+                        <div class="wechat-baseQuery-font" id="create-parentName"></div>
+                        <p>序号</p>
+                        <input type="text" value="" id="create-number" />
+                        <span class="red-link">*</span>
+                        <p>子功能编号</p>
+                        <input type="text" value="" id="create-sub-number" placeholder="长度是8位数字。例：00010200" />
+                        <span class="red-link">*</span>
+                        <p>子功能名称</p>
+                        <input type="text" id="create-sub-name" value="" />
+                        <span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].fnDeploy.subAdd();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- sub create -->
+    <div class="fnDeploy-sub-edit">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>配置子功能-修改</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <p>父功能名称</p>
+                        <div class="wechat-baseQuery-font" id="edit-parentName"></div>
+                        <p>序号</p>
+                        <input type="text" value="1" id="edit-number" />
+                        <span class="red-link">*</span>
+                        <p>子功能编号</p>
+                        <input type="text" value="1" id="edit-sub-number" placeholder="长度是8位数字。例：00010200" />
+                        <span class="red-link">*</span>
+                        <p>子功能名称</p>
+                        <input type="text" value="name" id="edit-sub-name" />
+                        <span class="red-link">*</span>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].fnDeploy.subEdit();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/systemManagement.js"></script>
+</body>
+</html>

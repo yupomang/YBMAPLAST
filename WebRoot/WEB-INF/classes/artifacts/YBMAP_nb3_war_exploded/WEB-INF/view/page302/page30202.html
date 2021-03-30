@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" type="text/css" href="css/message.css" />
+</head>
+<body>
+<div class="custom-message-box">
+    <div class="common-btns">
+        <a href="javascript:;" title="导入" class="common-btns-import" id="customMessage-btn-input">导入</a>
+        <a href="javascript:;" title="删除" class="common-btns-del" id="customMessage-btn-del">删除</a>
+        <a href="downloadimg.file?filePathParam=import_file_path&fileName=mi30202.xls&isFullUrl=false" title="模板下载" class="common-btns-downFile" id="customMessage-btn-downFile">模板下载</a>
+    </div>
+    <div id="custom-message-table"></div>
+</div>
+<div class="custom-message-view">
+    <h2 class="custom-view-title">
+        <span>报盘短信息明细</span>
+    </h2>
+    <div class="common-btns">
+        <a href="javascript:;" title="返回" class="common-btns-back" id="customMessage-btn-back">返回</a>
+    </div>
+    <div id="custom-message-view-table"></div>
+    <div id="custom-message-table-pages">
+        <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+    </div>
+</div>
+<div class="message-hidden">
+    <div class="message-import">
+        <div class="popup-bg"></div>
+        <div class="popup-box">
+            <div class="popup-relative">
+                <div class="popup-close" onclick="Common.popupClose();"></div>
+                <h2 class="popup-title">
+                    <span>消息导入</span>
+                </h2>
+                <div class="wechat-baseQuery-popup-content">
+                    <div class="wechat-baseQuery-popup-create">
+                        <form id="fm" class="dlg-form" method="post" name="formImport" action="webapi30202.do?method=import" method="post" enctype="multipart/form-data" novalidate="novalidate">
+                            <p>上传文件</p>
+                            <div class="custom-message-upload">
+                                <div class="custom-message-upload-btn">
+                                    选择...
+                                    <input id="importFile" name="importFile" type="file" onkeydown="return false;" style="width:87%" accept="application/vnd.ms-excel" />
+                                </div>
+                                <input type="hidden" id="centerid" name="centerid" value="" />
+                                <input type="hidden" id="userid" name="userid" value="" />
+                                <input type="hidden" name="msgsource" value="10" />
+                                <!--<input type="hidden" name="timing" value="1" />-->
+                                <!--<input type="hidden" name="dsdate" value="2016-10-11 00:00:00" />-->
+                                <span id="excelfile">未选择文件</span>
+                            </div>
+                            <p>启用定时</p>
+                            <div class="is-timing">
+                                <label onclick="$('.is-timing-time, #dsdate').show()"><input type="radio" name="timing" value="1" checked>是</label>
+                                <label onclick="$('.is-timing-time, #dsdate').hide();$('#dsdate').val('')"><input type="radio" name="timing" value="0">否</label>
+                            </div>
+                            <p class="is-timing-time">定时时间</p>
+                            <input type="text" id="dsdate" name="dsdate">
+                        </form>
+                    </div>
+                </div>
+                <div class="popup-btns">
+                    <a href="javascript:;" title="确定" class="popup-btns-ok" onclick="window.frames['main'].customMessage.upload();">确定</a>
+                    <a href="javascript:;" title="取消" class="popup-btns-cancel" onclick="Common.popupClose();">取消</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery.js"></script><script type="text/javascript" src="js/lib/jquery-migrate.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/page30202.js"></script>
+</body>
+</html>

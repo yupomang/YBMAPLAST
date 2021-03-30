@@ -1,0 +1,331 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <link rel="stylesheet" type="text/css" href="css/hx.core.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.droplist.css" />
+    <link rel="stylesheet" type="text/css" href="css/hx.pages.css" />
+    <link rel="stylesheet" href="css/3rd/main.css">
+    <link rel="stylesheet" href="css/3rd/960.css">
+    <link rel="stylesheet" href="css/3rd/mmGrid.css">
+    <link rel="stylesheet" href="css/3rd/mmPaginator.css">
+    <link rel="stylesheet" type="text/css" href="css/master.css" />
+    <link rel="stylesheet" type="text/css" href="css/contentManagement.css" />
+    <link rel="stylesheet" type="text/css" href="css/multiple-select2.css" />
+</head>
+<body>
+<ul class="content-management-top">
+    <li>
+        <p>栏目</p>
+        <!--<select id="content-management-list"></select>-->
+        <div class="content-management-select" id="content-management-select1">
+            <span class="content-management-placeholder" @click="isShow = !isShow">{{ selectText }}</span>
+            <ul class="content-management-droplist" v-show="isShow">
+                <li><span @click="check('', '全部');">全部</span></li>
+                <template v-for="item in tree">
+                    <li>
+                        <span @click="check(item.id, item.text);">{{ item.text }}</span>
+                        <ul v-if="item.children && item.children.length > 0">
+                            <template v-for="sub1 in item.children">
+                                <li>
+                                    <span @click="check(sub1.id, sub1.text);">{{ sub1.text }}</span>
+                                    <ul v-if="sub1.children && sub1.children.length > 0">
+                                        <template v-for="sub2 in sub1.children">
+                                            <li>
+                                                <span @click="check(sub2.id, sub2.text);">{{ sub2.text }}</span>
+                                                <ul v-if="sub2.children && sub2.children.length > 0">
+                                                    <template v-for="sub3 in sub2.children">
+                                                        <li>
+                                                            <span @click="check(sub3.id, sub3.text);">{{ sub3.text }}</span>
+                                                            <ul v-if="sub3.children && sub3.children.length > 0">
+                                                                <template v-for="sub4 in sub3.children">
+                                                                    <li>
+                                                                        <span @click="check(sub4.id, sub4.text);">{{ sub4.text }}</span>
+                                                                    </li>
+                                                                </template>
+                                                            </ul>
+                                                        </li>
+                                                    </template>
+                                                </ul>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </li>
+                            </template>
+                        </ul>
+                    </li>
+                </template>
+            </ul>
+        </div>
+    </li>
+    <li>
+        <p>开始日期</p>
+        <input type="text" id="start-date">
+    </li>
+    <li>
+        <p>结束日期</p>
+        <input type="text" id="end-date">
+    </li>
+    <li>
+        <p>状态</p>
+        <select id="status-list"></select>
+    </li>
+    <li>
+        <p>渠道</p>
+        <select id="qudao-list"></select>
+    </li>
+    <li>
+        <p>关键字</p>
+        <input type="text" id="search-keyword">
+    </li>
+    <li>
+        <a href="javascript:;" title="查询" id="search-btn">查询</a>
+        <a href="javascript:;" title="重置" id="reset-btn">重置</a>
+    </li>
+</ul>
+<div class="content-management-box">
+    <div class="common-btns">
+        <a href="javascript:;" title="新建" class="common-btns-create" id="content-btn-add">新建</a>
+        <a href="javascript:;" title="修改" class="common-btns-edit" id="content-btn-edit">修改</a>
+        <a href="javascript:;" title="删除" class="common-btns-del" id="content-btn-del">删除</a>
+        <!--<a href="javascript:;" title="审核" class="common-btns-check" id="content-btn-check">审核</a>-->
+        <a href="javascript:;" title="发布" class="common-btns-release" id="content-btn-release">发布</a>
+    </div>
+    <div id="content-table"></div>
+    <div id="content-pager">
+        <pages :items="items" :current.sync="current" :size.sync="size"></pages>
+    </div>
+</div>
+<div class="create">
+    <div class="create-title">
+        <a href="javascript:;" title="返回">返回</a>
+        <span>|</span>
+        <p>信息内容创建</p>
+    </div>
+    <ul class="create-left">
+        <li>
+            <p class="create-left-row-name">所属栏目</p>
+            <!--<select id="create-left-columns" class="create-left-columns"></select>-->
+            <div class="content-management-select" id="content-management-select2">
+                <span class="content-management-placeholder" @click="isShow = !isShow">{{ selectText }}</span>
+                <ul class="content-management-droplist" v-show="isShow">
+                    <template v-for="item in tree">
+                        <li>
+                            <span @click="check(item.id, item.text);">{{ item.text }}</span>
+                            <ul v-if="item.children && item.children.length > 0">
+                                <template v-for="sub1 in item.children">
+                                    <li>
+                                        <span @click="check(sub1.id, sub1.text);">{{ sub1.text }}</span>
+                                        <ul v-if="sub1.children && sub1.children.length > 0">
+                                            <template v-for="sub2 in sub1.children">
+                                                <li>
+                                                    <span @click="check(sub2.id, sub2.text);">{{ sub2.text }}</span>
+                                                    <ul v-if="sub2.children && sub2.children.length > 0">
+                                                        <template v-for="sub3 in sub2.children">
+                                                            <li>
+                                                                <span @click="check(sub3.id, sub3.text);">{{ sub3.text }}</span>
+                                                                <ul v-if="sub3.children && sub3.children.length > 0">
+                                                                    <template v-for="sub4 in sub3.children">
+                                                                        <li>
+                                                                            <span @click="check(sub4.id, sub4.text);">{{ sub4.text }}</span>
+                                                                        </li>
+                                                                    </template>
+                                                                </ul>
+                                                            </li>
+                                                        </template>
+                                                    </ul>
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </li>
+                                </template>
+                            </ul>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+            <span class="red">*</span>
+        </li>
+        <li>
+            <p class="create-left-row-name">渠道</p>
+            <select id="freeuse8" style="width:190px;padding:0px;" multiple="multiple"></select>
+            <span class="red">*</span>
+        </li>
+        <li>
+            <p class="create-left-row-name">图标</p>
+            <div class="create-left-icons"></div>
+            <a href="javascript:;" title="选择图标" id="create-left-upload-icon" class="create-left-upload-icon">选择图标</a>
+        </li>
+        <li>
+            <p class="create-left-row-name">发布日期</p>
+            <input type="text" class="release-date" id="release-date">
+            <span class="red">*</span>
+        </li>
+        <li>
+            <p class="create-left-row-name">标题</p>
+            <input type="text" id="create-left-title" class="create-left-title">
+            <span class="red">*</span>
+        </li>
+        <li>
+            <p class="create-left-row-name">摘要</p>
+            <textarea cols="30" id="create-left-summary" rows="10"></textarea>
+        </li>
+        <li>
+            <p class="create-left-row-name">正文</p>
+            <script id="create-left-editor" type="text/plain" style="width:626px;height:208px;"></script>
+        </li>
+        <li>
+            <div class="create-left-btns">
+                <a href="javascript:;" title="保存" id="create-save">保存</a>
+                <a href="javascript:;" title="移动端预览" id="create-mobile">移动端预览</a>
+                <a href="javascript:;" title="PC端预览" id="create-pc">PC端预览</a>
+            </div>
+        </li>
+    </ul>
+    <div class="create-right">
+        <div class="create-right-title">
+            <a href="javascript:;"
+               title="知识库"
+               :class="{'on': select == 0 }"
+               @click="changeTag(0)">知识库</a>
+            <a href="javascript:;"
+               title="素材库"
+               :class="{'on': select == 1 }"
+               @click="changeTag(1)">素材库</a>
+        </div>
+        <div id="GJJKBS-setjs-box" v-show="select == 0">
+            <!--<script id="GJJKBS-setjs" src="http://116.52.5.78:9999/kbs/km/js/doc.plugin.set.js?v=1477378377898&f=normal&w=auto&h=482"></script>-->
+            <script type="text/javascript">
+                var inIP = "172.16.0.184"; // 内网IP
+                var outIP = "61.153.144.77"; // 外网IP
+                var centerIP = "172.16.0.184"; // test IP
+                var showIP = "172.16.0.184"; // 演示地址
+                var src = '';
+                if(window.location.hostname == inIP){//-----内网信息
+                    src = 'http://172.16.0.183:8080/kbs/km/js/doc.plugin.set.js?v=1490621935225&f=normal&w=323&h=500';
+                } else if(window.location.hostname == outIP){//-----外网信息-------internet-----
+                    src = 'http://172.16.0.183:8080/kbs/km/js/doc.plugin.set.js?v=1490621935225&f=normal&w=323&h=500';
+                } else if(window.location.hostname == showIP){//-----演示地址-------internet-----
+                    src = 'http://172.16.0.183:8080/kbs/km/js/doc.plugin.set.js?v=1490621935225&f=normal&w=323&h=500';
+                } else {
+                    src = 'http://172.16.0.183:8080/kbs/km/js/doc.plugin.set.js?v=1490621935225&f=normal&w=323&h=500';
+                }
+                var GJJKBS_JS = document.createElement('script');
+                GJJKBS_JS.id = 'GJJKBS-setjs';
+                GJJKBS_JS.src = src;
+                document.getElementById('GJJKBS-setjs-box').appendChild(GJJKBS_JS);
+                setTimeout(function(){
+                    GJJKBS_set.GJJKBS_setCid(top.userInfo.centerid);
+                }, 1500);
+            </script>
+        </div>
+        <div class="create-right-search-box" v-show="select == 1">
+            <input type="text" placeholder="查询素材库" id="create-right-search-val" v-model="searchText">
+            <a href="javascript:;" title="搜索" @click="search()" id="create-right-search-btn"></a>
+            <a href="javascript:;" title="刷新" @click="reset()" id="create-right-search-refresh"></a>
+        </div>
+        <div class="create-right-groups" v-show="select == 1">
+            <template v-for="group in groups">
+                <a href="javascript:;" class="create-right-group-title"
+                   title="{{ group.groupname }}"
+                   v-bind:class="{ 'on': group.groupid == currentGroupId }"
+                   @click="getMaterial(group);">
+                    {{ group.groupname }}（{{ group.jl }}）
+                </a>
+                <div class="material-box" v-show="group.groupid == currentGroupId" v-if="searchResult.length > 0">
+                    <div v-bind:style="{ width: searchResult.length * 96 + 'px' }">
+                        <template v-for="material in searchResult">
+                            <div class="material-li">
+                                <div class="material-pic" v-bind:style="{ background: 'url(' + material.picurl + ') center center no-repeat' }"></div>
+                                <p>{{{ material.realname }}}</p>
+                                <a href="javascript:;" title="插入素材" @click="insetHtml(material);">插入素材</a>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</div>
+<div class="preview">
+    <div class="mobile">
+        <div class="popup-bg"></div>
+        <div class="mobile-fixed">
+            <div class="mobile-relative">
+                <div class="mobile-list">
+                    <h2 class="mobile-list-title"></h2>
+                    <p class="mobile-list-date"></p>
+                    <div class="mobile-list-desc"></div>
+                </div>
+                <div class="mobile-placeholder"></div>
+                <div class="mobile-content1">
+                    <h2 class="mobile-con-title"></h2>
+                    <p class="mobile-con-date"></p>
+                    <!-- <div class="mobile-content-html"></div> -->
+                    <blockquote class="mobile-content-html"></blockquote>
+                </div>
+                <div class="mobile-popup-btns">
+                    <!-- <a href="javascript:;" title="信息列表" class="on">信息列表</a> -->
+                    <a href="javascript:;" title="信息正文" class="on">信息正文</a>
+                    <a href="javascript:;" title="关闭" class="popup-mobile-close">关闭</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pc">
+        <div class="popup-bg"></div>
+        <div class="pc-fixed">
+            <div class="pc-relative">
+                <div class="pc-list">
+                    <h3 class="pc-columns-title"></h3>
+                    <ul class="pc-list-ul">
+                        <li>
+                            <div class="pc-list-img">
+                                <img alt="" src="" style="width:0;height:100%;padding:0;margin:0;border:0;visibility:hidden">
+                                <img src="">
+                            </div>
+                            <div class="pc-list-fonts">
+                                <h2></h2>
+                                <div class="pc-list-fonts-content"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pc-placeholder"></div>
+                <div class="pc-content">
+                   <div class="pc-content-wrap">
+                       <h2 class="pc-content-title"></h2>
+                       <p class="pc-content-date"></p>
+                       <!-- <div class="pc-content-box"></div> -->
+                       <blockquote class="pc-content-box"></blockquote>
+                   </div>
+                </div>
+                <div class="pc-popup-btns">
+                    <!-- <a href="javascript:;" title="信息列表" class="on">信息列表</a> -->
+                    <a href="javascript:;" title="信息正文" class="on">信息正文</a>
+                    <a href="javascript:;" title="关闭" class="popup-mobile-close">关闭</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/base/hx.core.js"></script>
+<script type="text/javascript" src="js/lib/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/lib/vue.js"></script>
+<script type="text/javascript" src="js/hx.droplist.js"></script>
+<script type="text/javascript" src="js/hx.pages.js"></script>
+<script type="text/javascript" src="js/3rd/plugins.js"></script>
+<script type="text/javascript" src="js/lib/json2.js"></script>
+<script type="text/javascript" src="js/3rd/mmGrid.js"></script>
+<script type="text/javascript" src="js/3rd/mmPaginator.js"></script>
+<script type="text/javascript" src="js/3rd/ajaxupload.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/3rd/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/3rd/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/3rd/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" src="js/3rd/laydate.js"></script>
+<script type="text/javascript" src="js/contentManagement.js"></script>
+<script type="text/javascript" src="js/lib/multiple-select.js"></script>
+</body>
+</html>
